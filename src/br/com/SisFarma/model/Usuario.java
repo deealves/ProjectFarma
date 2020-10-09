@@ -5,6 +5,8 @@
  */
 package br.com.SisFarma.model;
 
+import javafx.stage.Stage;
+
 /**
  *
  * @author Leticia
@@ -52,7 +54,7 @@ public class Usuario {
         return email;
     }
 
-    public void setEmail(String user) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -62,6 +64,10 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void start(Stage stage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

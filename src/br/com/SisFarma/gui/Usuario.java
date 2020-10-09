@@ -37,5 +37,13 @@ public class Usuario extends Application {
      public static void main(String[] args) {
         launch(args);
     }
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        Usuario.stage = stage;
+    }
     
 }

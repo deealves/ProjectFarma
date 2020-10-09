@@ -18,14 +18,14 @@ import java.util.logging.Logger;
  */
 public class UsuarioDAO {
     private Connection con;
-    
+    private String sql;
+   
     public UsuarioDAO(){
         this.con = new ConnectionFactory().getConnection();
     }
     
     public boolean insert(Usuario u){
-        String sql = "INSERT INTO usuario (Nome, Email, Senha) VALUES (?,?,?);";
-        con = ConnectionFactory.getConnection();
+        sql = "INSERT INTO usuario (nome,email,senha) VALUES (?,?,?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,u.getNome());
@@ -42,7 +42,7 @@ public class UsuarioDAO {
     }
     
      public boolean update(Usuario u){
-        String sql = "UPDATE Usuario SET nome = ?, email = ?, senha; ? WHERE id=?";
+        sql = "UPDATE usuario SET nome = ?, email = ?, senha; ? WHERE id=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,u.getNome());
@@ -60,7 +60,7 @@ public class UsuarioDAO {
     }
      
      public boolean delete(Usuario u){
-        String sql = "DELETE FROM Usuario WHERE id=?";
+        sql = "DELETE FROM usuario WHERE id=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setLong(1,u.getId());
@@ -76,7 +76,7 @@ public class UsuarioDAO {
      
      public List<Usuario> getList(){
          List<Usuario> usuarios = new ArrayList<>();
-         String sql = "SELECT * FROM Usuario";
+         String sql = "SELECT * FROM usuario";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -84,8 +84,8 @@ public class UsuarioDAO {
                 Usuario u = new Usuario();
                 u.setId(rs.getLong(""));//Essa string por parametro é o nome da coluna la do banco
                 u.setNome(rs.getString("nome"));
-                u.setNome(rs.getString("email"));
-                u.setNome(rs.getString("senha"));
+                u.setEmail(rs.getString("email"));
+                u.setSenha(rs.getString("senha"));
                 usuarios.add(u);
             }
             stmt.close();
