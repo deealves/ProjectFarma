@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SisFarma.Controller.LoginController">
+    <children>
+      <Pane prefHeight="368.0" prefWidth="236.0">
+         <children>
+            <ImageView fitHeight="450.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../img/banner.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Pane layoutX="286.0" prefHeight="450.0" prefWidth="325.0" style="-fx-background-color: #f2f2f2;">
+         <children>
+              <Button fx:id="btEntrar" layoutX="124.0" layoutY="403.0" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #56c278;" text="Entrar" textFill="WHITE" />
+            <Button fx:id="btSair" layoutX="217.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #e70000;" text="Sair" textFill="WHITE" />
+            <TextField fx:id="txEmail" layoutX="45.0" layoutY="233.0" prefHeight="25.0" prefWidth="250.0" />
+            <PasswordField fx:id="txSenha" layoutX="45.0" layoutY="304.0" prefHeight="25.0" prefWidth="250.0" />
+              <Label fx:id="label" layoutX="45.0" layoutY="208.0" minHeight="16" minWidth="44.0" prefHeight="17.0" prefWidth="44.0" text="Usuario" />
+            <Label layoutX="45.0" layoutY="278.0" text="Senha" />
+            <ImageView fitHeight="100.0" fitWidth="121.0" layoutX="103.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../img/login.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

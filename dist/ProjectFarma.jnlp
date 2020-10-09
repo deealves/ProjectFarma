@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProjectFarma.jnlp">
+  <information>
+    <title>ProjectFarma</title>
+    <vendor>Leticia</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ProjectFarma.jar" size="250041" download="eager" />
+    <jar href="lib\postgresql-42.2.10.jar" size="927447" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="br.com.SisFarma.gui.Login"  name="ProjectFarma" />
+  <update check="always"/>
+</jnlp>
