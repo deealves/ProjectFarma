@@ -22,10 +22,10 @@ public class Fornecedor extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/Login.fxml"));//Carrega FXML
+        Parent root = FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/Fornecedor.fxml"));//Carrega FXML
         
         Scene scene = new Scene(root);//Coloca o FXML em uma cena
-        stage.setTitle("Login");
+        stage.setTitle("Fornecedor");
         stage.setScene(scene);//Coloca a cena em uma janela
         stage.show();//Abre a Janela
         setStage(stage);
@@ -33,5 +33,15 @@ public class Fornecedor extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        Fornecedor.stage = stage;
+    }
+    
+    
     
 }

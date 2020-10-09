@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ProjectFarma.jar" size="252282" download="eager" />
+    <jar href="ProjectFarma.jar" size="252316" download="eager" />
     <jar href="lib\postgresql-42.2.10.jar" size="927447" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="br.com.SisFarma.gui.Usuario"  name="ProjectFarma" />
