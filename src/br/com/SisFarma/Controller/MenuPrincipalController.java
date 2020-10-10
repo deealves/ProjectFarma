@@ -5,10 +5,10 @@
  */
 package br.com.SisFarma.Controller;
 
-import br.com.SisFarma.gui.Fornecedor;
+import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.Login;
 import br.com.SisFarma.gui.MenuPrincipal;
-import br.com.SisFarma.gui.Produto;
+import br.com.SisFarma.gui.Produtos;
 import br.com.SisFarma.gui.Usuarios;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -49,7 +49,7 @@ public class MenuPrincipalController implements Initializable {
     });
         
         btFornecedor.setOnMouseClicked((MouseEvent e) ->{
-            Fornecedor f = new Fornecedor();
+            Fornecedores f = new Fornecedores();
             MenuPrincipal.getStage().close();
             try {
                 f.start(new Stage());
@@ -60,7 +60,7 @@ public class MenuPrincipalController implements Initializable {
         
         
         btProduto.setOnMouseClicked((MouseEvent e) ->{
-            Produto pr = new Produto();
+            Produtos pr = new Produtos();
             MenuPrincipal.getStage().close();
             try {
                 pr.start(new Stage());

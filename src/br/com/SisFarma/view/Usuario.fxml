@@ -12,10 +12,11 @@
    <children>
       <Pane prefHeight="450.0" prefWidth="388.0" style="-fx-background-color: #90EE90;">
          <children>
-            <TableView layoutX="29.0" layoutY="125.0" prefHeight="200.0" prefWidth="328.0" style="-fx-background-color: #f2f2f2;">
+            <TableView fx:id="tabela" layoutX="29.0" layoutY="125.0" prefHeight="200.0" prefWidth="328.0" style="-fx-background-color: #f2f2f2;">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="clmId" prefWidth="37.0" text="ID" />
+                <TableColumn fx:id="clmNome" prefWidth="151.0" text="Nome" />
+                  <TableColumn fx:id="clmUsuario" prefWidth="139.0" text="Usuario" />
               </columns>
             </TableView>
             <Button fx:id="btEditar" layoutY="347.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="388.0" style="-fx-background-color: #32CD32;" text="EDITAR" textFill="WHITE">

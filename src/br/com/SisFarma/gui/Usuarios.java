@@ -5,7 +5,7 @@
  */
 package br.com.SisFarma.gui;
 
-import static br.com.SisFarma.gui.Produto.setStage;
+import static br.com.SisFarma.gui.Produtos.setStage;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
