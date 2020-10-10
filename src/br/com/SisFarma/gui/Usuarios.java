@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author Leticia
  */
-public class Usuario extends Application {
+public class Usuarios extends Application {
     
     private static Stage stage;//Uma Janela
     
@@ -43,7 +43,7 @@ public class Usuario extends Application {
     }
 
     public static void setStage(Stage stage) {
-        Usuario.stage = stage;
+        Usuarios.stage = stage;
     }
     
 }

@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 public class UsuarioDAO {
     private Connection con;
     private String sql;
+    private PreparedStatement stmt;
    
     public UsuarioDAO(){
         this.con = new ConnectionFactory().getConnection();
@@ -74,29 +75,28 @@ public class UsuarioDAO {
         }
     }
      
-     public List<Usuario> getList(){
+     public List<Usuario> listar() throws SQLException{
+         sql = "select u.id, u.nome, u.email, u.senha from usuario u ";
+         con = ConnectionFactory.getConnection();
+         stmt = con.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery();
+         
          List<Usuario> usuarios = new ArrayList<>();
-         String sql = "SELECT * FROM usuario";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()){
-                Usuario u = new Usuario();
-                u.setId(rs.getLong(""));//Essa string por parametro é o nome da coluna la do banco
-                u.setNome(rs.getString("nome"));
-                u.setEmail(rs.getString("email"));
-                u.setSenha(rs.getString("senha"));
-                usuarios.add(u);
-            }
-            stmt.close();
-            rs.close();
-            con.close();
-            
-        } catch (SQLException ex) {
-            System.out.println("ERRO, Lista não foi retornada");
-            return null;
-        }
-        return usuarios;
+         while (rs.next()){
+             
+             Usuario u = new Usuario();
+             
+             u.setId(rs.getLong("id"));
+             u.setNome(rs.getString("nome"));
+             u.setEmail(rs.getString("email"));
+             u.setSenha(rs.getString("senha"));
+             
+             usuarios.add(u);
+         }
+         
+         con.close();
+         return usuarios;
+        
      }
      
     

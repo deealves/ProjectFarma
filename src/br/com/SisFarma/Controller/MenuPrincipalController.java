@@ -9,7 +9,7 @@ import br.com.SisFarma.gui.Fornecedor;
 import br.com.SisFarma.gui.Login;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Produto;
-import br.com.SisFarma.gui.Usuario;
+import br.com.SisFarma.gui.Usuarios;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -39,7 +39,7 @@ public class MenuPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         btUsuario.setOnMouseClicked((MouseEvent e) ->{
-            Usuario u = new Usuario();
+            Usuarios u = new Usuarios();
             MenuPrincipal.getStage().close();
             try {
                 u.start(new Stage());

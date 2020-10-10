@@ -7,6 +7,8 @@ package teste;
 
 import br.com.SisFarma.dao.UsuarioDAO;
 import br.com.SisFarma.model.Usuario;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -15,19 +17,14 @@ import br.com.SisFarma.model.Usuario;
 public class Teste {
 
     
-    public static void main(String[] args) {
-        Usuario u = new Usuario();
-        u.setNome("Dennys");
-        u.setEmail("deealves");
-        u.setSenha("saude100");
-        
+    public static void main(String[] args) throws SQLException {
+        System.out.println("Listar Usuario");
         UsuarioDAO dao = new UsuarioDAO();
-        if(dao.insert(u)){
-            System.out.println("cadastrado");
+        List<Usuario> usuarios = new UsuarioDAO().listar();
+        for(int x = 0; x< usuarios.size();x++){
+            usuarios.get(x).mostraUsuario();
         }
-        else{
-            System.out.println("não cadastrado");
-        }
+   
         
     }
     
