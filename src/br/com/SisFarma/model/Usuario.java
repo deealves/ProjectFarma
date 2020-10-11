@@ -67,7 +67,7 @@ public class Usuario {
     }
 
     public void start(Stage stage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
     public void mostraUsuario(){

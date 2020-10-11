@@ -82,15 +82,13 @@ public class Produto {
         this.preco = preco;
     }
     
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(" | ").append(id)
-                .append(" | ").append(codproduto)
-                .append(" | ").append(nome)
-                .append(" | ").append(preco)
-                .append(" | ").append(fabricante)  
-                .append(" | ").append(quant);
-        return sb.toString();
+   
+    public void mostraProduto(){
+        System.out.println(" / "+ getId()
+                          +" / "+ getCodproduto()
+                          +" / "+ getNome()
+                          +" / "+ getPreco()
+                          +" / "+ getFabricante()
+                          +" / "+ getQuant());
     }
 }

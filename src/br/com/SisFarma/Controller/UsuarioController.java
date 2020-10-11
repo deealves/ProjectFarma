@@ -45,7 +45,6 @@ public class UsuarioController implements Initializable {
     @FXML private Button btCadastrar;
     @FXML private TextField txNome;
     @FXML private Label lbId;
-    @FXML private TextField txId;
     private Usuario selecionada;
     
    

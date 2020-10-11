@@ -38,9 +38,11 @@
       </Pane>
       <Pane layoutX="389.0" prefHeight="450.0" prefWidth="218.0" style="-fx-background-color: #f2f2f2;">
          <children>
-            <PasswordField fx:id="txSenha" layoutX="35.0" layoutY="282.0" />
             <TextField fx:id="txNome" layoutX="35.0" layoutY="167.0" />
             <TextField fx:id="txUsuario" layoutX="35.0" layoutY="225.0" />
+            <PasswordField fx:id="txSenha" layoutX="35.0" layoutY="282.0" />
+            <Button fx:id="btCadastrar" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #90EE90;" text="Cadastrar" textFill="WHITE" />
+            <Button fx:id="btVoltar" layoutX="35.0" layoutY="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #FF6347;" text="Voltar" textFill="WHITE" />
             <ImageView fitHeight="69.0" fitWidth="63.0" layoutX="78.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../img/carteira-de-identidade.png" />
@@ -49,10 +51,7 @@
             <Label layoutX="35.0" layoutY="143.0" text="Nome" />
             <Label layoutX="35.0" layoutY="200.0" text="Usuario" />
             <Label layoutX="35.0" layoutY="259.0" text="Senha" />
-            <Button fx:id="btCadastrar" layoutX="35.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #90EE90;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="btVoltar" layoutX="35.0" layoutY="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #FF6347;" text="Voltar" textFill="WHITE" />
-            <Label fx:id="lbId" layoutX="37.0" layoutY="321.0" style="-fx-background-color: #f2f2f2;" />
-            <TextField fx:id="txId" layoutX="154.0" layoutY="317.0" prefHeight="25.0" prefWidth="22.0" style="-fx-background-color: #f2f2f2;" />
+            <Label fx:id="lbId" layoutX="37.0" layoutY="321.0" style="-fx-background-color: #f2f2f2;" textFill="#f2f2f2" />
          </children>
       </Pane>
    </children>

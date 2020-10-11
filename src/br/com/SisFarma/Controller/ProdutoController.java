@@ -82,13 +82,19 @@ public class ProdutoController implements Initializable {
         btCadastrar.setOnMouseClicked((MouseEvent e) ->{
           
               if(btCadastrar.getText().equals("Salvar")){
-                  salvarProduto();
+                  try {
+                      salvarProduto();
+                  } catch (SQLException ex) {
+                      Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+                  }
               }else{
+                  
                   try {
                       cadastrarProduto();
                   } catch (SQLException ex) {
                       Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
                   }
+                  
               }             
                    
     }); 
@@ -107,6 +113,16 @@ public class ProdutoController implements Initializable {
                 Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
             }
     });  
+        
+        btEditar.setOnMouseClicked((MouseEvent e) ->{
+            try {
+                editarProduto();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+    });
+        
     }
 
     private void initTable() throws SQLException {
@@ -134,8 +150,43 @@ public class ProdutoController implements Initializable {
             }
     }
 
-    private void salvarProduto() {
-        
+    private void salvarProduto() throws SQLException {
+            int codproduto = Integer.parseInt(txCodproduto.getText());
+            String nome = txNome.getText(); 
+            float preco = Float.parseFloat(txPreco.getText());
+            String fabricante = txFabricante.getText(); 
+            int quant = Integer.parseInt(txQuant.getText());
+            Long id = Long.parseLong(lbId.getText());
+
+            ProdutoDAO dao = new ProdutoDAO();
+            Produto p = new Produto();
+            p.setCodproduto(codproduto);
+            p.setNome(nome);
+            p.setPreco(preco);
+            p.setFabricante(fabricante);
+            p.setQuant(quant);
+            p.setId(id);
+            if(dao.update(p)){
+                Alert al = new Alert(AlertType.CONFIRMATION);
+                al.setHeaderText ("Produto Cadastrado");
+                al.show();
+                txCodproduto.setText("");
+                txNome.setText("");
+                txPreco.setText("");
+                txFabricante.setText("");
+                txQuant.setText("");
+                lbId.setText(" ");
+                btCadastrar.setText("Cadastrar");
+                btVoltar.setText("Voltar");
+                lbId.setText(" ");
+                tabela.setItems(atualizaTabela());
+                
+          
+            }else{
+                Alert al = new Alert(AlertType.ERROR);
+                al.setHeaderText ("Produto Não Cadastrado");
+                al.show();
+            }
     }
 
     private void cadastrarProduto() throws SQLException {
@@ -169,7 +220,7 @@ public class ProdutoController implements Initializable {
           
             }else{
                 Alert al = new Alert(AlertType.ERROR);
-                al.setHeaderText ("Usuario Não Cadastrado");
+                al.setHeaderText ("Produto Não Cadastrado");
                 al.show();
             }
             
@@ -189,6 +240,25 @@ public class ProdutoController implements Initializable {
             al.show();
             tabela.setItems(atualizaTabela());
         }else {
+            Alert al = new Alert(AlertType.WARNING);
+            al.setHeaderText("Nenhum Produto Selecionado");
+            al.show();
+        }
+    }
+
+    public void editarProduto() throws SQLException{
+        if(selecionada != null){
+            lbId.setText(String.valueOf(selecionada.getId()));
+            txCodproduto.setText(String.valueOf(selecionada.getCodproduto()));
+            txNome.setText(selecionada.getNome());
+            txPreco.setText(String.valueOf(selecionada.getPreco()));
+            txFabricante.setText(selecionada.getFabricante());
+            txQuant.setText(String.valueOf(selecionada.getQuant()));
+            btCadastrar.setText("Salvar");
+            btVoltar.setText("Cancelar");
+            
+            
+        }else{
             Alert al = new Alert(AlertType.WARNING);
             al.setHeaderText("Nenhum Produto Selecionado");
             al.show();
