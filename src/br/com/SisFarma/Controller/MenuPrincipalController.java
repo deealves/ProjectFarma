@@ -5,6 +5,7 @@
  */
 package br.com.SisFarma.Controller;
 
+import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.Login;
 import br.com.SisFarma.gui.MenuPrincipal;
@@ -64,6 +65,16 @@ public class MenuPrincipalController implements Initializable {
             MenuPrincipal.getStage().close();
             try {
                 pr.start(new Stage());
+            } catch (Exception ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    });
+        
+        btCliente.setOnMouseClicked((MouseEvent e) ->{
+            Clientes c = new Clientes();
+            MenuPrincipal.getStage().close();
+            try {
+                c.start(new Stage());
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }

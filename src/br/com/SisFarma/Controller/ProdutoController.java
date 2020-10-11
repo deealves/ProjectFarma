@@ -31,10 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Leticia
- */
+
 public class ProdutoController implements Initializable {
     @FXML private TableColumn<Produto, String> clmFabricante;
     @FXML private Label lbId;
@@ -168,7 +165,7 @@ public class ProdutoController implements Initializable {
             p.setId(id);
             if(dao.update(p)){
                 Alert al = new Alert(AlertType.CONFIRMATION);
-                al.setHeaderText ("Produto Cadastrado");
+                al.setHeaderText ("Produto Atualizado");
                 al.show();
                 txCodproduto.setText("");
                 txNome.setText("");
@@ -184,7 +181,7 @@ public class ProdutoController implements Initializable {
           
             }else{
                 Alert al = new Alert(AlertType.ERROR);
-                al.setHeaderText ("Produto Não Cadastrado");
+                al.setHeaderText ("Produto Não Atualizado");
                 al.show();
             }
     }
