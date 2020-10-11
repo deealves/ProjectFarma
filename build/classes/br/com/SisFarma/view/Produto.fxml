@@ -27,8 +27,8 @@
                   <Font name="Bank Gothic Medium BT" size="32.0" />
                </font>
             </Label>
-            <Button layoutX="1.0" layoutY="341.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="388.0" style="-fx-background-color: #32CD32;" text="EDITAR" textFill="WHITE" />
-            <Button layoutX="1.0" layoutY="394.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="388.0" style="-fx-background-color: #32CD32;" text="REMOVER" textFill="WHITE" />
+            <Button fx:id="btEditar" layoutY="339.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="388.0" style="-fx-background-color: #32CD32;" text="EDITAR" textFill="WHITE" />
+            <Button fx:id="btRemover" layoutX="1.0" layoutY="394.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="388.0" style="-fx-background-color: #32CD32;" text="REMOVER" textFill="WHITE" />
          </children>
       </Pane>
       <Pane layoutX="388.0" prefHeight="450.0" prefWidth="221.0" style="-fx-background-color: #f2f2f2;">

@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,6 +51,9 @@ public class ProdutoController implements Initializable {
     @FXML private Button btCadastrar;
     @FXML private TextField txPreco;
     @FXML private TextField txCodproduto;
+    @FXML private Button btRemover;
+    @FXML private Button btEditar;
+    private Produto selecionada;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -87,6 +92,21 @@ public class ProdutoController implements Initializable {
               }             
                    
     }); 
+        
+        tabela.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+          @Override
+          public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+              selecionada = (Produto) newValue;            
+          }
+      });
+        
+        btRemover.setOnMouseClicked((MouseEvent e) ->{
+            try {
+                removerUsuario();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    });  
     }
 
     private void initTable() throws SQLException {
@@ -156,6 +176,21 @@ public class ProdutoController implements Initializable {
         } else{
             Alert al = new Alert(AlertType.ERROR);
             al.setHeaderText ("Preencha todos os Campos");
+            al.show();
+        }
+    }
+
+    private void removerUsuario() throws SQLException {
+       if(selecionada != null){
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.delete(selecionada);
+            Alert al = new Alert(AlertType.CONFIRMATION);
+            al.setHeaderText("Removido com Sucesso");
+            al.show();
+            tabela.setItems(atualizaTabela());
+        }else {
+            Alert al = new Alert(AlertType.WARNING);
+            al.setHeaderText("Nenhum Produto Selecionado");
             al.show();
         }
     }

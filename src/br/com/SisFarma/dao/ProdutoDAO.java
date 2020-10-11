@@ -59,19 +59,18 @@ public class ProdutoDAO {
         
     }
      
-     public boolean delete(Produto p){
-        sql = "DELETE FROM produto WHERE id=?";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+     public boolean delete(Produto p) throws SQLException{
+            sql = "DELETE FROM produto WHERE id=?";
+            con = ConnectionFactory.getConnection();
+            stmt = con.prepareStatement(sql);
             stmt.setLong(1,p.getId());
             stmt.execute();
             stmt.close();
             con.close();
             return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+         
+                    
+        
     }
      
      public List<Produto> listar() throws SQLException{
