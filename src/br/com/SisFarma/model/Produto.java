@@ -6,38 +6,64 @@ package br.com.SisFarma.model;
  */
 
 public class Produto {
-    private int codigo;
-    private int codigodoproduto;
+    private long id;
+    private int codproduto;
     private String nome;
-    private double preco;
-    private Especificacao especificacao;
+    private float preco;
+    private String fabricante;
+    private int quant;
 
-    public Produto(int codigo, int codigodoproduto, String nome, double preco, Especificacao especificacao) {
-        this.codigo = codigo;
-        this.codigodoproduto = codigodoproduto;
+    public Produto(long id, int codproduto, String nome, float preco,String fabricante, int quant) {
+        this.id = id;
+        this.codproduto = codproduto;
         this.nome = nome;
         this.preco = preco;
-        this.especificacao = especificacao;
+        this.fabricante = fabricante;
+        this.quant = quant;
+    }
+
+    public Produto(int codproduto, String nome, float preco,String fabricante, int quant) {
+        this.codproduto = codproduto;
+        this.nome = nome;
+        this.preco = preco;
+        this.fabricante = fabricante;
+        this.quant = quant;
     }
 
     public Produto() {
-        especificacao = new Especificacao();
+      
     }
 
-    public int getCodigo() {
-        return codigo;
+    public String getFabricante() {
+        return fabricante;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-    
-    public int getCodigodoproduto() {
-        return codigodoproduto;
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
     }
 
-    public void setCodigodoproduto(int codigodoproduto) {
-        this.codigodoproduto = codigodoproduto;
+    public int getQuant() {
+        return quant;
+    }
+
+    public void setQuant(int quant) {
+        this.quant = quant;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getCodproduto() {
+        return codproduto;
+    }
+
+    public void setCodproduto(int codproduto) {
+        this.codproduto = codproduto;
     }
 
     public String getNome() {
@@ -48,29 +74,23 @@ public class Produto {
         this.nome = nome;
     }
 
-    public double getPreco() {
+    public float getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(float preco) {
         this.preco = preco;
     }
-
-    public Especificacao getEspecificacao() {
-        return especificacao;
-    }
-
-    public void setEspecificacao(Especificacao especificacao) {
-        this.especificacao = especificacao;
-    }
-
+    
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(" | ").append(codigo)
+        sb.append(" | ").append(id)
+                .append(" | ").append(codproduto)
                 .append(" | ").append(nome)
                 .append(" | ").append(preco)
-                .append(" | ").append(especificacao);
+                .append(" | ").append(fabricante)  
+                .append(" | ").append(quant);
         return sb.toString();
     }
 }

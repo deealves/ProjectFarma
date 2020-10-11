@@ -6,6 +6,7 @@
 package teste;
 
 import br.com.SisFarma.dao.UsuarioDAO;
+import br.com.SisFarma.model.Produto;
 import br.com.SisFarma.model.Usuario;
 import java.sql.SQLException;
 import java.util.List;
@@ -18,6 +19,10 @@ public class Teste {
 
     
     public static void main(String[] args) throws SQLException {
+        Produto p = new Produto();
+        
+        
+        
         System.out.println("Listar Usuario");
         UsuarioDAO dao = new UsuarioDAO();
         List<Usuario> usuarios = new UsuarioDAO().listar();

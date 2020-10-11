@@ -4,17 +4,14 @@
  * and open the template in the editor.
  */
 package br.com.SisFarma.gui;
-
+import static javafx.application.Application.launch;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Leticia
- */
+
 public class Login extends Application {
     
     private static Stage stage;//Uma Janela

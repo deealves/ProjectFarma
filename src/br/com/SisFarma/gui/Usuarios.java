@@ -5,24 +5,18 @@
  */
 package br.com.SisFarma.gui;
 
-import static br.com.SisFarma.gui.Produtos.setStage;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Leticia
- */
+
 public class Usuarios extends Application {
     
     private static Stage stage;//Uma Janela
     
-    
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/Usuario.fxml"));//Carrega FXML

@@ -42,22 +42,20 @@ public class UsuarioDAO {
         }
     }
     
-     public boolean update(Usuario u){
-        sql = "UPDATE usuario SET nome = ?, email = ?, senha; ? WHERE id=?";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
+     public boolean update(Usuario u) throws SQLException{
+            sql = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id=?";
+            con = ConnectionFactory.getConnection();
+            stmt = con.prepareStatement(sql);
             stmt.setString(1,u.getNome());
             stmt.setString(2,u.getEmail());
             stmt.setString(3,u.getSenha());
             stmt.setLong(4,u.getId());
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
             con.close();
             return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+        
+        
     }
      
      public boolean delete(Usuario u){
