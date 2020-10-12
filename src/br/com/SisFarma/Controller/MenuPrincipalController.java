@@ -11,6 +11,7 @@ import br.com.SisFarma.gui.Login;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Produtos;
 import br.com.SisFarma.gui.Usuarios;
+import br.com.SisFarma.gui.Vendas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -44,6 +45,16 @@ public class MenuPrincipalController implements Initializable {
             MenuPrincipal.getStage().close();
             try {
                 u.start(new Stage());
+            } catch (Exception ex) {
+                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    });
+        
+         btVenda.setOnMouseClicked((MouseEvent e) ->{
+            Vendas v = new Vendas();
+            MenuPrincipal.getStage().close();
+            try {
+                v.start(new Stage());
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }

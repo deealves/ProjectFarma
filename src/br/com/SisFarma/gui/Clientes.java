@@ -18,10 +18,7 @@ public class Clientes extends Application{
 
     private static Stage stage;
     
-     public static void main(String[] args){
-        launch(args);   
-    }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/Cliente.fxml"));//Carrega FXML
@@ -32,7 +29,10 @@ public class Clientes extends Application{
         stage.show();//Abre a Janela
         setStage(stage);
     }
- 
+    
+    public static void main(String[] args){
+        launch(args);   
+    }
      public static Stage getStage() {
         return stage;
     }

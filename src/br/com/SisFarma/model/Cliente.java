@@ -15,8 +15,6 @@ public class Cliente {
     private int codigo;
     private String nome;
     private String cpf;
-    //private Endereco end;
-    //private Contato cont;
     private String rua;
     private String cidade;
     private String estado;

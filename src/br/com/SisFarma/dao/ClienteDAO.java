@@ -32,11 +32,11 @@ public class ClienteDAO {
     
     
     
-    public boolean inserir(Cliente cliente){
+    public boolean inserir(Cliente cliente) throws SQLException{
         //Inserir no banco de dados 
         sql = "INSERT INTO cliente(nome, cpf, rua, cidade, estado, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
-        try {
+        
             st = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             st.setString(1, cliente.getNome());
             st.setString(2, cliente.getCpf());
@@ -50,18 +50,16 @@ public class ClienteDAO {
             st.close();
             con.close();
             return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }   
+        
+           
     }
     
-    public List<Cliente> listar() {
+    public List<Cliente> listar() throws SQLException {
         //Listar clientes que estão no BD
         List<Cliente> clientes = new ArrayList<>();
         sql = "SELECT c.* FROM cliente c";
    
-        try {
+       
             st = con.prepareStatement(sql);
             rs = st.executeQuery();
   
@@ -85,19 +83,16 @@ public class ClienteDAO {
             st.close();
             rs.close();
             con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+        
         return clientes;   
     }   
  
-    public boolean editar(Cliente cliente){
+    public boolean editar(Cliente cliente) throws SQLException{
         //Atualizar um cliente no BD
         sql = "UPDATE cliente SET nome = ?, cpf = ?, rua = ?, cidade = ?, estado = ?,"
                 + "cep = ?, telefone = ?, email = ? WHERE codigo = ?";
   
-        try {
+     
             st = con.prepareStatement(sql);
             st.setString(1, cliente.getNome());
             st.setString(2, cliente.getCpf());
@@ -115,18 +110,15 @@ public class ClienteDAO {
             con.close();
             
             return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }    
+          
     }
     
-    public Cliente buscar(int codigo) {
+    public Cliente buscar(int codigo) throws SQLException {
         //Buscar um cliente com determinado código no BD
         Cliente c = null;    
         sql = "SELECT c.* FROM cliente c WHERE c.codigo = ?";
         
-        try {
+      
             st = con.prepareStatement(sql);
             st.setInt(1, codigo);
         
@@ -157,19 +149,16 @@ public class ClienteDAO {
             st.close();
             rs.close();
             con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+        
         return c;   
     }
     
-    public List<Cliente> buscar(String query){
+    public List<Cliente> buscar(String query) throws SQLException{
         //Buscar cliente com determinado nome no BD
         List<Cliente> lista = new ArrayList<>();
         sql = "SELECT c.* FROM cliente c WHERE c.nome ILIKE ?";
         
-        try {
+        
             st = con.prepareStatement(sql);
             st.setString(1, query + '%');
          
@@ -203,18 +192,15 @@ public class ClienteDAO {
             st.close();
             rs.close();
             con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+       
         return lista;
     }
     
-    public boolean remover(Cliente cliente){
+    public boolean remover(Cliente cliente) throws SQLException{
         //Excluir um cliente 
         sql = "DELETE FROM cliente c WHERE c.codigo = ?";
         
-        try {
+      
             st = con.prepareStatement(sql);
             st.setInt(1, cliente.getCodigo());
         
@@ -224,10 +210,7 @@ public class ClienteDAO {
             con.close();
             
             return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+        
     }
 
    

@@ -10,6 +10,7 @@ import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.dao.ClienteDAO;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -81,20 +82,36 @@ public class ClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        try {
             // TODO
-        initTable();
+            initTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
      
         btCadastrar.setOnMouseClicked((Event e)->{
             if(btCadastrar.getText().equals("Salvar")){
-                salvar();
+                try {
+                    salvar();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }else{
-                cadastraCliente();
+                try {
+                    cadastraCliente();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
         btCadastrar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
-                cadastraCliente();
+                try {
+                    cadastraCliente();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
@@ -127,7 +144,11 @@ public class ClienteController implements Initializable {
         });
                 
         btRemover.setOnMouseClicked((Event e)->{
-            remove();
+            try {
+                remove();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
         
         tableCliente.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
@@ -138,7 +159,7 @@ public class ClienteController implements Initializable {
         });
     }
     
-    public void cadastraCliente(){
+    public void cadastraCliente() throws SQLException{
         String nome = textNome.getText(),
                rua = textRua.getText(),
                cpf = textCpf.getText(),
@@ -148,8 +169,7 @@ public class ClienteController implements Initializable {
                telefone = textTelefone.getText(),
                email = textEmail.getText();
         
-        
-        
+       
         Cliente c = new Cliente();
         c.setNome(nome);
         c.setCpf(cpf);
@@ -191,7 +211,7 @@ public class ClienteController implements Initializable {
         }
     }
     
-    public void initTable() {
+    public void initTable() throws SQLException {
         columnId.setCellValueFactory(new PropertyValueFactory("codigo"));
         columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
         columnCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
@@ -204,12 +224,12 @@ public class ClienteController implements Initializable {
         tableCliente.setItems(atualizaTable());
     }
     
-    public ObservableList<Cliente> atualizaTable(){
+    public ObservableList<Cliente> atualizaTable() throws SQLException{
         ClienteDAO dao = new ClienteDAO();
         return FXCollections.observableArrayList(dao.listar());
     }
     
-    public void remove(){
+    public void remove() throws SQLException{
         if(selecionado == null){
             Alert al = new Alert(AlertType.WARNING);
             al.setHeaderText("Selecione um Cliente");
@@ -224,7 +244,7 @@ public class ClienteController implements Initializable {
         }
     }
     
-    public void salvar(){
+    public void salvar() throws SQLException{
         String nome = textNome.getText(),
                rua = textRua.getText(),
                cpf = textCpf.getText(),
