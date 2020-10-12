@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -58,12 +59,13 @@ public class VendaController implements Initializable {
     @FXML private Button btRemover;
     private Produto selecionada;
     private Venda selecionada2;
+    private float total = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             initTable();
-            initTable2();
+            //initTable2();
         } catch (SQLException ex) {
             Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,7 +78,7 @@ public class VendaController implements Initializable {
               v.setCodproduto(selecionada.getCodproduto());
               v.setNome(selecionada.getNome());
               v.setPreco(selecionada.getPreco());
-              txQuant.setText(String.valueOf(selecionada.getQuant()));
+              //txQuant.setText(String.valueOf(selecionada.getQuant()));
               v.setQuant(selecionada.getQuant());
               v.mostraVenda();
         
@@ -105,7 +107,14 @@ public class VendaController implements Initializable {
         
         btSelecionar.setOnMouseClicked((MouseEvent e) ->{
             try { 
-                selecionarProduto();
+                if(txQuant.getText().equals("")){
+                    Alert al = new Alert(AlertType.WARNING);
+                    al.setHeaderText("Digite a Quantidade");
+                    al.show();
+                }else{
+                    selecionarProduto();
+                    txQuant.setText("");
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -139,13 +148,16 @@ public class VendaController implements Initializable {
 
     private void selecionarProduto() throws SQLException {
        if(selecionada != null){
+           int novo;
+           novo = Integer.parseInt(txQuant.getText());
             VendaDAO dao = new VendaDAO();
             Venda v = new Venda();
             v.setCodproduto(selecionada.getCodproduto());
             v.setNome(selecionada.getNome());
-            v.setPreco(selecionada.getPreco());
-            txQuant.setText(String.valueOf(selecionada.getQuant()));
-            v.setQuant(selecionada.getQuant());
+            v.setPreco(selecionada.getPreco() * novo);
+            v.setQuant(novo);
+            total += selecionada.getPreco();
+            txTotal.setText(String.valueOf(total));
               
             if(dao.insert(v)){
                 Alert al = new Alert(Alert.AlertType.CONFIRMATION);

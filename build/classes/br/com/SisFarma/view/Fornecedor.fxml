@@ -1,11 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SisFarma.Controller.FornecedorController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="607.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.SisFarma.Controller.FornecedorController">
+   <children>
+      <Pane prefHeight="450.0" prefWidth="335.0" style="-fx-background-color: #90EE90;" AnchorPane.bottomAnchor="0.0">
+         <children>
+            <TableView fx:id="tableFornecedores" layoutX="14.0" layoutY="86.0" prefHeight="206.0" prefWidth="312.0">
+              <columns>
+                <TableColumn fx:id="columnId" prefWidth="41.0" text="ID" />
+                <TableColumn fx:id="columnNome" prefWidth="39.0" text="Nome" />
+                  <TableColumn fx:id="columnCnpj" prefWidth="33.0" text="CNPJ" />
+                  <TableColumn fx:id="columnRua" prefWidth="30.0" text="Rua" />
+                  <TableColumn fx:id="columnCidade" prefWidth="32.0" text="Cidade" />
+                  <TableColumn fx:id="columnEstado" prefWidth="28.0" text="Estado" />
+                  <TableColumn fx:id="columnCep" prefWidth="26.0" text="CEP" />
+                  <TableColumn fx:id="columnTelefone" prefWidth="27.0" text="Telefone" />
+                  <TableColumn fx:id="columnEmail" prefWidth="75.0" text="E-mail" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Button fx:id="btEditar" layoutX="-1.0" layoutY="341.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="342.0" style="-fx-background-color: #32CD32;" text="EDITAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btRemover" layoutX="-1.0" layoutY="387.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="342.0" style="-fx-background-color: #32CD32;" text="REMOVER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="labelFornecedores" alignment="CENTER" layoutY="21.0" prefHeight="17.0" prefWidth="335.0" text="Fornecedores" textAlignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="335.0" prefHeight="450.0" prefWidth="273.0" style="-fx-background-color: #f2f2f2;">
+         <children>
+            <ImageView fitHeight="104.0" fitWidth="138.0" layoutX="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../img/Fornecedor.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="labelNome" layoutX="16.0" layoutY="113.0" text="Nome" />
+            <Label fx:id="labelCidade" layoutX="17.0" layoutY="241.0" text="Cidade" />
+            <Label fx:id="labelRua" layoutX="16.0" layoutY="199.0" text="Rua" />
+            <Label fx:id="labelCnpj" layoutX="16.0" layoutY="155.0" text="CNPJ" />
+            <Label fx:id="labelEstado" layoutX="17.0" layoutY="282.0" text="Estado" />
+            <Label fx:id="labelCep" layoutX="152.0" layoutY="241.0" text="CEP" />
+            <Label fx:id="labelTelefone" layoutX="152.0" layoutY="282.0" text="Telefone" />
+            <Label fx:id="labelEmail" layoutX="16.0" layoutY="323.0" text="E-mail" />
+            <TextField fx:id="textNome" layoutX="16.0" layoutY="130.0" prefHeight="25.0" prefWidth="248.0" promptText="Digite seu nome" />
+            <TextField fx:id="textCnpj" layoutX="16.0" layoutY="172.0" prefHeight="25.0" prefWidth="248.0" promptText="Digite seu CNPJ" />
+            <TextField fx:id="textRua" layoutX="16.0" layoutY="216.0" prefHeight="25.0" prefWidth="248.0" promptText="Digite seu endereço" />
+            <TextField fx:id="textCidade" layoutX="17.0" layoutY="258.0" prefHeight="25.0" prefWidth="113.0" promptText="Digite seu endereço" />
+            <TextField fx:id="textCep" layoutX="150.0" layoutY="258.0" prefHeight="25.0" prefWidth="113.0" promptText="Digite seu endereço" />
+            <TextField fx:id="textEstado" layoutX="17.0" layoutY="298.0" prefHeight="25.0" prefWidth="113.0" promptText="Digite seu endereço" />
+            <TextField fx:id="textTelefone" layoutX="150.0" layoutY="298.0" prefHeight="25.0" prefWidth="113.0" promptText="Digite seu telefone" />
+            <TextField fx:id="textEmail" layoutX="16.0" layoutY="340.0" prefHeight="25.0" prefWidth="248.0" promptText="Digite seu e-mail" />
+            <Button fx:id="btCadastrar" layoutX="16.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="248.0" style="-fx-background-color: #90EE90;" text="CADASTRAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btVoltar" layoutX="16.0" layoutY="417.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="248.0" style="-fx-background-color: #FF6347;" text="VOLTAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
