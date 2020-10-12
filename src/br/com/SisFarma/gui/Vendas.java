@@ -5,17 +5,40 @@
  */
 package br.com.SisFarma.gui;
 
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Matrix
  */
-public class Vendas {
-
-    /**
-     * @param args the command line arguments
-     */
+public class Vendas extends Application{
+        private static Stage stage;//Uma Janela
+    
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/Venda.fxml"));//Carrega FXML
+        
+        Scene scene = new Scene(root);//Coloca o FXML em uma cena
+        stage.setTitle("Vendas");
+        stage.setScene(scene);//Coloca a cena em uma janela
+        stage.show();//Abre a Janela
+        setStage(stage);
+}
     public static void main(String[] args) {
-        // TODO code application logic here
+        launch(args);
+    }
+
+    public static Stage getStage() {
+        return stage;
+    }
+
+    public static void setStage(Stage stage) {
+        Vendas.stage = stage;
     }
     
 }
