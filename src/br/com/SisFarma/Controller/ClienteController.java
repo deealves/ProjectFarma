@@ -17,6 +17,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -178,6 +179,7 @@ public class ClienteController implements Initializable {
     public void fecha(){
         Clientes.getStage().close();
     }
+    
     
     public void abreMenu(){
         MenuPrincipal mp = new MenuPrincipal();

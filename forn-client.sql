@@ -27,7 +27,7 @@ create table fornecedor
 (
 	codigo serial not null primary key,
 	nome varchar(60),
-	cnpj int,
+	cnpj varchar(30),
 	rua varchar(50),
 	cidade varchar(50),
 	estado varchar(20),
