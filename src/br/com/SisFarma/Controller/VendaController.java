@@ -13,6 +13,8 @@ import br.com.SisFarma.model.Produto;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,50 +62,66 @@ public class VendaController implements Initializable {
     private Produto selecionada;
     private Venda selecionada2;
     private float total = 0;
+    private int novo;
+    private final  Locale locale = new Locale("pt", "BR");
+    private final  NumberFormat dinheiro;
+    int teste;
+
+    public VendaController() {
+        this.dinheiro = NumberFormat.getCurrencyInstance(locale);
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         try {
             initTable();
+            total = 0;
             //initTable2();
         } catch (SQLException ex) {
             Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         tabela1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-          @Override
-          public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-              selecionada = (Produto) newValue;    
-              Venda v = new Venda();
-              v.setCodproduto(selecionada.getCodproduto());
-              v.setNome(selecionada.getNome());
-              v.setPreco(selecionada.getPreco());
-              //txQuant.setText(String.valueOf(selecionada.getQuant()));
-              v.setQuant(selecionada.getQuant());
-              v.mostraVenda();
-        
-          }
-      });
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                selecionada = (Produto) newValue;    
+                Venda v = new Venda();
+                v.setCodproduto(selecionada.getCodproduto());
+                v.setNome(selecionada.getNome());
+                v.setPreco(selecionada.getPreco());
+                //txQuant.setText(String.valueOf(selecionada.getQuant()));
+                v.setQuant(selecionada.getQuant());
+                v.mostraVenda();
+
+            }
+        });
         
         tabela2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
-          @Override
-          public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-              selecionada2 = (Venda) newValue;    
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                selecionada2 = (Venda) newValue;    
 
-          }
-      });
+            }
+        });
         
         btVoltar.setOnMouseClicked((MouseEvent e) ->{
-                fecha(); 
-    });   
+            fecha(); 
+        });   
         
         btRemover.setOnMouseClicked((MouseEvent e) ->{
             try {
                 removerVenda();
+                total = total - selecionada.getPreco() * teste;
+                if(total < 0){
+                   total = 0;
+                }
+                
+                txTotal.setText(String.valueOf(dinheiro.format(total)));
             } catch (SQLException ex) {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });   
+        });   
         
         btSelecionar.setOnMouseClicked((MouseEvent e) ->{
             try { 
@@ -118,7 +136,7 @@ public class VendaController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });   
+        });   
     
 }    
 
@@ -138,33 +156,35 @@ public class VendaController implements Initializable {
 
     private void fecha() {
         MenuPrincipal m = new MenuPrincipal();
-            Vendas.getStage().close();
-            try {
-                m.start(new Stage());
-            } catch (Exception ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        Vendas.getStage().close();
+        try {
+            m.start(new Stage());
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void selecionarProduto() throws SQLException {
-       if(selecionada != null){
-           int novo;
-           novo = Integer.parseInt(txQuant.getText());
+       if(selecionada != null){    
+            novo = Integer.parseInt(txQuant.getText());
             VendaDAO dao = new VendaDAO();
             Venda v = new Venda();
             v.setCodproduto(selecionada.getCodproduto());
             v.setNome(selecionada.getNome());
             v.setPreco(selecionada.getPreco() * novo);
+            System.out.println(v.getPreco());
             v.setQuant(novo);
-            total += selecionada.getPreco();
-            txTotal.setText(String.valueOf(total));
-              
+            System.out.println(novo);
+            System.out.println(total);
             if(dao.insert(v)){
                 Alert al = new Alert(Alert.AlertType.CONFIRMATION);
                 al.setHeaderText("Produto Selecionado para Venda");
                 al.show();
                 initTable2();
             }
+            total = total + v.getPreco();
+            txTotal.setText(String.valueOf(dinheiro.format(total)));
+            System.out.println(total);
  
         }else{
             Alert al = new Alert(Alert.AlertType.WARNING);
@@ -190,6 +210,7 @@ public class VendaController implements Initializable {
     private void removerVenda() throws SQLException {
        if(selecionada2 != null){
             VendaDAO dao = new VendaDAO();
+            teste = selecionada2.getQuant();
             dao.delete(selecionada2);
             Alert al = new Alert(Alert.AlertType.CONFIRMATION);
             al.setHeaderText("Removido com Sucesso");
