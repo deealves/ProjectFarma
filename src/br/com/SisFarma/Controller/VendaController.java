@@ -6,6 +6,7 @@
 package br.com.SisFarma.Controller;
 
 import br.com.SisFarma.dao.ProdutoDAO;
+import br.com.SisFarma.dao.VendaDAO;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Vendas;
 import br.com.SisFarma.model.Produto;
@@ -66,9 +67,9 @@ public class VendaController implements Initializable {
     private int novo;
     private final  Locale locale = new Locale("pt", "BR");
     private final  NumberFormat dinheiro;
-    int teste;
-    float teste2;
-    List<Venda> venda = new ArrayList<>();
+    private int teste;
+    private float teste2;
+    private final List<Venda> venda = new ArrayList<>();
 
     public VendaController() {
         this.dinheiro = NumberFormat.getCurrencyInstance(locale);
@@ -141,7 +142,12 @@ public class VendaController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });   
+        });
+        
+        btVender.setOnMouseClicked((MouseEvent e) ->{
+            VendaDAO v = new VendaDAO();
+            
+        });
     
 }    
 
@@ -221,6 +227,17 @@ public class VendaController implements Initializable {
             Alert al = new Alert(Alert.AlertType.WARNING);
             al.setHeaderText("Nenhum Produto Selecionado");
             al.show();
+        }
+    }
+    
+    private void vender(){
+        VendaDAO v = new VendaDAO();
+        for(int i = 0; i < venda.size(); i++){
+            try {
+                v.insert(venda.get(i));
+            } catch (SQLException ex) {
+                Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

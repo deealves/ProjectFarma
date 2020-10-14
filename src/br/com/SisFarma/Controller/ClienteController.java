@@ -265,7 +265,7 @@ public class ClienteController implements Initializable {
         c.setCep(cep);
         c.setTelefone(telefone);
         c.setEmail(email);
-        c.setCodigo(selecionado.getCodigo());
+        c.setId(selecionado.getId());
         
         if(dao.editar(c)){
             Alert al = new Alert(AlertType.CONFIRMATION);

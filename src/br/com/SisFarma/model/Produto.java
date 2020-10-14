@@ -6,34 +6,44 @@ package br.com.SisFarma.model;
  */
 
 public class Produto {
-    private long id;
+    private int id;
     private int codproduto;
     private String nome;
     private float preco;
     private String fabricante;
     private int quant;
+    private String descricao;
+    private Cliente c;
+    private Venda v;
 
-    public Produto(long id, int codproduto, String nome, float preco,String fabricante, int quant) {
+    public Produto(int id, int codproduto, String nome, float preco, String fabricante, int quant, String descricao, Cliente c, Venda v) {
         this.id = id;
         this.codproduto = codproduto;
         this.nome = nome;
         this.preco = preco;
         this.fabricante = fabricante;
         this.quant = quant;
+        this.descricao = descricao;
+        this.c = c;
+        this.v = v;
     }
 
-    public Produto(int codproduto, String nome, float preco,String fabricante, int quant) {
+    public Produto(int codproduto, String nome, float preco, String fabricante, int quant, String descricao, Cliente c, Venda v) {
         this.codproduto = codproduto;
         this.nome = nome;
         this.preco = preco;
         this.fabricante = fabricante;
         this.quant = quant;
+        this.descricao = descricao;
+        this.c = c;
+        this.v = v;
     }
 
     public Produto() {
-      
+        this.c = new Cliente();
+        this.v = new Venda();
     }
-
+    
     public String getFabricante() {
         return fabricante;
     }
@@ -50,11 +60,11 @@ public class Produto {
         this.quant = quant;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -81,14 +91,44 @@ public class Produto {
     public void setPreco(float preco) {
         this.preco = preco;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Cliente getC() {
+        return c;
+    }
+
+    public void setC(Cliente c) {
+        this.c = c;
+    }
+
+    public Venda getV() {
+        return v;
+    }
+
+    public void setV(Venda v) {
+        this.v = v;
+    }
     
-   
-    public void mostraProduto(){
-        System.out.println(" / "+ getId()
-                          +" / "+ getCodproduto()
-                          +" / "+ getNome()
-                          +" / "+ getPreco()
-                          +" / "+ getFabricante()
-                          +" / "+ getQuant());
+
+    @Override
+    public String toString(){
+        final StringBuilder sb = new StringBuilder();
+        sb.append(" | ").append(codproduto)
+                .append(" | ").append(nome)
+                .append(" | ").append(preco)
+                .append(" | ").append(fabricante)
+                .append(" | ").append(quant)
+                .append(" | ").append(descricao)
+                .append(" | ").append(c)
+                .append(" | ").append(v);
+                
+        return sb.toString();
     }
 }

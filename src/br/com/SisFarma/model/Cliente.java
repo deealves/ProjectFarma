@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @author diego
  */
 public class Cliente {
-    private int codigo;
+    private int id;
     private String nome;
     private String cpf;
     private String rua;
@@ -26,8 +26,8 @@ public class Cliente {
     }
 
     
-    public Cliente(int codigo, String nome, String cpf, String rua, String cidade, String estado, String cep, String telefone, String email) {
-        this.codigo = codigo;
+    public Cliente(int id, String nome, String cpf, String rua, String cidade, String estado, String cep, String telefone, String email) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.rua = rua;
@@ -37,17 +37,26 @@ public class Cliente {
         this.telefone = telefone;
         this.email = email;
     }
- 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
 
-    public int getCodigo() {
-        return codigo;
+    public Cliente(String nome, String cpf, String rua, String cidade, String estado, String cep, String telefone, String email) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.rua = rua;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.telefone = telefone;
+        this.email = email;
     }
     
-    
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public int getId() {
+        return id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -116,7 +125,7 @@ public class Cliente {
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder();
-        sb.append(" | ").append(codigo)
+        sb.append(" | ").append(id)
                 .append(" | ").append(nome)
                 .append(" | ").append(cpf)
                 .append(" | ").append(rua)

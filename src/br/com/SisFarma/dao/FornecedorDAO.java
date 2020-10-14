@@ -69,7 +69,7 @@ public class FornecedorDAO {
             while(rs.next()){
                 Fornecedor fornecedor = new Fornecedor();
 
-                fornecedor.setCodigo(rs.getInt("codigo"));
+                fornecedor.setId(rs.getInt("id"));
                 fornecedor.setNome(rs.getString("nome"));
                 fornecedor.setCnpj(rs.getString("cnpj"));
 
@@ -96,7 +96,7 @@ public class FornecedorDAO {
     public boolean editar(Fornecedor fornecedor){
         //Atualizar um cliente no BD
         sql = "UPDATE fornecedor SET nome = ?, cnpj = ?, rua = ?, cidade = ?, estado = ?,"
-                + "cep = ?, telefone = ?, email = ? WHERE codigo = ?";
+                + "cep = ?, telefone = ?, email = ? WHERE id = ?";
   
         try {
             st = con.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class FornecedorDAO {
             st.setString(6, fornecedor.getCep());
             st.setString(7, fornecedor.getTelefone());
             st.setString(8, fornecedor.getEmail());
-            st.setInt(9, fornecedor.getCodigo());
+            st.setInt(9, fornecedor.getId());
         
             st.execute();
             
@@ -122,14 +122,14 @@ public class FornecedorDAO {
         }    
     }
     
-    public Fornecedor buscar(int codigo) {
+    public Fornecedor buscar(int id) {
         //Buscar um cliente com determinado código no BD
         Fornecedor f = null;    
-        sql = "SELECT f.* FROM fornecedor f WHERE f.codigo = ?";
+        sql = "SELECT f.* FROM fornecedor f WHERE f.id = ?";
         
         try {
             st = con.prepareStatement(sql);
-            st.setInt(1, codigo);
+            st.setInt(1, id);
         
             rs = st.executeQuery();
 
@@ -145,7 +145,7 @@ public class FornecedorDAO {
 
                 f = new Fornecedor();
 
-                f.setCodigo(codigo);
+                f.setId(id);
                 f.setNome(nome);
                 f.setCnpj(cnpj);
                 f.setRua(rua);
@@ -177,7 +177,7 @@ public class FornecedorDAO {
             rs = st.executeQuery();
 
             while(rs.next()){
-               int codigo = rs.getInt(1); 
+               int id = rs.getInt(1); 
                String nome = rs.getString("nome");
                String cnpj = rs.getString("cnpj");
                String rua = rs.getString("rua");
@@ -189,7 +189,7 @@ public class FornecedorDAO {
 
                Fornecedor f = new Fornecedor();
 
-               f.setCodigo(codigo);
+               f.setId(id);
                f.setNome(nome);
                f.setCnpj(cnpj);
                f.setRua(rua);
@@ -213,11 +213,11 @@ public class FornecedorDAO {
     
     public boolean remover(Fornecedor fornecedor){
         //Excluir um cliente 
-        sql = "DELETE FROM fornecedor f WHERE f.codigo = ?";
+        sql = "DELETE FROM fornecedor f WHERE f.id = ?";
         
         try {
             st = con.prepareStatement(sql);
-            st.setInt(1, fornecedor.getCodigo());
+            st.setInt(1, fornecedor.getId());
         
             st.execute();
             

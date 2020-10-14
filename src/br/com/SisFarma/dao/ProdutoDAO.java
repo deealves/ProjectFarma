@@ -22,10 +22,10 @@ public class ProdutoDAO {
     private Connection con;
     private String sql;
     private PreparedStatement stmt;
-
+ 
    public boolean insert(Produto p) throws SQLException {
-       sql = "INSERT INTO produto (codproduto,nome,preco,fabricante,quant) VALUES (?,?,?,?,?)";
-       
+        sql = "INSERT INTO produto (codproduto,nome,preco,fabricante,quant) VALUES (?,?,?,?,?)";
+
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
             stmt.setInt(1,p.getCodproduto());
@@ -38,39 +38,34 @@ public class ProdutoDAO {
             con.close();
             return true;
         } 
-        
+   
+    public boolean update(Produto p) throws SQLException{
+        sql = "UPDATE produto SET codproduto = ?, nome = ?, preco = ?, fabricante = ?, quant = ? WHERE id=?";
+        con = ConnectionFactory.getConnection();
+        stmt = con.prepareStatement(sql);
+        stmt.setInt(1,p.getCodproduto());
+        stmt.setString(2,p.getNome());
+        stmt.setFloat(3,p.getPreco());
+        stmt.setString(4,p.getFabricante());
+        stmt.setInt(5,p.getQuant());
+        stmt.setLong(6,p.getId());
+        stmt.executeUpdate();
+        stmt.close();
+        con.close();
+        return true;
     
-    
-     public boolean update(Produto p) throws SQLException{
-            sql = "UPDATE produto SET codproduto = ?, nome = ?, preco = ?, fabricante = ?, quant = ? WHERE id=?";
-            con = ConnectionFactory.getConnection();
-            stmt = con.prepareStatement(sql);
-            stmt.setInt(1,p.getCodproduto());
-            stmt.setString(2,p.getNome());
-            stmt.setFloat(3,p.getPreco());
-            stmt.setString(4,p.getFabricante());
-            stmt.setInt(5,p.getQuant());
-            stmt.setLong(6,p.getId());
-            stmt.executeUpdate();
-            stmt.close();
-            con.close();
-            return true;
-        
-        
     }
      
-     public boolean delete(Produto p) throws SQLException{
-            sql = "DELETE FROM produto WHERE id=?";
-            con = ConnectionFactory.getConnection();
-            stmt = con.prepareStatement(sql);
-            stmt.setLong(1,p.getId());
-            stmt.execute();
-            stmt.close();
-            con.close();
-            return true;
-         
-                    
-        
+    public boolean delete(Produto p) throws SQLException{
+        sql = "DELETE FROM produto WHERE id=?";
+        con = ConnectionFactory.getConnection();
+        stmt = con.prepareStatement(sql);
+        stmt.setLong(1,p.getId());
+        stmt.execute();
+        stmt.close();
+        con.close();
+        return true;
+     
     }
      
      public List<Produto> listar() throws SQLException{
@@ -84,7 +79,7 @@ public class ProdutoDAO {
              
              Produto p = new Produto();
              
-             p.setId(rs.getLong("id"));
+             p.setId(rs.getInt("id"));
              p.setCodproduto(rs.getInt("codproduto"));
              p.setNome(rs.getString("nome"));
              p.setPreco(rs.getFloat("preco"));

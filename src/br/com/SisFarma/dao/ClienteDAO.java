@@ -66,7 +66,7 @@ public class ClienteDAO {
             while(rs.next()){
                 Cliente cliente = new Cliente();
 
-                cliente.setCodigo(rs.getInt("codigo"));
+                cliente.setId(rs.getInt("id"));
                 cliente.setNome(rs.getString("nome"));
                 cliente.setCpf(rs.getString("cpf"));
 
@@ -90,7 +90,7 @@ public class ClienteDAO {
     public boolean editar(Cliente cliente) throws SQLException{
         //Atualizar um cliente no BD
         sql = "UPDATE cliente SET nome = ?, cpf = ?, rua = ?, cidade = ?, estado = ?,"
-                + "cep = ?, telefone = ?, email = ? WHERE codigo = ?";
+                + "cep = ?, telefone = ?, email = ? WHERE id = ?";
   
      
             st = con.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class ClienteDAO {
             st.setString(6, cliente.getCep());
             st.setString(7, cliente.getTelefone());
             st.setString(8, cliente.getEmail());
-            st.setInt(9, cliente.getCodigo());
+            st.setInt(9, cliente.getId());
         
             st.execute();
             
@@ -113,14 +113,14 @@ public class ClienteDAO {
           
     }
     
-    public Cliente buscar(int codigo) throws SQLException {
+    public Cliente buscar(int id) throws SQLException {
         //Buscar um cliente com determinado código no BD
         Cliente c = null;    
-        sql = "SELECT c.* FROM cliente c WHERE c.codigo = ?";
+        sql = "SELECT c.* FROM cliente c WHERE c.id = ?";
         
       
             st = con.prepareStatement(sql);
-            st.setInt(1, codigo);
+            st.setInt(1, id);
         
             rs = st.executeQuery();
 
@@ -136,7 +136,7 @@ public class ClienteDAO {
 
                 c = new Cliente();
 
-                c.setCodigo(codigo);
+                c.setId(id);
                 c.setNome(nome);
                 c.setCpf(cpf);
                 c.setRua(rua);
@@ -165,7 +165,7 @@ public class ClienteDAO {
             rs = st.executeQuery();
 
             while(rs.next()){
-               int codigo = rs.getInt(1); 
+               int id = rs.getInt(1); 
                String nome = rs.getString("nome");
                String cpf = rs.getString("cpf");
                String rua = rs.getString("rua");
@@ -177,7 +177,7 @@ public class ClienteDAO {
 
                Cliente c = new Cliente();
 
-               c.setCodigo(codigo);
+               c.setId(id);
                c.setNome(nome);
                c.setCpf(cpf);
                c.setRua(rua);
@@ -198,11 +198,11 @@ public class ClienteDAO {
     
     public boolean remover(Cliente cliente) throws SQLException{
         //Excluir um cliente 
-        sql = "DELETE FROM cliente c WHERE c.codigo = ?";
+        sql = "DELETE FROM cliente c WHERE c.id = ?";
         
       
             st = con.prepareStatement(sql);
-            st.setInt(1, cliente.getCodigo());
+            st.setInt(1, cliente.getId());
         
             st.execute();
             

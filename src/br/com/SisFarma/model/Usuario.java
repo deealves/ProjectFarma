@@ -12,16 +12,18 @@ import javafx.stage.Stage;
  * @author Leticia
  */
 public class Usuario {
-    private Long id;
+    private int id;
     private String nome;
     private String email;
     private String senha;
+    private String cpf;
 
-    public Usuario(Long id, String nome, String email, String senha) {
+    public Usuario(int id, String nome, String email, String senha, String cpf) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.cpf = cpf;
     }
 
     public Usuario(String nome, String email, String senha) {
@@ -34,11 +36,11 @@ public class Usuario {
         
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -69,12 +71,24 @@ public class Usuario {
     public void start(Stage stage) {
         
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
     
-    public void mostraUsuario(){
-        System.out.println(" / " + getId() 
-                + " / " + getNome()
-                + " / " + getEmail()
-                + " / " + getSenha());
+    @Override
+    public String toString(){
+        final StringBuilder sb = new StringBuilder();
+        sb.append(" | ").append(nome)
+                .append(" | ").append(email)
+                .append(" | ").append(senha)
+                .append(" | ").append(cpf);
+  
+        return sb.toString();
     }
     
     

@@ -22,16 +22,17 @@ public class UsuarioDAO {
     private PreparedStatement stmt;
    
     public UsuarioDAO(){
-        this.con = new ConnectionFactory().getConnection();
+        this.con = ConnectionFactory.getConnection();
     }
     
     public boolean insert(Usuario u){
-        sql = "INSERT INTO usuario (nome,email,senha) VALUES (?,?,?)";
+        sql = "INSERT INTO usuario (nome, cpf, email,senha) VALUES (?,?,?,?)";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,u.getNome());
-            stmt.setString(2,u.getEmail());
-            stmt.setString(3,u.getSenha());
+            stmt.setString(2, u.getCpf());
+            stmt.setString(3,u.getEmail());
+            stmt.setString(4,u.getSenha());
             stmt.execute();
             stmt.close();
             con.close();
@@ -43,26 +44,26 @@ public class UsuarioDAO {
     }
     
      public boolean update(Usuario u) throws SQLException{
-            sql = "UPDATE usuario SET nome = ?, email = ?, senha = ? WHERE id=?";
+            sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, senha = ? WHERE id=?";
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
             stmt.setString(1,u.getNome());
-            stmt.setString(2,u.getEmail());
-            stmt.setString(3,u.getSenha());
-            stmt.setLong(4,u.getId());
+            stmt.setString(2, u.getCpf());
+            stmt.setString(3,u.getEmail());
+            stmt.setString(4,u.getSenha());
+            stmt.setInt(5,u.getId());
             stmt.executeUpdate();
             stmt.close();
             con.close();
             return true;
-        
-        
+     
     }
      
      public boolean delete(Usuario u){
         sql = "DELETE FROM usuario WHERE id=?";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setLong(1,u.getId());
+            stmt.setInt(1,u.getId());
             stmt.execute();
             stmt.close();
             con.close();
@@ -74,7 +75,7 @@ public class UsuarioDAO {
     }
      
      public List<Usuario> listar() throws SQLException{
-         sql = "select u.id, u.nome, u.email, u.senha from usuario u ";
+         sql = "select * from usuario ";
          con = ConnectionFactory.getConnection();
          stmt = con.prepareStatement(sql);
          ResultSet rs = stmt.executeQuery();
@@ -84,8 +85,9 @@ public class UsuarioDAO {
              
              Usuario u = new Usuario();
              
-             u.setId(rs.getLong("id"));
+             u.setId(rs.getInt("id"));
              u.setNome(rs.getString("nome"));
+             u.setCpf(rs.getString("cpf"));
              u.setEmail(rs.getString("email"));
              u.setSenha(rs.getString("senha"));
              

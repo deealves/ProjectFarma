@@ -10,62 +10,50 @@ package br.com.SisFarma.model;
  * @author Matrix
  */
 public class Venda {
-    private long id;
-    private int codproduto;
-    private String nome;
-    private float preco;
+    private int id;
+    private float valor;
     private int quant;
+    private Usuario u;
 
-    public Venda(long id, int codproduto, String nome, float preco, int quant) {
+    public Venda(int id, float valor, int quant, Usuario u) {
         this.id = id;
-        this.codproduto = codproduto;
-        this.nome = nome;
-        this.preco = preco;
+        this.valor = valor;
         this.quant = quant;
+        this.u = u;
     }
 
-    public Venda(int codproduto, String nome, float preco, int quant) {
-        this.codproduto = codproduto;
-        this.nome = nome;
-        this.preco = preco;
+    public Venda(float valor, int quant, Usuario u) {
+        this.valor = valor;
         this.quant = quant;
+        this.u = u;
     }
 
     public Venda() {
-        
+        this.u = new Usuario();
     }
 
-
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getCodproduto() {
-        return codproduto;
+    public float getValor() {
+        return valor;
     }
 
-    public void setCodproduto(int codproduto) {
-        this.codproduto = codproduto;
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
-    public String getNome() {
-        return nome;
+    public Usuario getU() {
+        return u;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
+    public void setU(Usuario u) {
+        this.u = u;
     }
 
     public int getQuant() {
@@ -76,11 +64,13 @@ public class Venda {
         this.quant = quant;
     }
     
-    public void mostraVenda(){
-        System.out.println(" / "+ getId()
-                          +" / "+ getCodproduto()
-                          +" / "+ getNome()
-                          +" / "+ getPreco()                  
-                          +" / "+ getQuant());
+    @Override
+    public String toString(){
+        final StringBuilder sb = new StringBuilder();
+        sb.append(" | ").append(valor)
+                .append(" | ").append(quant)
+                .append(" | ").append(u);
+  
+        return sb.toString();
     }
 }

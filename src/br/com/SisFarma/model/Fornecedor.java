@@ -10,7 +10,7 @@ package br.com.SisFarma.model;
  * @author diego
  */
 public class Fornecedor {
-    private int codigo;
+    private int id;
     private String nome;
     private String cnpj;
     //private Endereco end;
@@ -22,8 +22,8 @@ public class Fornecedor {
     private String telefone;
     private String email;
 
-    public Fornecedor(int codigo, String nome, String cnpj, String rua, String cidade, String estado, String cep, String telefone, String email) {
-        this.codigo = codigo;
+    public Fornecedor(int id, String nome, String cnpj, String rua, String cidade, String estado, String cep, String telefone, String email) {
+        this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
         this.rua = rua;
@@ -34,16 +34,27 @@ public class Fornecedor {
         this.email = email;
     }
 
+    public Fornecedor(String nome, String cnpj, String rua, String cidade, String estado, String cep, String telefone, String email) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.rua = rua;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+        this.telefone = telefone;
+        this.email = email;
+    }
+    
     public Fornecedor() {
     }
     
     
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -113,7 +124,7 @@ public class Fornecedor {
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder();
-        sb.append(" | ").append(codigo)
+        sb.append(" | ").append(id)
                 .append(" | ").append(nome)
                 .append(" | ").append(cnpj)
                 .append(" | ").append(rua)

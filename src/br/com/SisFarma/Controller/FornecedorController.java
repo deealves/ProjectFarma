@@ -220,7 +220,7 @@ public class FornecedorController implements Initializable {
         f.setCep(cep);
         f.setTelefone(telefone);
         f.setEmail(email);
-        f.setCodigo(selecionado.getCodigo());
+        f.setId(selecionado.getId());
         
         if(dao.editar(f)){
             Alert al = new Alert(AlertType.CONFIRMATION);

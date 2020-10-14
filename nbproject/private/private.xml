@@ -3,7 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/VendaController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Produto.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ProdutoDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/VendaController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/gui/Usuarios.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Usuario.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/UsuarioDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/UsuarioController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ClienteController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/gui/Clientes.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/gui/Vendas.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Venda.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Cliente.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/FornecedorDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Fornecedor.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ProdutoController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/FornecedorController.java</file>
         </group>
     </open-files>
 </project-private>

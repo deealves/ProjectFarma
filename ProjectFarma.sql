@@ -1,18 +1,4 @@
--- Database: ProjectFarma
-
--- DROP DATABASE "ProjectFarma";
-
-CREATE DATABASE "ProjectFarma"
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'Portuguese_Brazil.1252'
-    LC_CTYPE = 'Portuguese_Brazil.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-	
-	
-	CREATE TABLE usuario (
+CREATE TABLE usuario (
 	
 		id serial not null,
 		nome varchar(50) not null,
@@ -118,4 +104,4 @@ CREATE DATABASE "ProjectFarma"
 		
 	);
 	
-	
+	alter table venda add column valor float;
