@@ -8,14 +8,12 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< Updated upstream
-    <jar href="ProjectFarma.jar" size="292905" download="eager" />
-    <jar href="lib\postgresql-42.2.10.jar" size="927447" download="eager" />
-=======
-    <jar href="ProjectFarma.jar" size="293371" download="eager" />
+    <jar href="ProjectFarma.jar" size="293489" download="eager" />
     <jar href="lib\postgresql-9.4.1209.jar" size="678049" download="eager" />
->>>>>>> Stashed changes
   </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ProjectFarma" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="br.com.SisFarma.gui.Login"  name="ProjectFarma" />
   <update check="always"/>
 </jnlp>

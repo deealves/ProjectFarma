@@ -6,7 +6,6 @@
 package br.com.SisFarma.Controller;
 
 import br.com.SisFarma.dao.ProdutoDAO;
-import br.com.SisFarma.dao.VendaDAO;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Vendas;
 import br.com.SisFarma.model.Produto;
@@ -14,6 +13,8 @@ import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -66,6 +67,8 @@ public class VendaController implements Initializable {
     private final  Locale locale = new Locale("pt", "BR");
     private final  NumberFormat dinheiro;
     int teste;
+    float teste2;
+    List<Venda> venda = new ArrayList<>();
 
     public VendaController() {
         this.dinheiro = NumberFormat.getCurrencyInstance(locale);
@@ -112,7 +115,9 @@ public class VendaController implements Initializable {
         btRemover.setOnMouseClicked((MouseEvent e) ->{
             try {
                 removerVenda();
-                total = total - selecionada.getPreco() * teste;
+                System.out.println("Teste: "+teste);
+                total = total - teste2 * teste;
+                System.out.println("Remover:" +total);
                 if(total < 0){
                    total = 0;
                 }
@@ -167,16 +172,12 @@ public class VendaController implements Initializable {
     private void selecionarProduto() throws SQLException {
        if(selecionada != null){    
             novo = Integer.parseInt(txQuant.getText());
-            VendaDAO dao = new VendaDAO();
             Venda v = new Venda();
             v.setCodproduto(selecionada.getCodproduto());
             v.setNome(selecionada.getNome());
             v.setPreco(selecionada.getPreco() * novo);
-            System.out.println(v.getPreco());
             v.setQuant(novo);
-            System.out.println(novo);
-            System.out.println(total);
-            if(dao.insert(v)){
+            if(venda.add(v)){
                 Alert al = new Alert(Alert.AlertType.CONFIRMATION);
                 al.setHeaderText("Produto Selecionado para Venda");
                 al.show();
@@ -203,15 +204,15 @@ public class VendaController implements Initializable {
     }
 
     private ObservableList<Venda> atualizaTabela2() throws SQLException {
-        VendaDAO dao = new VendaDAO();
-        return FXCollections.observableArrayList(dao.listar());
+        return FXCollections.observableArrayList(venda);
     }
 
     private void removerVenda() throws SQLException {
        if(selecionada2 != null){
-            VendaDAO dao = new VendaDAO();
             teste = selecionada2.getQuant();
-            dao.delete(selecionada2);
+            teste2 = selecionada2.getPreco();
+            System.out.println(teste2);
+            venda.remove(selecionada2);
             Alert al = new Alert(Alert.AlertType.CONFIRMATION);
             al.setHeaderText("Removido com Sucesso");
             al.show();
