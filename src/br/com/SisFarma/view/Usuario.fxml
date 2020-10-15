@@ -17,6 +17,7 @@
                 <TableColumn fx:id="clmId" prefWidth="37.0" text="ID" />
                 <TableColumn fx:id="clmNome" prefWidth="151.0" text="Nome" />
                   <TableColumn fx:id="clmUsuario" prefWidth="139.0" text="Usuario" />
+                  <TableColumn fx:id="clmCpf" prefWidth="75.0" text="CPF" />
               </columns>
             </TableView>
             <Button fx:id="btEditar" layoutY="347.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="388.0" style="-fx-background-color: #32CD32;" text="EDITAR" textFill="WHITE">
