@@ -101,7 +101,7 @@ public class LoginController implements Initializable {
         UsuarioDAO dao = new UsuarioDAO();
         List<Usuario> usuarios = dao.listar();
         for(int x = 0; x< usuarios.size(); x++){
-            if(txEmail.getText().equals(usuarios.get(x).getEmail()) && txSenha.getText().equals(usuarios.get(x).getSenha())){
+            if(txEmail.getText().equals(usuarios.get(x).getUsuario()) && txSenha.getText().equals(usuarios.get(x).getSenha())){
                 MenuPrincipal p = new MenuPrincipal();
                 x = usuarios.size();
                 fecha();

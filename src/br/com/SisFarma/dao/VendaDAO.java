@@ -21,14 +21,13 @@ public class VendaDAO {
     private PreparedStatement stmt;
     
     public boolean insert(Venda v) throws SQLException {
-       sql = "INSERT INTO venda (codproduto,nome,preco,quant) VALUES (?,?,?,?)";
+       sql = "INSERT INTO venda (quant, valor, id_usuario) VALUES (?,?,?)";
        
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
-            stmt.setInt(1,v.getCodproduto());
-            stmt.setString(2,v.getNome());
-            stmt.setFloat(3,v.getPreco());        
-            stmt.setInt(4,v.getQuant());
+            stmt.setInt(1,v.getQuant());
+            stmt.setFloat(2,v.getValor());
+            stmt.setInt(3,v.getU().getId());        
             stmt.execute();
             stmt.close();
             con.close();
@@ -47,7 +46,7 @@ public class VendaDAO {
     }
     
     public List<Venda> listar() throws SQLException{
-         sql = "select v.id, v.codproduto, v.nome, v.preco, v.quant from venda v ";
+         sql = "select v.id, v.quant, v.valor from venda v ";
          con = ConnectionFactory.getConnection();
          stmt = con.prepareStatement(sql);
          ResultSet rs = stmt.executeQuery();
@@ -57,11 +56,9 @@ public class VendaDAO {
              
              Venda v = new Venda();
              
-             v.setId(rs.getLong("id"));
-             v.setCodproduto(rs.getInt("codproduto"));
-             v.setNome(rs.getString("nome"));
-             v.setPreco(rs.getFloat("preco"));
+             v.setId(rs.getInt("id"));
              v.setQuant(rs.getInt("quant"));
+             v.setValor(rs.getFloat("valor"));
              
              vendas.add(v);
          }

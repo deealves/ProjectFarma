@@ -44,32 +44,32 @@ import javafx.stage.Stage;
 public class VendaController implements Initializable {
     
     @FXML private TableColumn<Produto, String> clmNome1;
-    @FXML private TableView<Venda> tabela2;
+    @FXML private TableView<Produto> tabela2;
     @FXML private TableView<Produto> tabela1;
-    @FXML private TableColumn<Venda, String> clmNome2;
+    @FXML private TableColumn<Produto, String> clmNome2;
     @FXML private Button btSelecionar;
-    @FXML private TableColumn<Produto, Long> clmId1;
+    @FXML private TableColumn<Produto, Integer> clmId1;
     @FXML private TableColumn<Produto, Integer> clmQuant1;
-    @FXML private TableColumn<Venda, Long> clmId2;
-    @FXML private TableColumn<Venda, Integer> clmQuant2;
+    @FXML private TableColumn<Produto, Integer> clmId2;
+    @FXML private TableColumn<Produto, Integer> clmQuant2;
     @FXML private TextField txTotal;
     @FXML private Button btVender;
     @FXML private TableColumn<Produto, Float> clmPreco1;
-    @FXML private TableColumn<Venda, Float> clmPreco2;
+    @FXML private TableColumn<Produto, Float> clmPreco2;
     @FXML private Button btVoltar;
-    @FXML private TableColumn<Venda, Integer> clmCodigo2;
+    @FXML private TableColumn<Produto, Integer> clmCodigo2;
     @FXML private TableColumn<Produto, Integer> clmCodigo1;
     @FXML private TextField txQuant;
     @FXML private Button btRemover;
     private Produto selecionada;
-    private Venda selecionada2;
+    private Produto selecionada2;
     private float total = 0;
     private int novo;
     private final  Locale locale = new Locale("pt", "BR");
     private final  NumberFormat dinheiro;
     private int teste;
     private float teste2;
-    private final List<Venda> venda = new ArrayList<>();
+    private final List<Produto> produto = new ArrayList<>();
 
     public VendaController() {
         this.dinheiro = NumberFormat.getCurrencyInstance(locale);
@@ -90,13 +90,13 @@ public class VendaController implements Initializable {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selecionada = (Produto) newValue;    
-                Venda v = new Venda();
-                v.setCodproduto(selecionada.getCodproduto());
-                v.setNome(selecionada.getNome());
-                v.setPreco(selecionada.getPreco());
+                Produto p = new Produto();
+                p.setCodproduto(selecionada.getCodproduto());
+                p.setNome(selecionada.getNome());
+                p.setPreco(selecionada.getPreco());
                 //txQuant.setText(String.valueOf(selecionada.getQuant()));
-                v.setQuant(selecionada.getQuant());
-                v.mostraVenda();
+                p.setQuant(selecionada.getQuant());
+                p.toString();
 
             }
         });
@@ -104,7 +104,7 @@ public class VendaController implements Initializable {
         tabela2.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-                selecionada2 = (Venda) newValue;    
+                selecionada2 = (Produto) newValue;    
 
             }
         });
@@ -178,18 +178,18 @@ public class VendaController implements Initializable {
     private void selecionarProduto() throws SQLException {
        if(selecionada != null){    
             novo = Integer.parseInt(txQuant.getText());
-            Venda v = new Venda();
-            v.setCodproduto(selecionada.getCodproduto());
-            v.setNome(selecionada.getNome());
-            v.setPreco(selecionada.getPreco() * novo);
-            v.setQuant(novo);
-            if(venda.add(v)){
+            Produto p = new Produto();
+            p.setCodproduto(selecionada.getCodproduto());
+            p.setNome(selecionada.getNome());
+            p.setPreco(selecionada.getPreco() * novo);
+            p.setQuant(novo);
+            if(produto.add(p)){
                 Alert al = new Alert(Alert.AlertType.CONFIRMATION);
                 al.setHeaderText("Produto Selecionado para Venda");
                 al.show();
                 initTable2();
             }
-            total = total + v.getPreco();
+            total = total + p.getPreco();
             txTotal.setText(String.valueOf(dinheiro.format(total)));
             System.out.println(total);
  
@@ -209,8 +209,8 @@ public class VendaController implements Initializable {
         tabela2.setItems(atualizaTabela2());
     }
 
-    private ObservableList<Venda> atualizaTabela2() throws SQLException {
-        return FXCollections.observableArrayList(venda);
+    private ObservableList<Produto> atualizaTabela2() throws SQLException {
+        return FXCollections.observableArrayList(produto);
     }
 
     private void removerVenda() throws SQLException {
@@ -218,7 +218,7 @@ public class VendaController implements Initializable {
             teste = selecionada2.getQuant();
             teste2 = selecionada2.getPreco();
             System.out.println(teste2);
-            venda.remove(selecionada2);
+            produto.remove(selecionada2);
             Alert al = new Alert(Alert.AlertType.CONFIRMATION);
             al.setHeaderText("Removido com Sucesso");
             al.show();
@@ -230,7 +230,7 @@ public class VendaController implements Initializable {
         }
     }
     
-    private void vender(){
+    /*private void vender(){
         VendaDAO v = new VendaDAO();
         for(int i = 0; i < venda.size(); i++){
             try {
@@ -239,5 +239,5 @@ public class VendaController implements Initializable {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
+    }*/
 }

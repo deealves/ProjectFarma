@@ -27,7 +27,7 @@ public class Teste {
         UsuarioDAO dao = new UsuarioDAO();
         List<Usuario> usuarios = new UsuarioDAO().listar();
         for(int x = 0; x< usuarios.size();x++){
-            usuarios.get(x).mostraUsuario();
+            usuarios.get(x).toString();
         }
    
         

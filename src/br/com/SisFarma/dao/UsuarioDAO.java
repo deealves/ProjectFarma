@@ -25,31 +25,28 @@ public class UsuarioDAO {
         this.con = ConnectionFactory.getConnection();
     }
     
-    public boolean insert(Usuario u){
-        sql = "INSERT INTO usuario (nome, cpf, email,senha) VALUES (?,?,?,?)";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1,u.getNome());
-            stmt.setString(2, u.getCpf());
-            stmt.setString(3,u.getEmail());
-            stmt.setString(4,u.getSenha());
-            stmt.execute();
-            stmt.close();
-            con.close();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+    public boolean insert(Usuario u) throws SQLException{
+        sql = "INSERT INTO usuario (nome, cpf, usuario, senha) VALUES (?,?,?,?)";
+      
+        PreparedStatement stmt = con.prepareStatement(sql);
+        stmt.setString(1,u.getNome());
+        stmt.setString(2, u.getCpf());
+        stmt.setString(3,u.getUsuario());
+        stmt.setString(4,u.getSenha());
+        stmt.execute();
+        stmt.close();
+        con.close();
+        return true;
+        
     }
     
      public boolean update(Usuario u) throws SQLException{
-            sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, senha = ? WHERE id=?";
+            sql = "UPDATE usuario SET nome = ?, cpf = ?, usuario = ?, senha = ? WHERE id=?";
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
             stmt.setString(1,u.getNome());
             stmt.setString(2, u.getCpf());
-            stmt.setString(3,u.getEmail());
+            stmt.setString(3,u.getUsuario());
             stmt.setString(4,u.getSenha());
             stmt.setInt(5,u.getId());
             stmt.executeUpdate();
@@ -88,7 +85,7 @@ public class UsuarioDAO {
              u.setId(rs.getInt("id"));
              u.setNome(rs.getString("nome"));
              u.setCpf(rs.getString("cpf"));
-             u.setEmail(rs.getString("email"));
+             u.setUsuario(rs.getString("usuario"));
              u.setSenha(rs.getString("senha"));
              
              usuarios.add(u);

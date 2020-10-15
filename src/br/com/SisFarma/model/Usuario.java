@@ -14,21 +14,22 @@ import javafx.stage.Stage;
 public class Usuario {
     private int id;
     private String nome;
-    private String email;
+    private String usuario;
     private String senha;
     private String cpf;
 
-    public Usuario(int id, String nome, String email, String senha, String cpf) {
+    public Usuario(int id, String nome, String cpf, String usuario, String senha) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
-        this.senha = senha;
         this.cpf = cpf;
+        this.usuario = usuario;
+        this.senha = senha;
     }
 
-    public Usuario(String nome, String email, String senha) {
+    public Usuario(String nome, String cpf, String usuario, String senha) {
         this.nome = nome;
-        this.email = email;
+        this.cpf = cpf;
+        this.usuario = usuario;
         this.senha = senha;
     }
 
@@ -52,12 +53,12 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
@@ -84,7 +85,7 @@ public class Usuario {
     public String toString(){
         final StringBuilder sb = new StringBuilder();
         sb.append(" | ").append(nome)
-                .append(" | ").append(email)
+                .append(" | ").append(usuario)
                 .append(" | ").append(senha)
                 .append(" | ").append(cpf);
   

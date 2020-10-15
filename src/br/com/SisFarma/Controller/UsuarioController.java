@@ -36,14 +36,16 @@ public class UsuarioController implements Initializable {
     @FXML private Button btVoltar;
     @FXML private TableView<Usuario> tabela;
     @FXML private TableColumn<Usuario, String> clmNome;
+    @FXML private TableColumn<Usuario, String> clmCpf;
     @FXML private TextField txUsuario;
     @FXML private PasswordField txSenha;
     @FXML private TableColumn<Usuario, String> clmUsuario;
-    @FXML private TableColumn<Usuario, Long> clmId;
+    @FXML private TableColumn<Usuario, Integer> clmId;
     @FXML private Button btEditar;
     @FXML private Button btRemover;
     @FXML private Button btCadastrar;
     @FXML private TextField txNome;
+    @FXML private TextField txCpf;
     @FXML private Label lbId;
     private Usuario selecionada;
     
@@ -61,7 +63,8 @@ public class UsuarioController implements Initializable {
                 txNome.setText("");
                 txUsuario.setText("");
                 txSenha.setText("");
-                lbId.setText(" ");
+                txCpf.setText("");
+                lbId.setText("");
                 btCadastrar.setText("Cadastrar");
                 btVoltar.setText("Voltar");
             }else{
@@ -109,7 +112,8 @@ public class UsuarioController implements Initializable {
     public void initTable() throws SQLException{
         clmId.setCellValueFactory(new PropertyValueFactory("id"));
         clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
-        clmUsuario.setCellValueFactory(new PropertyValueFactory("email"));
+        clmCpf.setCellFactory(new PropertyValueFactory("cpf"));
+        clmUsuario.setCellValueFactory(new PropertyValueFactory("usuario"));
         tabela.setItems(atualizaTabela());
         
     }
@@ -135,13 +139,14 @@ public class UsuarioController implements Initializable {
     
     }
     public void salvarUsuario() throws SQLException{
-            String nome = txNome.getText(),email = txUsuario.getText(),senha = txSenha.getText();
-            Long id = Long.parseLong(lbId.getText());
+            String nome = txNome.getText(),usuario = txUsuario.getText(),senha = txSenha.getText(), cpf = txCpf.getText();
+            int id = Integer.parseInt(lbId.getText());
 
             UsuarioDAO dao = new UsuarioDAO();
             Usuario u = new Usuario();
             u.setNome(nome);
-            u.setEmail(email);
+            u.setCpf(cpf);
+            u.setUsuario(usuario);
             u.setSenha(senha);
             u.setId(id);
             if(dao.update(u)){
@@ -149,6 +154,7 @@ public class UsuarioController implements Initializable {
                 al.setHeaderText ("Usuario Cadastrado");
                 al.show();
                 txNome.setText("");
+                txCpf.setText("");
                 txUsuario.setText("");
                 txSenha.setText("");
                 btCadastrar.setText("Cadastrar");
@@ -161,18 +167,14 @@ public class UsuarioController implements Initializable {
                 Alert al = new Alert(AlertType.ERROR);
                 al.setHeaderText ("Usuario Não Cadastrado");
                 al.show();
-            }
-                
-            
-       
-                
-            
+            }   
     }
     public void editarUsuario() throws SQLException{
         if(selecionada != null){
-            lbId.setText(selecionada.getId().toString());
+            lbId.setText(String.valueOf(selecionada.getId()));
             txNome.setText(selecionada.getNome());
-            txUsuario.setText(selecionada.getEmail());
+            txCpf.setText(selecionada.getCpf());
+            txUsuario.setText(selecionada.getUsuario());
             txSenha.setText(selecionada.getSenha());
             btCadastrar.setText("Salvar");
             btVoltar.setText("Cancelar");
@@ -186,12 +188,13 @@ public class UsuarioController implements Initializable {
     }
     
     public void cadastrarUsuario() throws SQLException{
-        String nome = txNome.getText(), 
-               email = txUsuario.getText(), 
+        String nome = txNome.getText(),
+               cpf = txCpf.getText(),
+               usuario = txUsuario.getText(), 
                senha = txSenha.getText();
         
-        if(nome != null && email != null && senha != null){
-            Usuario u = new Usuario(nome,email,senha);
+        if(nome != null && cpf != null && usuario != null && senha != null){
+            Usuario u = new Usuario(nome, cpf, usuario, senha);
             UsuarioDAO dao = new UsuarioDAO();
             
             if(dao.insert(u)){
@@ -199,6 +202,7 @@ public class UsuarioController implements Initializable {
                 al.setHeaderText ("Usuario Cadastrado");
                 al.show();
                 txNome.setText("");
+                txCpf.setText("");
                 txUsuario.setText("");
                 txSenha.setText("");
                 tabela.setItems(atualizaTabela());

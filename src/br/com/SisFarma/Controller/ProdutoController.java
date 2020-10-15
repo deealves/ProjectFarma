@@ -153,7 +153,7 @@ public class ProdutoController implements Initializable {
             float preco = Float.parseFloat(txPreco.getText());
             String fabricante = txFabricante.getText(); 
             int quant = Integer.parseInt(txQuant.getText());
-            Long id = Long.parseLong(lbId.getText());
+            int id = Integer.parseInt(lbId.getText());
 
             ProdutoDAO dao = new ProdutoDAO();
             Produto p = new Produto();
