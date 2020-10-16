@@ -109,3 +109,17 @@ CREATE TABLE usuario (
 	alter table produto drop column id_cliente;
 	alter table produto add column id_venda int;
 	alter table produto add column id_cliente int;
+	alter table venda add column id_cliente int;
+	alter table venda add foreign key (id_cliente) references cliente (id);
+	alter table venda drop column id_cliente;
+	alter table venda drop foreign key id_cliente;
+	
+	alter table cliente_venda drop column id_cliente;
+	alter table cliente_venda drop column id_venda;
+	
+	alter table cliente_venda add column id_cliente int;
+	alter table cliente_venda add column id_venda int;
+	
+	alter table cliente_venda add foreign key (id_cliente) references cliente (id);
+	alter table cliente_venda add foreign key (id_venda) references venda (id);
+	

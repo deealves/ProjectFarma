@@ -80,7 +80,7 @@ public class ClienteController implements Initializable {
     @FXML private TextField textCep;
     @FXML private Label labelCep;
     private Cliente selecionado;
-    private ClienteVenda teste;
+    //private ClienteVenda teste;
     public static Button staticButton;
 
     /**
@@ -100,7 +100,15 @@ public class ClienteController implements Initializable {
      
         btCadastrar.setOnMouseClicked((Event e)->{
             if(btCadastrar.getText().equals("Realizar Venda")){
-                realizarVenda();
+                try {
+                    realizarVenda();
+                    abreMenu();
+                    Alert al = new Alert(AlertType.CONFIRMATION);
+                    al.setHeaderText("Venda Realizada!");
+                    al.show();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }else{
                 
                 if(btCadastrar.getText().equals("Salvar")){
@@ -122,7 +130,16 @@ public class ClienteController implements Initializable {
         btCadastrar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
                 if(btCadastrar.getText().equals("Realizar Venda")){
-                    realizarVenda();
+                    try {
+                        realizarVenda();
+                        abreMenu();
+                        Alert al = new Alert(AlertType.CONFIRMATION);
+                        al.setHeaderText("Venda Realizada!");
+                        al.show();    
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                 }else{
                     try {
                         cadastraCliente();
@@ -175,14 +192,6 @@ public class ClienteController implements Initializable {
                 selecionado = (Cliente) newValue;
             }
         });
-    }
-
-    public ClienteVenda getTeste() {
-        return teste;
-    }
-
-    public void setTeste(ClienteVenda teste) {
-        this.teste = teste;
     }
     
     public void cadastraCliente() throws SQLException{
@@ -346,19 +355,14 @@ public class ClienteController implements Initializable {
         textEmail.setText("");
     }
     
-    public void realizarVenda(){
+    public void realizarVenda() throws SQLException{
         ClienteVendaDAO cv = new ClienteVendaDAO();
-        
-        System.out.println(selecionado == null);
-  
+        ClienteVenda teste = new ClienteVenda();
         teste.getCliente().setId(selecionado.getId());
         teste.getVenda().setId(getId_venda());
-        //teste.setVenda(null);
-        try {
-            cv.insertClienteVenda(teste);
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        cv.insertClienteVenda(teste);
+       
         
        /* try {
             cadastraCliente();

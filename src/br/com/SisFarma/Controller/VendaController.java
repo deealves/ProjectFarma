@@ -267,12 +267,18 @@ public class VendaController extends ClienteController implements Initializable 
         for(int i = 0; i < produto.size(); i++){
             valorAux += produto.get(i).getPreco();
             quantAux += produto.get(i).getQuant();
+            
         }
         venda.setValor(valorAux);
         venda.setQuant(quantAux);
         venda.getU().setId(getId_usuario());
-        id_venda = venda.getId();
        
         dao.insert(venda);
+        
+        for(int i = 0; i < dao.listar().size(); i++){
+           id_venda = dao.listar().get(i).getId(); 
+        }
+        
+        System.out.println(id_venda);
     }
 }
