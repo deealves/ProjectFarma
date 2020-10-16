@@ -194,22 +194,21 @@ public class ProdutoController implements Initializable {
     }
 
     public void cadastrarProduto() throws SQLException{
-        
-        int codproduto = Integer.parseInt(txCodproduto.getText());
-        String nome = txNome.getText(); 
-        float preco = Float.parseFloat(txPreco.getText());
-        String fabricante = txFabricante.getText();
-        String descricao = txDescricao.getText();
-        int quant = Integer.parseInt(txQuant.getText());
-       
-        if(codproduto == 0 && nome.equals("") && preco == 0 && fabricante.equals("")
-                && descricao.equals("") && quant == 0){
+    
+        if(txCodproduto.getText().equals("") && txPreco.getText().equals("") && txQuant.getText().equals("")
+                && txNome.getText().equals("") && txFabricante.getText().equals("") && txDescricao.getText().equals("")){
             Alert al = new Alert(AlertType.ERROR);
             al.setHeaderText ("Preencha todos os Campos");
             al.show();
-            
         }else{
-        
+            
+            String nome = txNome.getText(); 
+            String fabricante = txFabricante.getText();
+            String descricao = txDescricao.getText();
+            int codproduto = Integer.parseInt(txCodproduto.getText());
+            float preco = Float.parseFloat(txPreco.getText());
+            int quant = Integer.parseInt(txQuant.getText());
+
             Produto p = new Produto();
             p.setCodproduto(codproduto);
             p.setNome(nome);
@@ -218,7 +217,7 @@ public class ProdutoController implements Initializable {
             p.setDescricao(descricao);
             p.setQuant(quant);
             ProdutoDAO dao = new ProdutoDAO();
-            
+
             if(dao.insert(p)){
                 Alert al = new Alert(AlertType.CONFIRMATION);
                 al.setHeaderText ("Produto Cadastrado");
@@ -230,8 +229,8 @@ public class ProdutoController implements Initializable {
                 txDescricao.setText("");
                 txQuant.setText("");
                 tabela.setItems(atualizaTabela());
-                
-          
+
+
             }else{
                 Alert al = new Alert(AlertType.ERROR);
                 al.setHeaderText ("Produto Não Cadastrado");

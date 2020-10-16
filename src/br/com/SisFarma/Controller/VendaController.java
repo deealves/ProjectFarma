@@ -38,6 +38,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -45,7 +47,7 @@ import javafx.stage.Stage;
  *
  * @author Matrix
  */
-public class VendaController implements Initializable {
+public class VendaController extends ClienteController implements Initializable {
     
     @FXML private TableColumn<Produto, String> clmNome1;
     @FXML private TableView<Produto> tabela2;
@@ -75,6 +77,15 @@ public class VendaController implements Initializable {
     private float teste2;
     private final List<Produto> produto = new ArrayList<>();
     private Venda venda;
+    private static int id_venda;
+
+    public static int getId_venda() {
+        return id_venda;
+    }
+
+    public static void setId_venda(int id_venda) {
+        VendaController.id_venda = id_venda;
+    }
 
     public VendaController() {
         this.venda = new Venda();
@@ -152,12 +163,15 @@ public class VendaController implements Initializable {
             Vendas.getStage().close();
             try {
                 vender();
+               
                 ClienteController c = new ClienteController();
-                ClienteVenda cv = new ClienteVenda();
-                cv.setVenda(venda);
-                c.setTeste(cv);
-                c.realizarVenda();
+                /*c.btEditar.setText("Selecionar");
+                c.btRemover.setText("");
+                c.btRemover.disableProperty();
+                c.btRemover.setBackground(Background.EMPTY);*/
                 novo.start(new Stage());
+                staticButton.setText("Realizar Venda");
+                
                 //if(c.realizarVenda(venda))
             } catch (Exception ex) {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,7 +180,7 @@ public class VendaController implements Initializable {
     
 }    
 
-    private void initTable() throws SQLException {
+    public void initTable() throws SQLException {
         clmId1.setCellValueFactory(new PropertyValueFactory("id"));
         clmCodigo1.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmNome1.setCellValueFactory(new PropertyValueFactory("nome"));
@@ -180,7 +194,7 @@ public class VendaController implements Initializable {
         return FXCollections.observableArrayList(dao.listar());
     }
 
-    private void fecha() {
+    public void fecha() {
         MenuPrincipal m = new MenuPrincipal();
         Vendas.getStage().close();
         try {
@@ -245,8 +259,8 @@ public class VendaController implements Initializable {
         }
     }
     
-    private void vender() throws SQLException{
-        ClienteVendaDAO v = new ClienteVendaDAO();
+    private void vender() throws SQLException{ 
+        VendaDAO dao = new VendaDAO();
         ClienteVenda cv = new ClienteVenda();
         float valorAux = 0;
         int quantAux = 0;
@@ -257,9 +271,8 @@ public class VendaController implements Initializable {
         venda.setValor(valorAux);
         venda.setQuant(quantAux);
         venda.getU().setId(getId_usuario());
-        
-        cv.setVenda(venda);
-        //cv.setCliente(null);
-        v.insertClienteVenda(cv);
+        id_venda = venda.getId();
+       
+        dao.insert(venda);
     }
 }

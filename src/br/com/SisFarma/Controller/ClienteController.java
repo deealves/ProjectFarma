@@ -5,6 +5,7 @@
  */
 package br.com.SisFarma.Controller;
 
+import static br.com.SisFarma.Controller.VendaController.getId_venda;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
@@ -80,6 +81,7 @@ public class ClienteController implements Initializable {
     @FXML private Label labelCep;
     private Cliente selecionado;
     private ClienteVenda teste;
+    public static Button staticButton;
 
     /**
      * Initializes the controller class.
@@ -87,6 +89,7 @@ public class ClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        staticButton = btCadastrar;
         
         try {
             // TODO
@@ -96,25 +99,28 @@ public class ClienteController implements Initializable {
         }
      
         btCadastrar.setOnMouseClicked((Event e)->{
-            if(btCadastrar.getText().equals("Salvar")){
-                try {
-                    salvar();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            if(btCadastrar.getText().equals("Realizar Venda")){
+                realizarVenda();
             }else{
-                try {
-                    cadastraCliente();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                
+                if(btCadastrar.getText().equals("Salvar")){
+                    try {
+                        salvar();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }else{
+                    try {
+                        cadastraCliente();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
         
         btCadastrar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
-                btCadastrar.setText("Realizar Venda");
-                btEditar.setText("Selecionar");
                 if(btCadastrar.getText().equals("Realizar Venda")){
                     realizarVenda();
                 }else{
@@ -342,9 +348,11 @@ public class ClienteController implements Initializable {
     
     public void realizarVenda(){
         ClienteVendaDAO cv = new ClienteVendaDAO();
-        System.out.println(selecionado != null);
+        
+        System.out.println(selecionado == null);
   
-        teste.setCliente(selecionado);
+        teste.getCliente().setId(selecionado.getId());
+        teste.getVenda().setId(getId_venda());
         //teste.setVenda(null);
         try {
             cv.insertClienteVenda(teste);
