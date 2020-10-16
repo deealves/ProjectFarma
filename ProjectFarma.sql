@@ -105,3 +105,7 @@ CREATE TABLE usuario (
 	);
 	
 	alter table venda add column valor float;
+	alter table produto drop column id_venda;
+	alter table produto drop column id_cliente;
+	alter table produto add column id_venda int;
+	alter table produto add column id_cliente int;

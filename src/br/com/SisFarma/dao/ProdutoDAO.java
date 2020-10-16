@@ -24,7 +24,7 @@ public class ProdutoDAO {
     private PreparedStatement stmt;
  
    public boolean insert(Produto p) throws SQLException {
-        sql = "INSERT INTO produto (codproduto,nome,preco,fabricante, descricao,quant) VALUES (?,?,?,?,?,?)";
+        sql = "INSERT INTO produto (codproduto, nome, preco, fabricante, descricao, quant, id_venda, id_cliente) VALUES (?,?,?,?,?,?,?,?)";
 
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
@@ -34,6 +34,8 @@ public class ProdutoDAO {
             stmt.setString(4,p.getFabricante());
             stmt.setString(5, p.getDescricao());
             stmt.setInt(6,p.getQuant());
+            stmt.setInt(7, p.getV().getId());
+            stmt.setInt(8, p.getC().getId());
             stmt.execute();
             stmt.close();
             con.close();

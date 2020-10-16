@@ -36,14 +36,16 @@ public class ProdutoController implements Initializable {
     @FXML private TableColumn<Produto, String> clmFabricante;
     @FXML private Label lbId;
     @FXML private TableColumn<Produto, String> clmNome;
+    @FXML private TableColumn<Produto, String> clmDescricao;
     @FXML private TextField txNome;
     @FXML private Button btVoltar;
     @FXML private TableView<Produto> tabela;
     @FXML private TableColumn<Produto, Float> clmPreco;
-    @FXML private TableColumn<Produto, Long> clmId;
+    @FXML private TableColumn<Produto, Integer> clmId;
     @FXML private TableColumn<Produto, Integer> clmCodProduto;
     @FXML private TableColumn<Produto, Integer> clmQuant;
     @FXML private TextField txFabricante;
+    @FXML private TextField txDescricao;
     @FXML private TextField txQuant;
     @FXML private Button btCadastrar;
     @FXML private TextField txPreco;
@@ -66,6 +68,7 @@ public class ProdutoController implements Initializable {
                 txNome.setText("");
                 txPreco.setText("");
                 txFabricante.setText("");
+                txDescricao.setText("");
                 txQuant.setText("");
                 lbId.setText(" ");
                 btCadastrar.setText("Cadastrar");
@@ -74,7 +77,7 @@ public class ProdutoController implements Initializable {
                 fecha();
             }
             
-    });   
+        });   
         
         btCadastrar.setOnMouseClicked((MouseEvent e) ->{
           
@@ -94,14 +97,14 @@ public class ProdutoController implements Initializable {
                   
               }             
                    
-    }); 
+        }); 
         
         tabela.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
           @Override
           public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-              selecionada = (Produto) newValue;            
-          }
-      });
+                selecionada = (Produto) newValue;            
+            }
+        });
         
         btRemover.setOnMouseClicked((MouseEvent e) ->{
             try {
@@ -109,7 +112,7 @@ public class ProdutoController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });  
+        });  
         
         btEditar.setOnMouseClicked((MouseEvent e) ->{
             try {
@@ -118,7 +121,7 @@ public class ProdutoController implements Initializable {
                 Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
             }
           
-    });
+        });
         
     }
 
@@ -127,7 +130,8 @@ public class ProdutoController implements Initializable {
         clmCodProduto.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmPreco.setCellValueFactory(new PropertyValueFactory("preco"));
-        clmFabricante.setCellValueFactory(new PropertyValueFactory("Fabricante"));
+        clmFabricante.setCellValueFactory(new PropertyValueFactory("fabricante"));
+        clmDescricao.setCellValueFactory(new PropertyValueFactory("descricao"));
         clmQuant.setCellValueFactory(new PropertyValueFactory("quant"));
         tabela.setItems(atualizaTabela());
     }
@@ -151,7 +155,8 @@ public class ProdutoController implements Initializable {
             int codproduto = Integer.parseInt(txCodproduto.getText());
             String nome = txNome.getText(); 
             float preco = Float.parseFloat(txPreco.getText());
-            String fabricante = txFabricante.getText(); 
+            String fabricante = txFabricante.getText();
+            String descricao = txDescricao.getText();
             int quant = Integer.parseInt(txQuant.getText());
             int id = Integer.parseInt(lbId.getText());
 
@@ -161,6 +166,7 @@ public class ProdutoController implements Initializable {
             p.setNome(nome);
             p.setPreco(preco);
             p.setFabricante(fabricante);
+            p.setDescricao(descricao);
             p.setQuant(quant);
             p.setId(id);
             if(dao.update(p)){
@@ -171,6 +177,7 @@ public class ProdutoController implements Initializable {
                 txNome.setText("");
                 txPreco.setText("");
                 txFabricante.setText("");
+                txDescricao.setText("");
                 txQuant.setText("");
                 lbId.setText(" ");
                 btCadastrar.setText("Cadastrar");
@@ -186,20 +193,29 @@ public class ProdutoController implements Initializable {
             }
     }
 
-    private void cadastrarProduto() throws SQLException {
+    public void cadastrarProduto() throws SQLException{
+        
         int codproduto = Integer.parseInt(txCodproduto.getText());
         String nome = txNome.getText(); 
         float preco = Float.parseFloat(txPreco.getText());
-        String fabricante = txFabricante.getText(); 
+        String fabricante = txFabricante.getText();
+        String descricao = txDescricao.getText();
         int quant = Integer.parseInt(txQuant.getText());
        
+        if(codproduto == 0 && nome.equals("") && preco == 0 && fabricante.equals("")
+                && descricao.equals("") && quant == 0){
+            Alert al = new Alert(AlertType.ERROR);
+            al.setHeaderText ("Preencha todos os Campos");
+            al.show();
+            
+        }else{
         
-        if(nome != null){
             Produto p = new Produto();
             p.setCodproduto(codproduto);
             p.setNome(nome);
             p.setPreco(preco);
             p.setFabricante(fabricante);
+            p.setDescricao(descricao);
             p.setQuant(quant);
             ProdutoDAO dao = new ProdutoDAO();
             
@@ -211,6 +227,7 @@ public class ProdutoController implements Initializable {
                 txNome.setText("");
                 txPreco.setText("");
                 txFabricante.setText("");
+                txDescricao.setText("");
                 txQuant.setText("");
                 tabela.setItems(atualizaTabela());
                 
@@ -220,11 +237,6 @@ public class ProdutoController implements Initializable {
                 al.setHeaderText ("Produto Não Cadastrado");
                 al.show();
             }
-            
-        } else{
-            Alert al = new Alert(AlertType.ERROR);
-            al.setHeaderText ("Preencha todos os Campos");
-            al.show();
         }
     }
 
@@ -250,6 +262,7 @@ public class ProdutoController implements Initializable {
             txNome.setText(selecionada.getNome());
             txPreco.setText(String.valueOf(selecionada.getPreco()));
             txFabricante.setText(selecionada.getFabricante());
+            txDescricao.setText(selecionada.getDescricao());
             txQuant.setText(String.valueOf(selecionada.getQuant()));
             btCadastrar.setText("Salvar");
             btVoltar.setText("Cancelar");

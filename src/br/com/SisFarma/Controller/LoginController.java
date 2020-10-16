@@ -55,6 +55,16 @@ public class LoginController implements Initializable {
     @FXML
     private TextField txEmail;
     
+    private static int id_usuario;
+
+    public static int getId_usuario() {
+        return id_usuario;
+    }
+
+    public static void setId_usuario(int id_usuario) {
+        LoginController.id_usuario = id_usuario;
+    }
+    
     
     
     @Override
@@ -102,6 +112,7 @@ public class LoginController implements Initializable {
         List<Usuario> usuarios = dao.listar();
         for(int x = 0; x< usuarios.size(); x++){
             if(txEmail.getText().equals(usuarios.get(x).getUsuario()) && txSenha.getText().equals(usuarios.get(x).getSenha())){
+                id_usuario = usuarios.get(x).getId();
                 MenuPrincipal p = new MenuPrincipal();
                 x = usuarios.size();
                 fecha();

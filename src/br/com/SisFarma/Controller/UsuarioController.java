@@ -112,7 +112,7 @@ public class UsuarioController implements Initializable {
     public void initTable() throws SQLException{
         clmId.setCellValueFactory(new PropertyValueFactory("id"));
         clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
-        clmCpf.setCellFactory(new PropertyValueFactory("cpf"));
+        clmCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         clmUsuario.setCellValueFactory(new PropertyValueFactory("usuario"));
         tabela.setItems(atualizaTabela());
         

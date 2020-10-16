@@ -5,6 +5,7 @@
  */
 package br.com.SisFarma.dao;
 
+import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.Venda;
 import br.com.SisFarma.util.ConnectionFactory;
 import java.sql.Connection;
@@ -67,4 +68,5 @@ public class VendaDAO {
          return vendas;
         
      }
+    
 }

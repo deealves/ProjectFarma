@@ -5,10 +5,14 @@
  */
 package br.com.SisFarma.Controller;
 
+import static br.com.SisFarma.Controller.LoginController.getId_usuario;
+import br.com.SisFarma.dao.ClienteVendaDAO;
 import br.com.SisFarma.dao.ProdutoDAO;
 import br.com.SisFarma.dao.VendaDAO;
+import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Vendas;
+import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.Produto;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
@@ -70,8 +74,10 @@ public class VendaController implements Initializable {
     private int teste;
     private float teste2;
     private final List<Produto> produto = new ArrayList<>();
+    private Venda venda;
 
     public VendaController() {
+        this.venda = new Venda();
         this.dinheiro = NumberFormat.getCurrencyInstance(locale);
     }
     
@@ -117,11 +123,8 @@ public class VendaController implements Initializable {
             try {
                 removerVenda();
                 System.out.println("Teste: "+teste);
-                total = total - teste2 * teste;
+                total = total - teste2;
                 System.out.println("Remover:" +total);
-                if(total < 0){
-                   total = 0;
-                }
                 
                 txTotal.setText(String.valueOf(dinheiro.format(total)));
             } catch (SQLException ex) {
@@ -145,8 +148,20 @@ public class VendaController implements Initializable {
         });
         
         btVender.setOnMouseClicked((MouseEvent e) ->{
-            VendaDAO v = new VendaDAO();
-            
+            Clientes novo = new Clientes();
+            Vendas.getStage().close();
+            try {
+                vender();
+                ClienteController c = new ClienteController();
+                ClienteVenda cv = new ClienteVenda();
+                cv.setVenda(venda);
+                c.setTeste(cv);
+                c.realizarVenda();
+                novo.start(new Stage());
+                //if(c.realizarVenda(venda))
+            } catch (Exception ex) {
+                Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     
 }    
@@ -230,14 +245,21 @@ public class VendaController implements Initializable {
         }
     }
     
-    /*private void vender(){
-        VendaDAO v = new VendaDAO();
-        for(int i = 0; i < venda.size(); i++){
-            try {
-                v.insert(venda.get(i));
-            } catch (SQLException ex) {
-                Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    private void vender() throws SQLException{
+        ClienteVendaDAO v = new ClienteVendaDAO();
+        ClienteVenda cv = new ClienteVenda();
+        float valorAux = 0;
+        int quantAux = 0;
+        for(int i = 0; i < produto.size(); i++){
+            valorAux += produto.get(i).getPreco();
+            quantAux += produto.get(i).getQuant();
         }
-    }*/
+        venda.setValor(valorAux);
+        venda.setQuant(quantAux);
+        venda.getU().setId(getId_usuario());
+        
+        cv.setVenda(venda);
+        //cv.setCliente(null);
+        v.insertClienteVenda(cv);
+    }
 }

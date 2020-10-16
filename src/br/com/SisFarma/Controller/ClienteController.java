@@ -9,6 +9,10 @@ import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.dao.ClienteDAO;
+import br.com.SisFarma.dao.ClienteVendaDAO;
+import br.com.SisFarma.dao.VendaDAO;
+import br.com.SisFarma.model.ClienteVenda;
+import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -75,12 +79,14 @@ public class ClienteController implements Initializable {
     @FXML private TextField textCep;
     @FXML private Label labelCep;
     private Cliente selecionado;
+    private ClienteVenda teste;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         
         try {
             // TODO
@@ -107,10 +113,16 @@ public class ClienteController implements Initializable {
         
         btCadastrar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
-                try {
-                    cadastraCliente();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                btCadastrar.setText("Realizar Venda");
+                btEditar.setText("Selecionar");
+                if(btCadastrar.getText().equals("Realizar Venda")){
+                    realizarVenda();
+                }else{
+                    try {
+                        cadastraCliente();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
         });
@@ -158,6 +170,14 @@ public class ClienteController implements Initializable {
             }
         });
     }
+
+    public ClienteVenda getTeste() {
+        return teste;
+    }
+
+    public void setTeste(ClienteVenda teste) {
+        this.teste = teste;
+    }
     
     public void cadastraCliente() throws SQLException{
         String nome = textNome.getText(),
@@ -169,29 +189,36 @@ public class ClienteController implements Initializable {
                telefone = textTelefone.getText(),
                email = textEmail.getText();
         
-       
-        Cliente c = new Cliente();
-        c.setNome(nome);
-        c.setCpf(cpf);
-        c.setRua(rua);
-        c.setCidade(cidade);
-        c.setEstado(estado);
-        c.setCep(cep);
-        c.setTelefone(telefone);
-        c.setEmail(email);
-        
-        ClienteDAO dao = new ClienteDAO();
-        if(dao.inserir(c)){
-            Alert al = new Alert(AlertType.CONFIRMATION);
-            al.setHeaderText("Cliente Cadastrado!");
-            al.show();
-            tableCliente.setItems(atualizaTable());
-            limpaCampus();
-            tableCliente.setItems(atualizaTable());
-        }else{
+        if(nome.equals("") && cpf.equals("") && rua.equals("") && cidade.equals("") && estado.equals("")
+                && cep.equals("") && telefone.equals("") && email.equals("")){
             Alert al = new Alert(AlertType.ERROR);
-            al.setHeaderText("Cliente Não Cadastrado!");
+            al.setHeaderText ("Preencha todos os Campos");
             al.show();
+            
+        }else{
+            Cliente c = new Cliente();
+            c.setNome(nome);
+            c.setCpf(cpf);
+            c.setRua(rua);
+            c.setCidade(cidade);
+            c.setEstado(estado);
+            c.setCep(cep);
+            c.setTelefone(telefone);
+            c.setEmail(email);
+
+            ClienteDAO dao = new ClienteDAO();
+            if(dao.inserir(c)){
+                Alert al = new Alert(AlertType.CONFIRMATION);
+                al.setHeaderText("Cliente Cadastrado!");
+                al.show();
+                tableCliente.setItems(atualizaTable());
+                limpaCampus();
+                tableCliente.setItems(atualizaTable());
+            }else{
+                Alert al = new Alert(AlertType.ERROR);
+                al.setHeaderText("Cliente Não Cadastrado!");
+                al.show();
+            }
         }
         //abreMenu();
     }
@@ -212,7 +239,7 @@ public class ClienteController implements Initializable {
     }
     
     public void initTable() throws SQLException {
-        columnId.setCellValueFactory(new PropertyValueFactory("codigo"));
+        columnId.setCellValueFactory(new PropertyValueFactory("id"));
         columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
         columnCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         columnRua.setCellValueFactory(new PropertyValueFactory("rua"));
@@ -311,6 +338,27 @@ public class ClienteController implements Initializable {
         textCep.setText("");
         textTelefone.setText("");
         textEmail.setText("");
+    }
+    
+    public void realizarVenda(){
+        ClienteVendaDAO cv = new ClienteVendaDAO();
+        System.out.println(selecionado != null);
+  
+        teste.setCliente(selecionado);
+        //teste.setVenda(null);
+        try {
+            cv.insertClienteVenda(teste);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       /* try {
+            cadastraCliente();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+        
     }
    
 }

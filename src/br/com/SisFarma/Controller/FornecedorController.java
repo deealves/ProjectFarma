@@ -125,29 +125,35 @@ public class FornecedorController implements Initializable {
                cep = textCep.getText(),
                telefone = textTelefone.getText(),
                email = textEmail.getText();
-      
-        Fornecedor f = new Fornecedor();
-        f.setNome(nome);
-        f.setCnpj(cnpj);
-        f.setRua(rua);
-        f.setCidade(cidade);
-        f.setEstado(estado);
-        f.setCep(cep);
-        f.setTelefone(telefone);
-        f.setEmail(email);
-        
-        FornecedorDAO dao = new FornecedorDAO();
-        if(dao.inserir(f)){
-            Alert al = new Alert(AlertType.CONFIRMATION);
-            al.setHeaderText("Fornecedor Cadastrado!");
-            al.show();
-            tableFornecedores.setItems(atualizaTable());
-            limpaCampus();
-            tableFornecedores.setItems(atualizaTable());
-        }else{
+        if(nome.equals("") && cnpj.equals("") && rua.equals("") && cidade.equals("") && estado.equals("")
+                && cep.equals("") && telefone.equals("") && email.equals("")){
             Alert al = new Alert(AlertType.ERROR);
-            al.setHeaderText("Fornecedor Não Cadastrado!");
+            al.setHeaderText ("Preencha todos os Campos");
             al.show();
+        }else{
+            Fornecedor f = new Fornecedor();
+            f.setNome(nome);
+            f.setCnpj(cnpj);
+            f.setRua(rua);
+            f.setCidade(cidade);
+            f.setEstado(estado);
+            f.setCep(cep);
+            f.setTelefone(telefone);
+            f.setEmail(email);
+
+            FornecedorDAO dao = new FornecedorDAO();
+            if(dao.inserir(f)){
+                Alert al = new Alert(AlertType.CONFIRMATION);
+                al.setHeaderText("Fornecedor Cadastrado!");
+                al.show();
+                tableFornecedores.setItems(atualizaTable());
+                limpaCampus();
+                tableFornecedores.setItems(atualizaTable());
+            }else{
+                Alert al = new Alert(AlertType.ERROR);
+                al.setHeaderText("Fornecedor Não Cadastrado!");
+                al.show();
+            }
         }
         //abreMenu();
     }
@@ -167,7 +173,7 @@ public class FornecedorController implements Initializable {
     }
     
     public void initTable() {
-        columnId.setCellValueFactory(new PropertyValueFactory("codigo"));
+        columnId.setCellValueFactory(new PropertyValueFactory("id"));
         columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
         columnCnpj.setCellValueFactory(new PropertyValueFactory("cnpj"));
         columnRua.setCellValueFactory(new PropertyValueFactory("rua"));
