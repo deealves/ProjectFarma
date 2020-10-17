@@ -46,7 +46,7 @@ import javafx.stage.Stage;
  * @author diego
  */
 public class ClienteController implements Initializable {
-    Clientes c = new Clientes();
+    
     @FXML private TableView<Cliente> tableCliente;
     @FXML private TableColumn<Cliente, Integer> columnId;
     @FXML private TableColumn<Cliente, String> columnNome;
@@ -74,14 +74,17 @@ public class ClienteController implements Initializable {
     @FXML private Label llabelEstado;
     @FXML private Label labelTelefone;
     @FXML private Label labelEmail;
+    @FXML private Label lbId;
     @FXML private Button btCadastrar;
     @FXML private Button btVoltar;
     @FXML private ImageView imageCliente;
     @FXML private TextField textCep;
     @FXML private Label labelCep;
-    private Cliente selecionado;
+    Cliente selecionado;
     //private ClienteVenda teste;
     public static Button staticButton;
+    public static Button staticRemover;
+    public static Button staticEditar;
 
     /**
      * Initializes the controller class.
@@ -90,6 +93,8 @@ public class ClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         staticButton = btCadastrar;
+        staticRemover = btRemover;
+        staticEditar = btEditar;
         
         try {
             // TODO
@@ -97,15 +102,28 @@ public class ClienteController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+        textNome.setOnMouseClicked((Event e) ->{
+            btCadastrar.setText("Cadastrar");
+        });
         btCadastrar.setOnMouseClicked((Event e)->{
             if(btCadastrar.getText().equals("Realizar Venda")){
                 try {
-                    realizarVenda();
-                    abreMenu();
-                    Alert al = new Alert(AlertType.CONFIRMATION);
-                    al.setHeaderText("Venda Realizada!");
-                    al.show();
+                    if(lbId.getText().equals("")){
+                        if(textNome != null && textCpf != null){
+                            cadastraCliente();
+                            initTable();
+                        }else{
+                           Alert al = new Alert(AlertType.WARNING);
+                           al.setHeaderText("Cadastre um Cliente ou Selecione um Cliente");
+                           al.show(); 
+                        }
+                    }else{
+                        realizarVenda();
+                        abreMenu();
+                        Alert al = new Alert(AlertType.CONFIRMATION);
+                        al.setHeaderText("Venda Realizada!");
+                        al.show();
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -169,13 +187,25 @@ public class ClienteController implements Initializable {
                     btVoltar.setText("Voltar");
                 }else{
                     abreMenu();
-                }
-                
+                }       
             }
         });
         
         btEditar.setOnMouseClicked((Event e) ->{
-            editar();
+            if(staticEditar.getText().equals("Selecionar")){
+                carregar();
+                textNome.setDisable(true);
+                textCpf.setDisable(true);
+                textRua.setDisable(true);
+                textCidade.setDisable(true);
+                textEstado.setDisable(true);
+                textCep.setDisable(true);
+                textTelefone.setDisable(true);
+                textEmail.setDisable(true);
+                staticButton.setText("Realizar Venda");
+            }else{
+                editar();
+            }
         });
                 
         btRemover.setOnMouseClicked((Event e)->{
@@ -353,6 +383,14 @@ public class ClienteController implements Initializable {
         textCep.setText("");
         textTelefone.setText("");
         textEmail.setText("");
+        textNome.setDisable(false);
+        textCpf.setDisable(false);
+        textRua.setDisable(false);
+        textCidade.setDisable(false);
+        textEstado.setDisable(false);
+        textCep.setDisable(false);
+        textTelefone.setDisable(false);
+        textEmail.setDisable(false);
     }
     
     public void realizarVenda() throws SQLException{
@@ -371,6 +409,26 @@ public class ClienteController implements Initializable {
         }*/
 
         
+    }
+    
+    public void carregar(){
+        if (selecionado != null) {
+            textNome.setText(selecionado.getNome());
+            textCpf.setText(selecionado.getCpf());
+            textRua.setText(selecionado.getRua());
+            textCidade.setText(selecionado.getCidade());
+            textEstado.setText(selecionado.getEstado());
+            textCep.setText(selecionado.getCep());
+            textTelefone.setText(selecionado.getTelefone());
+            textEmail.setText(selecionado.getEmail());
+            lbId.setText(String.valueOf(selecionado.getId()));
+            staticButton.setText("Realizar Venda");
+            btVoltar.setText("Cancelar");
+        } else {
+            Alert al = new Alert(AlertType.WARNING);
+            al.setHeaderText("Nenhum Cliente Selecionado");
+            al.show();
+        }
     }
    
 }

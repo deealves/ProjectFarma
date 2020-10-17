@@ -6,7 +6,6 @@
 package br.com.SisFarma.Controller;
 
 import static br.com.SisFarma.Controller.LoginController.getId_usuario;
-import br.com.SisFarma.dao.ClienteVendaDAO;
 import br.com.SisFarma.dao.ProdutoDAO;
 import br.com.SisFarma.dao.VendaDAO;
 import br.com.SisFarma.gui.Clientes;
@@ -28,6 +27,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -38,8 +38,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -70,7 +68,7 @@ public class VendaController extends ClienteController implements Initializable 
     private Produto selecionada;
     private Produto selecionada2;
     private float total = 0;
-    private int novo;
+    private int novo, quant2, valorAtual = 0;;
     private final  Locale locale = new Locale("pt", "BR");
     private final  NumberFormat dinheiro;
     private int teste;
@@ -108,12 +106,16 @@ public class VendaController extends ClienteController implements Initializable 
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selecionada = (Produto) newValue;    
                 Produto p = new Produto();
+                
+                p.setId(selecionada.getId());
                 p.setCodproduto(selecionada.getCodproduto());
                 p.setNome(selecionada.getNome());
                 p.setPreco(selecionada.getPreco());
+                p.setFabricante(selecionada.getFabricante());
+                p.setDescricao(selecionada.getDescricao());
                 //txQuant.setText(String.valueOf(selecionada.getQuant()));
                 p.setQuant(selecionada.getQuant());
-                p.toString();
+                System.out.println(p.toString());
 
             }
         });
@@ -158,23 +160,29 @@ public class VendaController extends ClienteController implements Initializable 
             }
         });
         
-        btVender.setOnMouseClicked((MouseEvent e) ->{
-            Clientes novo = new Clientes();
-            Vendas.getStage().close();
-            try {
-                vender();
-               
-                ClienteController c = new ClienteController();
-                /*c.btEditar.setText("Selecionar");
-                c.btRemover.setText("");
-                c.btRemover.disableProperty();
-                c.btRemover.setBackground(Background.EMPTY);*/
-                novo.start(new Stage());
-                staticButton.setText("Realizar Venda");
-                
-                //if(c.realizarVenda(venda))
-            } catch (Exception ex) {
-                Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
+        btVender.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent e) {
+                Clientes novo = new Clientes();
+                Vendas.getStage().close();
+                try {
+                    vender();
+                    
+                    ClienteController c = new ClienteController();
+                    /*c.btEditar.setText("Selecionar");
+                    c.btRemover.setText("");
+                    c.btRemover.disableProperty();
+                    c.btRemover.setBackground(Background.EMPTY);*/
+                    novo.start(new Stage());
+                    //staticButton.setText("Realizar Venda");
+                    staticRemover.setDisable(true);
+                    staticRemover.setVisible(false);
+                    staticEditar.setText("Selecionar");
+                    
+                    //if(c.realizarVenda(venda))
+                } catch (Exception ex) {
+                    Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     
@@ -204,23 +212,43 @@ public class VendaController extends ClienteController implements Initializable 
         }
     }
 
-    private void selecionarProduto() throws SQLException {
-       if(selecionada != null){    
+    public void selecionarProduto() throws SQLException {
+        if(selecionada != null){    
             novo = Integer.parseInt(txQuant.getText());
             Produto p = new Produto();
+            p.setId(selecionada.getId());
             p.setCodproduto(selecionada.getCodproduto());
             p.setNome(selecionada.getNome());
             p.setPreco(selecionada.getPreco() * novo);
-            p.setQuant(novo);
-            if(produto.add(p)){
-                Alert al = new Alert(Alert.AlertType.CONFIRMATION);
-                al.setHeaderText("Produto Selecionado para Venda");
+            p.setFabricante(selecionada.getFabricante());
+            p.setDescricao(selecionada.getDescricao());
+            quant2 = selecionada.getQuant();
+            System.out.println(p.getQuant());
+            System.out.println(quant2);
+            valorAtual = quant2 - novo;
+            System.out.println(valorAtual);
+            if(valorAtual < 0){
+                Alert al = new Alert(Alert.AlertType.INFORMATION);
+                al.setHeaderText("Produto Sem Estoque");
                 al.show();
-                initTable2();
+            }else{
+                p.setQuant(novo);
+                if(produto.add(p)){
+                    Alert al = new Alert(Alert.AlertType.CONFIRMATION);
+                    al.setHeaderText("Produto Selecionado para Venda");
+                    al.show();
+                    initTable2();
+                }
+                total = total + p.getPreco();
+                txTotal.setText(String.valueOf(dinheiro.format(total)));
+                System.out.println(total);
+
+                ProdutoDAO dao = new ProdutoDAO();
+                p.setQuant(valorAtual);
+                if(dao.update(p)){
+                    initTable();
+                }
             }
-            total = total + p.getPreco();
-            txTotal.setText(String.valueOf(dinheiro.format(total)));
-            System.out.println(total);
  
         }else{
             Alert al = new Alert(Alert.AlertType.WARNING);
