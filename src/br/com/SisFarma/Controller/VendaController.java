@@ -105,17 +105,7 @@ public class VendaController extends ClienteController implements Initializable 
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selecionada = (Produto) newValue;    
-                Produto p = new Produto();
-                
-                p.setId(selecionada.getId());
-                p.setCodproduto(selecionada.getCodproduto());
-                p.setNome(selecionada.getNome());
-                p.setPreco(selecionada.getPreco());
-                p.setFabricante(selecionada.getFabricante());
-                p.setDescricao(selecionada.getDescricao());
-                //txQuant.setText(String.valueOf(selecionada.getQuant()));
-                p.setQuant(selecionada.getQuant());
-                System.out.println(p.toString());
+          
 
             }
         });
@@ -238,16 +228,19 @@ public class VendaController extends ClienteController implements Initializable 
                     al.setHeaderText("Produto Selecionado para Venda");
                     al.show();
                     initTable2();
+                    total = total + p.getPreco();
+                    txTotal.setText(String.valueOf(dinheiro.format(total)));
+                    System.out.println(total);
+                    ProdutoDAO dao = new ProdutoDAO();
+                    p.setQuant(valorAtual);
+                    if(dao.update(p)){
+                        initTable();
+                    }
                 }
-                total = total + p.getPreco();
-                txTotal.setText(String.valueOf(dinheiro.format(total)));
-                System.out.println(total);
+            
+                
 
-                ProdutoDAO dao = new ProdutoDAO();
-                p.setQuant(valorAtual);
-                if(dao.update(p)){
-                    initTable();
-                }
+                
             }
  
         }else{
@@ -274,7 +267,7 @@ public class VendaController extends ClienteController implements Initializable 
        if(selecionada2 != null){
             teste = selecionada2.getQuant();
             teste2 = selecionada2.getPreco();
-            System.out.println(teste2);
+           
             produto.remove(selecionada2);
             Alert al = new Alert(Alert.AlertType.CONFIRMATION);
             al.setHeaderText("Removido com Sucesso");
