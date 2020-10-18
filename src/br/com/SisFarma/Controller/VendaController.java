@@ -17,7 +17,9 @@ import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -33,6 +35,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -56,6 +60,7 @@ public class VendaController extends ClienteController implements Initializable 
     @FXML private TableColumn<Produto, Integer> clmQuant1;
     @FXML private TableColumn<Produto, Integer> clmId2;
     @FXML private TableColumn<Produto, Integer> clmQuant2;
+    @FXML private TableColumn<Produto, Date> clmData2;
     @FXML private TextField txTotal;
     @FXML private Button btVender;
     @FXML private TableColumn<Produto, Float> clmPreco1;
@@ -65,6 +70,8 @@ public class VendaController extends ClienteController implements Initializable 
     @FXML private TableColumn<Produto, Integer> clmCodigo1;
     @FXML private TextField txQuant;
     @FXML private Button btRemover;
+    @FXML  private DatePicker datePickerData;
+    @FXML private Label labelData;
     private Produto selecionada;
     private Produto selecionada2;
     private float total = 0;
@@ -106,7 +113,6 @@ public class VendaController extends ClienteController implements Initializable 
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 selecionada = (Produto) newValue;    
           
-
             }
         });
         
@@ -124,12 +130,27 @@ public class VendaController extends ClienteController implements Initializable 
         
         btRemover.setOnMouseClicked((MouseEvent e) ->{
             try {
-                removerVenda();
-                System.out.println("Teste: "+teste);
-                total = total - teste2;
-                System.out.println("Remover:" +total);
-                
-                txTotal.setText(String.valueOf(dinheiro.format(total)));
+                if(selecionada2 != null){
+                    Produto p = new Produto();
+                    p.setId(selecionada2.getId());
+                    p.setCodproduto(selecionada2.getCodproduto());
+                    p.setNome(selecionada2.getNome());
+                    p.setPreco(selecionada2.getPreco() / novo);
+                    p.setFabricante(selecionada2.getFabricante());
+                    p.setDescricao(selecionada2.getDescricao());
+                    p.setQuant(valorAtual + selecionada2.getQuant());
+                    ProdutoDAO dao = new ProdutoDAO();
+                    if(dao.update(p)){
+                        initTable();
+                    }
+                    removerVenda();
+                    total = total - teste2;
+                    txTotal.setText(String.valueOf(dinheiro.format(total)));
+                }else{
+                    Alert al = new Alert(Alert.AlertType.WARNING);
+                    al.setHeaderText("Nenhum Produto Selecionado");
+                    al.show();
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -213,16 +234,14 @@ public class VendaController extends ClienteController implements Initializable 
             p.setFabricante(selecionada.getFabricante());
             p.setDescricao(selecionada.getDescricao());
             quant2 = selecionada.getQuant();
-            System.out.println(p.getQuant());
-            System.out.println(quant2);
             valorAtual = quant2 - novo;
-            System.out.println(valorAtual);
             if(valorAtual < 0){
                 Alert al = new Alert(Alert.AlertType.INFORMATION);
                 al.setHeaderText("Produto Sem Estoque");
                 al.show();
             }else{
                 p.setQuant(novo);
+                
                 if(produto.add(p)){
                     Alert al = new Alert(Alert.AlertType.CONFIRMATION);
                     al.setHeaderText("Produto Selecionado para Venda");
@@ -230,17 +249,19 @@ public class VendaController extends ClienteController implements Initializable 
                     initTable2();
                     total = total + p.getPreco();
                     txTotal.setText(String.valueOf(dinheiro.format(total)));
-                    System.out.println(total);
                     ProdutoDAO dao = new ProdutoDAO();
-                    p.setQuant(valorAtual);
-                    if(dao.update(p)){
+                    Produto p2 = new Produto();
+                    p2.setId(selecionada.getId());
+                    p2.setCodproduto(selecionada.getCodproduto());
+                    p2.setNome(selecionada.getNome());
+                    p2.setPreco(selecionada.getPreco());
+                    p2.setFabricante(selecionada.getFabricante());
+                    p2.setDescricao(selecionada.getDescricao());
+                    p2.setQuant(valorAtual);
+                    if(dao.update(p2)){
                         initTable();
                     }
-                }
-            
-                
-
-                
+                }   
             }
  
         }else{
@@ -251,10 +272,11 @@ public class VendaController extends ClienteController implements Initializable 
     }
 
     private void initTable2() throws SQLException {
-        clmId2.setCellValueFactory(new PropertyValueFactory("id"));
+        //clmId2.setCellValueFactory(new PropertyValueFactory("id"));
         clmCodigo2.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmNome2.setCellValueFactory(new PropertyValueFactory("nome"));
         clmPreco2.setCellValueFactory(new PropertyValueFactory("preco"));
+        clmData2.setCellValueFactory(new PropertyValueFactory("data"));
         clmQuant2.setCellValueFactory(new PropertyValueFactory("quant"));
         tabela2.setItems(atualizaTabela2());
     }
@@ -265,7 +287,6 @@ public class VendaController extends ClienteController implements Initializable 
 
     private void removerVenda() throws SQLException {
        if(selecionada2 != null){
-            teste = selecionada2.getQuant();
             teste2 = selecionada2.getPreco();
            
             produto.remove(selecionada2);
@@ -285,6 +306,14 @@ public class VendaController extends ClienteController implements Initializable 
         ClienteVenda cv = new ClienteVenda();
         float valorAux = 0;
         int quantAux = 0;
+        LocalDate data = datePickerData.getValue();
+        datePickerData.setOnMouseClicked((MouseEvent e) ->{
+            try {
+                initTable2();
+            } catch (SQLException ex) {
+                Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         for(int i = 0; i < produto.size(); i++){
             valorAux += produto.get(i).getPreco();
             quantAux += produto.get(i).getQuant();
@@ -292,14 +321,14 @@ public class VendaController extends ClienteController implements Initializable 
         }
         venda.setValor(valorAux);
         venda.setQuant(quantAux);
+        venda.setData(data);
         venda.getU().setId(getId_usuario());
-       
         dao.insert(venda);
         
         for(int i = 0; i < dao.listar().size(); i++){
            id_venda = dao.listar().get(i).getId(); 
         }
         
-        System.out.println(id_venda);
+        //System.out.println(id_venda);
     }
 }

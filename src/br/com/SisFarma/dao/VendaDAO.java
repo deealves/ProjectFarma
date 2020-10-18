@@ -9,11 +9,16 @@ import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.Venda;
 import br.com.SisFarma.util.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
     
 public class VendaDAO {
@@ -22,13 +27,14 @@ public class VendaDAO {
     private PreparedStatement stmt;
     
     public boolean insert(Venda v) throws SQLException {
-       sql = "INSERT INTO venda (quant, valor, id_usuario) VALUES (?,?,?)";
+       sql = "INSERT INTO venda (quant, valor, data, id_usuario) VALUES (?,?,?,?)";
        
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
             stmt.setInt(1,v.getQuant());
             stmt.setFloat(2,v.getValor());
-            stmt.setInt(3,v.getU().getId());        
+            stmt.setDate(3, Date.valueOf(v.getData()));
+            stmt.setInt(4,v.getU().getId());        
             stmt.execute();
             stmt.close();
             con.close();
@@ -47,7 +53,7 @@ public class VendaDAO {
     }
     
     public List<Venda> listar() throws SQLException{
-         sql = "select v.id, v.quant, v.valor from venda v ";
+         sql = "select v.id, v.quant, v.valor, v.data from venda v ";
          con = ConnectionFactory.getConnection();
          stmt = con.prepareStatement(sql);
          ResultSet rs = stmt.executeQuery();
@@ -60,6 +66,7 @@ public class VendaDAO {
              v.setId(rs.getInt("id"));
              v.setQuant(rs.getInt("quant"));
              v.setValor(rs.getFloat("valor"));
+             v.setData(rs.getDate("data").toLocalDate());
              
              vendas.add(v);
          }
@@ -68,5 +75,33 @@ public class VendaDAO {
          return vendas;
         
      }
+    
+    public Map<Integer, ArrayList> listarQuantidadeVendasPorMes(){
+        sql = "select count(id), extract(year from data) as ano, extract(month from data) as mes from venda group by ano, mes order by ano, mes";
+        Map<Integer, ArrayList> retorno = new HashMap();
+        con = ConnectionFactory.getConnection();
+        try {
+            stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ArrayList linha = new ArrayList();
+                if (!retorno.containsKey(rs.getInt("ano")))
+                {
+                    linha.add(rs.getInt("mes"));
+                    linha.add(rs.getInt("count"));
+                    retorno.put(rs.getInt("ano"), linha);
+                }else{
+                    ArrayList linhaNova = retorno.get(rs.getInt("ano"));
+                    linhaNova.add(rs.getInt("mes"));
+                    linhaNova.add(rs.getInt("count"));
+                }
+            }
+            return retorno;
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
     
 }

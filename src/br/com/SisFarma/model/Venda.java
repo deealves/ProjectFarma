@@ -5,6 +5,8 @@
  */
 package br.com.SisFarma.model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Matrix
@@ -12,18 +14,21 @@ package br.com.SisFarma.model;
 public class Venda {
     private int id;
     private float valor;
+    private LocalDate data;
     private int quant;
     private Usuario u;
 
-    public Venda(int id, float valor, int quant, Usuario u) {
+    public Venda(int id, float valor, LocalDate data, int quant, Usuario u) {
         this.id = id;
         this.valor = valor;
+        this.data = data;
         this.quant = quant;
         this.u = u;
     }
 
-    public Venda(float valor, int quant, Usuario u) {
+    public Venda(float valor, LocalDate data, int quant, Usuario u) {
         this.valor = valor;
+        this.data = data;
         this.quant = quant;
         this.u = u;
     }
@@ -63,12 +68,21 @@ public class Venda {
     public void setQuant(int quant) {
         this.quant = quant;
     }
-    
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+  
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder();
         sb.append(" | ").append(valor)
                 .append(" | ").append(quant)
+                .append(" | ").append(data)
                 .append(" | ").append(u);
   
         return sb.toString();

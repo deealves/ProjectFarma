@@ -12,15 +12,23 @@ import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Produtos;
 import br.com.SisFarma.gui.Usuarios;
 import br.com.SisFarma.gui.Vendas;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
@@ -36,9 +44,14 @@ public class MenuPrincipalController implements Initializable {
     @FXML private Button btCliente;
     @FXML private Button btVenda;
     @FXML private Button btDesconectar;
+    @FXML private MenuItem menuItemVendas;  
+    @FXML private AnchorPane anchorPane;
+    @FXML private Pane pane;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         
         btUsuario.setOnMouseClicked((MouseEvent e) ->{
             Usuarios u = new Usuarios();
@@ -94,19 +107,31 @@ public class MenuPrincipalController implements Initializable {
         btDesconectar.setOnMouseClicked((MouseEvent e) ->{
           fecha();
     });
-      
+
+}
+    
+    @FXML
+    public void handleMenuItemGraficoVendasPorMes(ActionEvent e) throws IOException{ 
+        //URL url = getClass().getResource("/br/com/SisFarma/view/GraficoVendasPorMes.fxml");
+        //Parent root = FXMLLoader.load(url);
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/GraficoVendasPorMes.fxml"));
+        //Scene scene = new Scene(root);
+        //menuItemVendas.setVisible(true);
+        anchorPane.getChildren().setAll(a);
     }
     
     public void fecha(){
-            Login l = new Login();
-            MenuPrincipal.getStage().close();
-            try {
-                l.start(new Stage());
-            } catch (Exception ex) {
-                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+        Login l = new Login();
+        MenuPrincipal.getStage().close();
+        try {
+            l.start(new Stage());
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
+}
+
+
     
 
