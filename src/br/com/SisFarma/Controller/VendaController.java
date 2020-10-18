@@ -174,22 +174,30 @@ public class VendaController extends ClienteController implements Initializable 
         btVender.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent e) {
-                Clientes novo = new Clientes();
-                Vendas.getStage().close();
+                
                 try {
-                    vender();
-                    
-                    ClienteController c = new ClienteController();
-                    /*c.btEditar.setText("Selecionar");
-                    c.btRemover.setText("");
-                    c.btRemover.disableProperty();
-                    c.btRemover.setBackground(Background.EMPTY);*/
-                    novo.start(new Stage());
-                    //staticButton.setText("Realizar Venda");
-                    staticRemover.setDisable(true);
-                    staticRemover.setVisible(false);
-                    staticEditar.setText("Selecionar");
-                    
+                    if(!produto.isEmpty()){
+                        if(datePickerData.getValue() != null){
+                            Clientes novo = new Clientes();
+                            Vendas.getStage().close();
+                            vender();
+
+                            ClienteController c = new ClienteController();
+                            novo.start(new Stage());
+                            staticRemover.setDisable(true);
+                            staticRemover.setVisible(false);
+                            staticEditar.setText("Selecionar"); 
+                        }else{
+                            Alert al = new Alert(Alert.AlertType.WARNING);
+                            al.setHeaderText("Selecione a data");
+                            al.show();
+                        }
+                    }else{
+                        Alert al = new Alert(Alert.AlertType.INFORMATION);
+                        al.setHeaderText("Nenhum Produto Selecionado para Venda");
+                        al.show();
+                    }
+                   
                     //if(c.realizarVenda(venda))
                 } catch (Exception ex) {
                     Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -323,7 +331,10 @@ public class VendaController extends ClienteController implements Initializable 
         venda.setQuant(quantAux);
         venda.setData(data);
         venda.getU().setId(getId_usuario());
+        
         dao.insert(venda);
+        
+        
         
         for(int i = 0; i < dao.listar().size(); i++){
            id_venda = dao.listar().get(i).getId(); 
