@@ -61,6 +61,7 @@ CREATE TABLE usuario (
 		
 		id serial not null,
 		quant int not null,
+		data date not null,
 		id_usuario int not null,
 		primary key (id),
 		
@@ -122,4 +123,8 @@ CREATE TABLE usuario (
 	
 	alter table cliente_venda add foreign key (id_cliente) references cliente (id);
 	alter table cliente_venda add foreign key (id_venda) references venda (id);
+	
+	select * from venda;
+	select count(id), extract(year from data) as ano, extract(month from data) as mes from venda group by ano, mes order by ano, mes
+	select sum(valor), extract(year from data) as ano, extract(month from data) as mes from venda group by ano, mes order by ano, mes
 	
