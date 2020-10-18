@@ -104,4 +104,32 @@ public class VendaDAO {
         return retorno;
     }
     
+    public Map<Integer, ArrayList> listarValorVendasPorMes(){
+        sql = "select sum(valor), extract(year from data) as ano, extract(month from data) as mes from venda group by ano, mes order by ano, mes";
+        Map<Integer, ArrayList> retorno = new HashMap();
+        con = ConnectionFactory.getConnection();
+        try {
+            stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                ArrayList linha = new ArrayList();
+                if (!retorno.containsKey(rs.getInt("ano")))
+                {
+                    linha.add(rs.getInt("mes"));
+                    linha.add(rs.getInt("sum"));
+                    retorno.put(rs.getInt("ano"), linha);
+                }else{
+                    ArrayList linhaNova = retorno.get(rs.getInt("ano"));
+                    linhaNova.add(rs.getInt("mes"));
+                    linhaNova.add(rs.getInt("sum"));
+                }
+            }
+            return retorno;
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retorno;
+    }
+    
 }

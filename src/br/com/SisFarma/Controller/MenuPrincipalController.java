@@ -44,14 +44,13 @@ public class MenuPrincipalController implements Initializable {
     @FXML private Button btCliente;
     @FXML private Button btVenda;
     @FXML private Button btDesconectar;
-    @FXML private MenuItem menuItemVendas;  
+    @FXML private MenuItem menuItemVendas;
+    @FXML private MenuItem menuItemValor;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
     
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         
         btUsuario.setOnMouseClicked((MouseEvent e) ->{
             Usuarios u = new Usuarios();
@@ -112,11 +111,13 @@ public class MenuPrincipalController implements Initializable {
     
     @FXML
     public void handleMenuItemGraficoVendasPorMes(ActionEvent e) throws IOException{ 
-        //URL url = getClass().getResource("/br/com/SisFarma/view/GraficoVendasPorMes.fxml");
-        //Parent root = FXMLLoader.load(url);
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/GraficoVendasPorMes.fxml"));
-        //Scene scene = new Scene(root);
-        //menuItemVendas.setVisible(true);
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemGraficoValorVendas(ActionEvent e) throws IOException{ 
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/GraficoVendasValor.fxml"));
         anchorPane.getChildren().setAll(a);
     }
     

@@ -26,6 +26,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -33,36 +34,42 @@ import javafx.stage.Stage;
  *
  * @author diego
  */
-public class GraficoVendasPorMesController implements Initializable {
+public class GraficoVendasValorController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    
-    @FXML private BarChart<String, Integer> barChartVPM;
-    @FXML private CategoryAxis categoryAxisVPM;
-    @FXML private NumberAxis numberAxisVPM;
+    @FXML private AnchorPane anchorPane;
+    @FXML private BarChart<String, Integer> barChartValor;
+    @FXML private CategoryAxis categoryAxisValor;
+    @FXML private NumberAxis numberAxisValor;
     @FXML private Button btVoltar;
     
     private ObservableList<String> observableListMeses = FXCollections.observableArrayList();
     
     private Connection con;
     private final VendaDAO dao = new VendaDAO();
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        // Obtém an array com nomes dos meses em Inglês.
+        //System.out.println(menuItem.getText());
+            /*barChartVPM.setTitle("Valor de Vendas");
+            barChartVPM.setVisible(true);
+            categoryAxisVPM.setLabel("Meses");
+            categoryAxisVPM.setVisible(true);
+            numberAxisVPM.setLabel("Valor das Vendas");
+            numberAxisVPM.setVisible(true);*/
         String[] arrayMeses = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
         // Converte o array em uma lista e adiciona em nossa ObservableList de meses.
         observableListMeses.addAll(Arrays.asList(arrayMeses));
 
         // Associa os nomes de mês como categorias para o eixo horizontal.
-        categoryAxisVPM.setCategories(observableListMeses);
+        categoryAxisValor.setCategories(observableListMeses);
         
         con = ConnectionFactory.getConnection();
-  
-        Map<Integer, ArrayList> dados = dao.listarQuantidadeVendasPorMes();
+            
+        Map<Integer, ArrayList> dados = dao.listarValorVendasPorMes();
         for (Map.Entry<Integer, ArrayList> dadosItem : dados.entrySet()) {
             XYChart.Series<String, Integer> series = new XYChart.Series<>();
             series.setName(dadosItem.getKey().toString());
@@ -76,13 +83,12 @@ public class GraficoVendasPorMesController implements Initializable {
 
                 series.getData().add(new XYChart.Data<>(mes, quantidade));
             }
-            barChartVPM.getData().add(series);
-        }
+            barChartValor.getData().add(series);
 
+        }
         btVoltar.setOnMouseClicked((MouseEvent e )->{
             abreMenu();
         });
-
     }
 
     public String retornaNomeMes(int mes) {
@@ -119,8 +125,7 @@ public class GraficoVendasPorMesController implements Initializable {
     public void fecha(){
         MenuPrincipal.getStage().close();
     }
-    
-    
+
     public void abreMenu(){
         MenuPrincipal mp = new MenuPrincipal();
         fecha();
@@ -130,5 +135,5 @@ public class GraficoVendasPorMesController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-       
+    
 }

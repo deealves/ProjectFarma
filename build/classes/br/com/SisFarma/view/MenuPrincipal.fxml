@@ -71,6 +71,7 @@
                   <Menu mnemonicParsing="false" onAction="#handleMenuItemGraficoVendasPorMes" text="Gráfico">
                     <items>
                       <MenuItem fx:id="menuItemVendas" mnemonicParsing="false" onAction="#handleMenuItemGraficoVendasPorMes" text="Vendas por Meses" />
+                        <MenuItem fx:id="menuItemValor" mnemonicParsing="false" onAction="#handleMenuItemGraficoValorVendas" text="Valor de Vendas" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Linguagem">
