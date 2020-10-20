@@ -311,7 +311,6 @@ public class VendaController extends ClienteController implements Initializable 
     
     private void vender() throws SQLException{ 
         VendaDAO dao = new VendaDAO();
-        ClienteVenda cv = new ClienteVenda();
         float valorAux = 0;
         int quantAux = 0;
         LocalDate data = datePickerData.getValue();

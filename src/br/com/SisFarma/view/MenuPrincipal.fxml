@@ -62,10 +62,10 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Relatorio">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Cliente" />
+                    <MenuItem fx:id="menuItemRelatorioCliente" mnemonicParsing="false" text="Cliente" />
                         <MenuItem mnemonicParsing="false" text="Funcionario" />
                         <MenuItem mnemonicParsing="false" text="Fornecedor" />
-                        <MenuItem mnemonicParsing="false" text="Produtos" />
+                        <MenuItem fx:id="menuItemRelatorioProduto" mnemonicParsing="false" text="Produtos" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" onAction="#handleMenuItemGraficoVendasPorMes" text="Gráfico">

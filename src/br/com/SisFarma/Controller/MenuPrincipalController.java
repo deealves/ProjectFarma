@@ -46,6 +46,8 @@ public class MenuPrincipalController implements Initializable {
     @FXML private Button btDesconectar;
     @FXML private MenuItem menuItemVendas;
     @FXML private MenuItem menuItemValor;
+    @FXML private MenuItem menuItemRelatorioProduto;
+    @FXML private MenuItem menuItemRelatorioCliente;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
     
@@ -60,7 +62,7 @@ public class MenuPrincipalController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });
+        });
         
          btVenda.setOnMouseClicked((MouseEvent e) ->{
             Vendas v = new Vendas();
@@ -70,7 +72,7 @@ public class MenuPrincipalController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });
+        });
         
         btFornecedor.setOnMouseClicked((MouseEvent e) ->{
             Fornecedores f = new Fornecedores();
@@ -80,7 +82,7 @@ public class MenuPrincipalController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });
+        });
         
         
         btProduto.setOnMouseClicked((MouseEvent e) ->{
@@ -91,7 +93,7 @@ public class MenuPrincipalController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });
+        });
         
         btCliente.setOnMouseClicked((MouseEvent e) ->{
             Clientes c = new Clientes();
@@ -101,11 +103,28 @@ public class MenuPrincipalController implements Initializable {
             } catch (Exception ex) {
                 Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
             }
-    });
+        });
 
         btDesconectar.setOnMouseClicked((MouseEvent e) ->{
           fecha();
-    });
+        });
+        
+        menuItemRelatorioProduto.setOnAction((ActionEvent e)->{
+            try {
+                handleMenuItemRelatorioProduto(e);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        menuItemRelatorioCliente.setOnAction((ActionEvent e)->{
+            try {
+                handleMenuItemRelatorioCliente(e);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
 
 }
     
@@ -118,6 +137,18 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void handleMenuItemGraficoValorVendas(ActionEvent e) throws IOException{ 
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/GraficoVendasValor.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemRelatorioProduto(ActionEvent e) throws IOException{ 
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioProduto.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemRelatorioCliente(ActionEvent e) throws IOException{ 
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioCliente.fxml"));
         anchorPane.getChildren().setAll(a);
     }
     

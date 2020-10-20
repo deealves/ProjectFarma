@@ -75,7 +75,7 @@
             </Button>
             <ImageView fx:id="imageCliente" fitHeight="58.0" fitWidth="72.0" layoutX="81.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../img/avatar.png" />
+                  <Image url="@../../../../img/Cliente%20(2).png" />
                </image>
             </ImageView>
             <Label fx:id="lbId" layoutX="17.0" layoutY="29.0" textFill="#f2f2f2" />
