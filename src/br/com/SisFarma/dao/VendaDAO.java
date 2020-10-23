@@ -40,11 +40,11 @@ public class VendaDAO {
             con.close();
             return true;
         }
-    public boolean delete(Venda v) throws SQLException{
+    public boolean delete(int v) throws SQLException{
             sql = "DELETE FROM venda WHERE id=?";
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
-            stmt.setLong(1,v.getId());
+            stmt.setInt(1,v);
             stmt.execute();
             stmt.close();
             con.close();

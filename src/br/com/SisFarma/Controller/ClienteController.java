@@ -6,12 +6,14 @@
 package br.com.SisFarma.Controller;
 
 import static br.com.SisFarma.Controller.VendaController.getId_venda;
+import static br.com.SisFarma.Controller.VendaController.getVenda;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.dao.ClienteDAO;
 import br.com.SisFarma.dao.ClienteVendaDAO;
 import br.com.SisFarma.dao.VendaDAO;
+import br.com.SisFarma.gui.Vendas;
 import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
@@ -85,6 +87,7 @@ public class ClienteController implements Initializable {
     public static Button staticButton;
     public static Button staticRemover;
     public static Button staticEditar;
+    public static Button staticVoltar;
 
     /**
      * Initializes the controller class.
@@ -95,6 +98,7 @@ public class ClienteController implements Initializable {
         staticButton = btCadastrar;
         staticRemover = btRemover;
         staticEditar = btEditar;
+        staticVoltar = btVoltar;
         
         try {
             // TODO
@@ -169,6 +173,14 @@ public class ClienteController implements Initializable {
         });
         
         btVoltar.setOnMouseClicked((Event e)->{
+            if(btVoltar.getText().equals("Cancelar Venda")){
+                try {
+                    cancelavenda();
+                    abreVenda();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else
             if(btVoltar.getText().equals("Cancelar")){
                 limpaCampus();
                 btCadastrar.setText("Cadastrar");
@@ -181,6 +193,13 @@ public class ClienteController implements Initializable {
         
         btVoltar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
+                if(btVoltar.getText().equals("Cancelar Venda")){
+                try {
+                    cancelavenda();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                }else
                 if(btVoltar.getText().equals("Cancelar")){
                     limpaCampus();
                     btCadastrar.setText("Cadastrar");
@@ -428,6 +447,21 @@ public class ClienteController implements Initializable {
             Alert al = new Alert(AlertType.WARNING);
             al.setHeaderText("Nenhum Cliente Selecionado");
             al.show();
+        }
+    }
+
+    private void cancelavenda() throws SQLException {
+        VendaDAO dao = new VendaDAO();
+        dao.delete(getId_venda());
+    }
+
+    private void abreVenda() {
+        Vendas v = new Vendas();
+        fecha();
+        try {
+            v.start(new Stage());
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
    

@@ -75,7 +75,7 @@ public class VendaController extends ClienteController implements Initializable 
     private Produto selecionada;
     private Produto selecionada2;
     private float total = 0;
-    private int novo, quant2, valorAtual = 0;;
+    private int novo, quant2, valorAtual = 0;
     private final  Locale locale = new Locale("pt", "BR");
     private final  NumberFormat dinheiro;
     private int teste;
@@ -187,6 +187,7 @@ public class VendaController extends ClienteController implements Initializable 
                             staticRemover.setDisable(true);
                             staticRemover.setVisible(false);
                             staticEditar.setText("Selecionar"); 
+                            staticVoltar.setText("Cancelar Venda");
                         }else{
                             Alert al = new Alert(Alert.AlertType.WARNING);
                             al.setHeaderText("Selecione a data");

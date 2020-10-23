@@ -3,33 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Produto.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioProdutoController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ProdutoDAO.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/VendaController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/Usuario.fxml</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/conf.properties</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/teste/Teste.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioClienteController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/VendaDAO.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/test/br/com/SisFarma/dao/ClienteDAOTest.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/GraficoVendasValorController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/GraficoVendasPorMesController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/RelatorioProduto.fxml</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ProdutoController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/GraficoVendasPorMes.fxml</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/RelatorioCliente.fxml</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/gui/MenuPrincipal.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ClienteDAO.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Usuario.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ClienteController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/GraficoVendasValor.fxml</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Cliente.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Venda.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/Cliente.fxml</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/MenuPrincipalController.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/teste/Teste2.java</file>
-            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Fornecedor.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioProdutoController.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioClienteController.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/conf.properties</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/VendaController.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/ClienteController.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioFornecedorController.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/dao/VendaDAO.java</file>
         </group>
     </open-files>
 </project-private>
