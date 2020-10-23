@@ -48,6 +48,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML private MenuItem menuItemValor;
     @FXML private MenuItem menuItemRelatorioProduto;
     @FXML private MenuItem menuItemRelatorioCliente;
+    @FXML private MenuItem menuItemRelatorioFornecedor;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
     
@@ -125,6 +126,14 @@ public class MenuPrincipalController implements Initializable {
             }
         });
         
+        menuItemRelatorioFornecedor.setOnAction((ActionEvent e)->{
+            try {
+                handleMenuItemRelatorioFornecedor(e);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
 
 }
     
@@ -149,6 +158,12 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void handleMenuItemRelatorioCliente(ActionEvent e) throws IOException{ 
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioCliente.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemRelatorioFornecedor(ActionEvent e) throws IOException{ 
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioFornecedor.fxml"));
         anchorPane.getChildren().setAll(a);
     }
     

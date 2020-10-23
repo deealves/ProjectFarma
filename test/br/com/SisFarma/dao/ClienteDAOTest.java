@@ -11,7 +11,6 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -33,7 +32,7 @@ public class ClienteDAOTest {
  
     /**
      * Test of inserir method, of class ClienteDAO.
-     * @throws java.lang.Exception
+     * @throws java.sql.SQLException
      */
     @Test
     public void testInserir() throws SQLException {
@@ -55,6 +54,7 @@ public class ClienteDAOTest {
 
     /**
      * Test of listar method, of class ClienteDAO.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testListar() throws SQLException {
@@ -66,6 +66,7 @@ public class ClienteDAOTest {
 
     /**
      * Test of editar method, of class ClienteDAO.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testEditar() throws SQLException{
@@ -86,6 +87,7 @@ public class ClienteDAOTest {
 
     /**
      * Test of buscar method, of class ClienteDAO.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testBuscar_int() throws SQLException{
@@ -96,6 +98,7 @@ public class ClienteDAOTest {
 
     /**
      * Test of buscar method, of class ClienteDAO.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testBuscar_String() throws SQLException{
@@ -106,6 +109,7 @@ public class ClienteDAOTest {
 
     /**
      * Test of remover method, of class ClienteDAO.
+     * @throws java.sql.SQLException
      */
     @Test
     public void testRemover() throws SQLException{
