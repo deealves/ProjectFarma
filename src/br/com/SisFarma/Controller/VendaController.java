@@ -72,6 +72,8 @@ public class VendaController extends ClienteController implements Initializable 
     @FXML private Button btRemover;
     @FXML  private DatePicker datePickerData;
     @FXML private Label labelData;
+    @FXML private Button btAplicar;
+    @FXML private TextField txDesconto;
     private Produto selecionada;
     private Produto selecionada2;
     private float total = 0;
@@ -180,6 +182,7 @@ public class VendaController extends ClienteController implements Initializable 
                         if(datePickerData.getValue() != null){
                             Clientes novo = new Clientes();
                             Vendas.getStage().close();
+                            
                             vender();
 
                             ClienteController c = new ClienteController();
@@ -204,6 +207,12 @@ public class VendaController extends ClienteController implements Initializable 
                     Logger.getLogger(VendaController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+        });
+        
+        btAplicar.setOnMouseClicked((MouseEvent e) ->{
+            
+            aplicaDesconto();
+            
         });
     
 }    
@@ -323,15 +332,15 @@ public class VendaController extends ClienteController implements Initializable 
             }
         });
         for(int i = 0; i < produto.size(); i++){
-            valorAux += produto.get(i).getPreco();
+            //valorAux += produto.get(i).getPreco();
             quantAux += produto.get(i).getQuant();
             
         }
-        venda.setValor(valorAux);
+        venda.setValor(total);
         venda.setQuant(quantAux);
         venda.setData(data);
         venda.getU().setId(getId_usuario());
-        
+       // aplicaDesconto();
         dao.insert(venda);
         
         
@@ -341,5 +350,18 @@ public class VendaController extends ClienteController implements Initializable 
         }
         
         //System.out.println(id_venda);
+    }
+    
+    public void aplicaDesconto() {
+        float desconto = Float.parseFloat(txDesconto.getText()) / 100;
+        System.out.println(desconto);
+        System.out.println(venda.getValor());
+        float calculo = total - (total * desconto);
+        System.out.println(calculo);
+        venda.setValor(calculo);
+        txTotal.setText(String.valueOf(dinheiro.format(calculo)));
+        total = calculo;
+        
+       
     }
 }

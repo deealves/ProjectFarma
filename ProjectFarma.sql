@@ -128,3 +128,8 @@ CREATE TABLE usuario (
 	select count(id), extract(year from data) as ano, extract(month from data) as mes from venda group by ano, mes order by ano, mes
 	select sum(valor), extract(year from data) as ano, extract(month from data) as mes from venda group by ano, mes order by ano, mes
 	
+	select * from venda;
+	select * from cliente_venda;
+	
+	select * from cliente_venda where id_cliente != null;
+	

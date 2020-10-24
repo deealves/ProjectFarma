@@ -6,7 +6,6 @@
 package br.com.SisFarma.Controller;
 
 import static br.com.SisFarma.Controller.VendaController.getId_venda;
-import static br.com.SisFarma.Controller.VendaController.getVenda;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
