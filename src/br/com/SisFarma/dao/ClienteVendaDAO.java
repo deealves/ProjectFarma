@@ -43,7 +43,9 @@ public class ClienteVendaDAO {
     }
     
    public List<ClienteVenda> listar() throws SQLException{
-        sql = "select venda.id, venda.quant, venda.valor, venda.data, usuario.nome, cliente.nome from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor";
+        sql = "select venda.id, venda.quant, venda.valor, venda.data, usuario.nome,cliente.nomeC \n" +
+        "from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda\n" +
+        "and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor;";
         con = ConnectionFactory.getConnection();
         stmt = con.prepareStatement(sql);
         rs = stmt.executeQuery();
@@ -51,16 +53,29 @@ public class ClienteVendaDAO {
         List<ClienteVenda> vendas = new ArrayList<>();
         while (rs.next()){
             int id = rs.getInt("id");
+            System.out.println(id);
             int quant = rs.getInt("quant");
+            System.out.println(quant);
             float valor = rs.getFloat("valor");
+            System.out.println(valor);
             LocalDate data = rs.getDate("data").toLocalDate();
+            System.out.println(data);
             String nomeV = rs.getString("nome");
-            String nomeC = rs.getString("nome");
+            System.out.println(nomeV);
+            String nomeC = rs.getString("nomeC");
+            System.out.println(nomeC);
             
             ClienteVenda cv = new ClienteVenda();
             Venda v = new Venda();
             Cliente c = new Cliente();
-          
+            
+            cv.setId(id);
+            cv.getVenda().setQuant(quant);
+            cv.getVenda().setValor(valor);
+            cv.getVenda().setData(data);
+            cv.getVenda().getU().setNome(nomeV);
+            cv.getCliente().setNomeC(nomeC);
+           /* 
             v.setQuant(quant);
             v.setValor(valor);
             v.setData(data);
@@ -70,9 +85,10 @@ public class ClienteVendaDAO {
             
             cv.setId(id);
             cv.setCliente(c);
-            cv.setVenda(v);
+            cv.setVenda(v);*/
 
             vendas.add(cv);
+            
         }
 
         con.close();

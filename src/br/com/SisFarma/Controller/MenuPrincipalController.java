@@ -5,11 +5,10 @@
  */
 package br.com.SisFarma.Controller;
 
-<<<<<<< Updated upstream
 import static br.com.SisFarma.Controller.LoginController.nomeUsuario;
-=======
+
 import br.com.SisFarma.dao.ClienteVendaDAO;
->>>>>>> Stashed changes
+
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.Login;
@@ -19,11 +18,11 @@ import br.com.SisFarma.gui.Usuarios;
 import br.com.SisFarma.gui.Vendas;
 import java.io.IOException;
 import java.net.URL;
-<<<<<<< Updated upstream
+
 import java.util.Locale;
-=======
+
 import java.sql.SQLException;
->>>>>>> Stashed changes
+
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;

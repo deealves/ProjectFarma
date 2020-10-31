@@ -13,7 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
  */
 public class Cliente {
     private int id;
-    private String nome;
+    private String nomeC;
     private String cpf;
     private String rua;
     private String cidade;
@@ -28,7 +28,7 @@ public class Cliente {
     
     public Cliente(int id, String nome, String cpf, String rua, String cidade, String estado, String cep, String telefone, String email) {
         this.id = id;
-        this.nome = nome;
+        this.nomeC = nome;
         this.cpf = cpf;
         this.rua = rua;
         this.cidade = cidade;
@@ -39,7 +39,7 @@ public class Cliente {
     }
 
     public Cliente(String nome, String cpf, String rua, String cidade, String estado, String cep, String telefone, String email) {
-        this.nome = nome;
+        this.nomeC = nome;
         this.cpf = cpf;
         this.rua = rua;
         this.cidade = cidade;
@@ -57,12 +57,12 @@ public class Cliente {
         return id;
     }
     
-    public String getNome() {
-        return nome;
+    public String getNomeC() {
+        return nomeC;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeC(String nomeC) {
+        this.nomeC = nomeC;
     }
 
     public String getCpf() {
@@ -126,7 +126,7 @@ public class Cliente {
     public String toString(){
         final StringBuilder sb = new StringBuilder();
         sb.append(" | ").append(id)
-                .append(" | ").append(nome)
+                .append(" | ").append(nomeC)
                 .append(" | ").append(cpf)
                 .append(" | ").append(rua)
                 .append(" | ").append(cidade)

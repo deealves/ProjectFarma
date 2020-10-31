@@ -255,7 +255,7 @@ public class ClienteController implements Initializable {
             
         }else{
             Cliente c = new Cliente();
-            c.setNome(nome);
+            c.setNomeC(nome);
             c.setCpf(cpf);
             c.setRua(rua);
             c.setCidade(cidade);
@@ -336,7 +336,7 @@ public class ClienteController implements Initializable {
         
         ClienteDAO dao = new ClienteDAO();
         Cliente c = new Cliente();
-        c.setNome(nome);
+        c.setNomeC(nome);
         c.setCpf(cpf);
         c.setRua(rua);
         c.setCidade(cidade);
@@ -364,7 +364,7 @@ public class ClienteController implements Initializable {
     
     public void editar(){
         if(selecionado != null){
-            textNome.setText(selecionado.getNome());
+            textNome.setText(selecionado.getNomeC());
             textCpf.setText(String.valueOf(selecionado.getCpf()));
             textRua.setText(selecionado.getRua());
             textCidade.setText(selecionado.getCidade());
@@ -420,7 +420,7 @@ public class ClienteController implements Initializable {
     
     public void carregar(){
         if (selecionado != null) {
-            textNome.setText(selecionado.getNome());
+            textNome.setText(selecionado.getNomeC());
             textCpf.setText(selecionado.getCpf());
             textRua.setText(selecionado.getRua());
             textCidade.setText(selecionado.getCidade());

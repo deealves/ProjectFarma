@@ -38,7 +38,7 @@ public class ClienteDAO {
         
         
             st = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            st.setString(1, cliente.getNome());
+            st.setString(1, cliente.getNomeC());
             st.setString(2, cliente.getCpf());
             st.setString(3, cliente.getRua());
             st.setString(4, cliente.getCidade());
@@ -67,7 +67,7 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
 
                 cliente.setId(rs.getInt("id"));
-                cliente.setNome(rs.getString("nome"));
+                cliente.setNomeC(rs.getString("nome"));
                 cliente.setCpf(rs.getString("cpf"));
 
                 cliente.setRua(rs.getString("rua"));
@@ -94,7 +94,7 @@ public class ClienteDAO {
   
      
             st = con.prepareStatement(sql);
-            st.setString(1, cliente.getNome());
+            st.setString(1, cliente.getNomeC());
             st.setString(2, cliente.getCpf());
             st.setString(3, cliente.getRua());
             st.setString(4, cliente.getCidade());
@@ -137,7 +137,7 @@ public class ClienteDAO {
                 c = new Cliente();
 
                 c.setId(id);
-                c.setNome(nome);
+                c.setNomeC(nome);
                 c.setCpf(cpf);
                 c.setRua(rua);
                 c.setCidade(cidade);
@@ -178,7 +178,7 @@ public class ClienteDAO {
                Cliente c = new Cliente();
 
                c.setId(id);
-               c.setNome(nome);
+               c.setNomeC(nome);
                c.setCpf(cpf);
                c.setRua(rua);
                c.setCidade(cidade);
