@@ -49,15 +49,9 @@ import javafx.stage.Stage;
 public class ClienteController implements Initializable {
     
     @FXML private TableView<Cliente> tableCliente;
-    @FXML private TableColumn<Cliente, Integer> columnId;
     @FXML private TableColumn<Cliente, String> columnNome;
     @FXML private TableColumn<Cliente, String> columnCpf;
-    @FXML private TableColumn<Cliente, String> columnRua;
-    @FXML private TableColumn<Cliente, String> columnCidade;
-    @FXML private TableColumn<Cliente, String> columnEstado;
-    @FXML private TableColumn<Cliente, String> columnCep;
     @FXML private TableColumn<Cliente, String> columnTelefone;
-    @FXML private TableColumn<Cliente, String> columnEmail;
     @FXML private Label labelCliente;
     @FXML private Button btEditar;
     @FXML private Button btRemover;
@@ -302,15 +296,9 @@ public class ClienteController implements Initializable {
     }
     
     public void initTable() throws SQLException {
-        columnId.setCellValueFactory(new PropertyValueFactory("id"));
         columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
         columnCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
-        columnRua.setCellValueFactory(new PropertyValueFactory("rua"));
-        columnCidade.setCellValueFactory(new PropertyValueFactory("cidade"));
-        columnEstado.setCellValueFactory(new PropertyValueFactory("estado"));
-        columnCep.setCellValueFactory(new PropertyValueFactory("cep"));
         columnTelefone.setCellValueFactory(new PropertyValueFactory("telefone"));
-        columnEmail.setCellValueFactory(new PropertyValueFactory("email"));
         tableCliente.setItems(atualizaTable());
     }
     

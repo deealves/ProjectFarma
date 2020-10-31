@@ -41,13 +41,8 @@ import javafx.stage.Stage;
 public class FornecedorController implements Initializable {
     
     @FXML private TableView<Fornecedor> tableFornecedores;
-    @FXML private TableColumn<Fornecedor, String> columnId;
     @FXML private TableColumn<Fornecedor, String> columnNome;
-    @FXML private TableColumn<Fornecedor, String> columnCnpj;
-    @FXML private TableColumn<Fornecedor, String> columnRua;
-    @FXML private TableColumn<Fornecedor, String> columnCidade;
-    @FXML private TableColumn<Fornecedor, String> columnEstado;
-    @FXML private TableColumn<Fornecedor, String> columnCep;
+    @FXML private TableColumn<Fornecedor, String> columnCnpj;  
     @FXML private TableColumn<Fornecedor, String> columnTelefone;
     @FXML private TableColumn<Fornecedor, String> columnEmail;
     @FXML private Button btEditar, btRemover, btCadastrar, btVoltar;
@@ -173,13 +168,8 @@ public class FornecedorController implements Initializable {
     }
     
     public void initTable() {
-        columnId.setCellValueFactory(new PropertyValueFactory("id"));
         columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
-        columnCnpj.setCellValueFactory(new PropertyValueFactory("cnpj"));
-        columnRua.setCellValueFactory(new PropertyValueFactory("rua"));
-        columnCidade.setCellValueFactory(new PropertyValueFactory("cidade"));
-        columnEstado.setCellValueFactory(new PropertyValueFactory("estado"));
-        columnCep.setCellValueFactory(new PropertyValueFactory("cep"));
+        columnCnpj.setCellValueFactory(new PropertyValueFactory("cnpj")); 
         columnTelefone.setCellValueFactory(new PropertyValueFactory("telefone"));
         columnEmail.setCellValueFactory(new PropertyValueFactory("email"));
 

@@ -41,7 +41,6 @@ public class ProdutoController implements Initializable {
     @FXML private Button btVoltar;
     @FXML private TableView<Produto> tabela;
     @FXML private TableColumn<Produto, Float> clmPreco;
-    @FXML private TableColumn<Produto, Integer> clmId;
     @FXML private TableColumn<Produto, Integer> clmCodProduto;
     @FXML private TableColumn<Produto, Integer> clmQuant;
     @FXML private TextField txFabricante;
@@ -126,7 +125,7 @@ public class ProdutoController implements Initializable {
     }
 
     private void initTable() throws SQLException {
-       clmId.setCellValueFactory(new PropertyValueFactory("id"));
+       
         clmCodProduto.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmPreco.setCellValueFactory(new PropertyValueFactory("preco"));

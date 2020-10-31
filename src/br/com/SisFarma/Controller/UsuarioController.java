@@ -40,7 +40,6 @@ public class UsuarioController implements Initializable {
     @FXML private TextField txUsuario;
     @FXML private PasswordField txSenha;
     @FXML private TableColumn<Usuario, String> clmUsuario;
-    @FXML private TableColumn<Usuario, Integer> clmId;
     @FXML private Button btEditar;
     @FXML private Button btRemover;
     @FXML private Button btCadastrar;
@@ -110,7 +109,7 @@ public class UsuarioController implements Initializable {
   }    
     
     public void initTable() throws SQLException{
-        clmId.setCellValueFactory(new PropertyValueFactory("id"));
+        
         clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         clmUsuario.setCellValueFactory(new PropertyValueFactory("usuario"));

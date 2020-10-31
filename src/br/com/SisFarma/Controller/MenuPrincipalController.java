@@ -5,6 +5,7 @@
  */
 package br.com.SisFarma.Controller;
 
+import static br.com.SisFarma.Controller.LoginController.nomeUsuario;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.Login;
@@ -14,6 +15,7 @@ import br.com.SisFarma.gui.Usuarios;
 import br.com.SisFarma.gui.Vendas;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -51,10 +54,12 @@ public class MenuPrincipalController implements Initializable {
     @FXML private MenuItem menuItemRelatorioFornecedor;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
+    @FXML private Label lbUsuario;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        lbUsuario.setText(nomeUsuario.toUpperCase());
         btUsuario.setOnMouseClicked((MouseEvent e) ->{
             Usuarios u = new Usuarios();
             MenuPrincipal.getStage().close();

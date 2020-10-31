@@ -56,6 +56,16 @@ public class LoginController implements Initializable {
     private TextField txEmail;
     
     private static int id_usuario;
+    public static String nomeUsuario;
+
+    public static String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public static void setNomeUsuario(String nomeUsuario) {
+        LoginController.nomeUsuario = nomeUsuario;
+    }
+    
 
     public static int getId_usuario() {
         return id_usuario;
@@ -113,6 +123,7 @@ public class LoginController implements Initializable {
         for(int x = 0; x< usuarios.size(); x++){
             if(txEmail.getText().equals(usuarios.get(x).getUsuario()) && txSenha.getText().equals(usuarios.get(x).getSenha())){
                 id_usuario = usuarios.get(x).getId();
+                nomeUsuario = usuarios.get(x).getUsuario();
                 MenuPrincipal p = new MenuPrincipal();
                 x = usuarios.size();
                 fecha();
