@@ -16,6 +16,7 @@ import br.com.SisFarma.model.Produto;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -357,6 +358,8 @@ public class VendaController extends ClienteController implements Initializable 
         System.out.println(desconto);
         System.out.println(venda.getValor());
         float calculo = total - (total * desconto);
+        DecimalFormat df = new DecimalFormat("0.00");
+        df.format(calculo);
         System.out.println(calculo);
         venda.setValor(calculo);
         txTotal.setText(String.valueOf(dinheiro.format(calculo)));

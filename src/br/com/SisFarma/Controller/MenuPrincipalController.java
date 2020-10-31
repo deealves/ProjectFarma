@@ -5,7 +5,11 @@
  */
 package br.com.SisFarma.Controller;
 
+<<<<<<< Updated upstream
 import static br.com.SisFarma.Controller.LoginController.nomeUsuario;
+=======
+import br.com.SisFarma.dao.ClienteVendaDAO;
+>>>>>>> Stashed changes
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.Login;
@@ -15,7 +19,11 @@ import br.com.SisFarma.gui.Usuarios;
 import br.com.SisFarma.gui.Vendas;
 import java.io.IOException;
 import java.net.URL;
+<<<<<<< Updated upstream
 import java.util.Locale;
+=======
+import java.sql.SQLException;
+>>>>>>> Stashed changes
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,9 +57,11 @@ public class MenuPrincipalController implements Initializable {
     @FXML private Button btDesconectar;
     @FXML private MenuItem menuItemVendas;
     @FXML private MenuItem menuItemValor;
+    @FXML private MenuItem menuItemRelatorioUsuario;
     @FXML private MenuItem menuItemRelatorioProduto;
     @FXML private MenuItem menuItemRelatorioCliente;
     @FXML private MenuItem menuItemRelatorioFornecedor;
+    @FXML private MenuItem menuItemRelatorioVenda;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
     @FXML private Label lbUsuario;
@@ -139,6 +149,28 @@ public class MenuPrincipalController implements Initializable {
             }
         });
         
+        menuItemRelatorioUsuario.setOnAction((ActionEvent e)->{
+            try {
+                handleMenuItemRelatorioUsuario(e);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
+        menuItemRelatorioVenda.setOnAction((ActionEvent e)->{
+            try {
+                handleMenuItemRelatorioVenda(e);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ClienteVendaDAO cv = new ClienteVendaDAO();
+            try {
+                System.out.println(cv.listar());
+            } catch (SQLException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
 
 }
     
@@ -169,6 +201,18 @@ public class MenuPrincipalController implements Initializable {
     @FXML
     public void handleMenuItemRelatorioFornecedor(ActionEvent e) throws IOException{ 
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioFornecedor.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemRelatorioUsuario(ActionEvent e) throws IOException{ 
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioUsuario.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemRelatorioVenda(ActionEvent e) throws IOException{ 
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioVenda.fxml"));
         anchorPane.getChildren().setAll(a);
     }
     

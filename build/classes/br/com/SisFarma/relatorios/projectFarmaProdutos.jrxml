@@ -49,7 +49,10 @@
 					<text><![CDATA[Produtos]]></text>
 				</staticText>
 				<image>
-					<reportElement x="508" y="16" width="50" height="50" uuid="3c79227b-82d6-4777-a13f-70632cffc5d8"/>
+					<reportElement x="490" y="20" width="50" height="50" uuid="3c79227b-82d6-4777-a13f-70632cffc5d8">
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+						<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					</reportElement>
 					<imageExpression><![CDATA["C:/Users/diego/Desktop/Git/ProjectFarma/src/img/caixa.png"]]></imageExpression>
 				</image>
 			</frame>

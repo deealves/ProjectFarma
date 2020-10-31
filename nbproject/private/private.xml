@@ -5,14 +5,28 @@
         <group>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Produto.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioProdutoController.java</file>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ClienteDAO.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ProdutoDAO.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/VendaController.java</file>
+=======
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ProdutoDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/VendaController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioClienteController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/VendaDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioFornecedorController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ClienteVendaDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ProdutoController.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ClienteDAO.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/RelatorioUsuario.fxml</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioUsuarioController.java</file>
+>>>>>>> Stashed changes
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Usuario.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/UsuarioDAO.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/gui/Usuarios.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ClienteController.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/gui/Vendas.java</file>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/nbproject/jfx-impl.xml</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioClienteController.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/VendaDAO.java</file>
@@ -20,11 +34,20 @@
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Cliente.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioFornecedorController.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/test/br/com/SisFarma/dao/ClienteDAOTest.java</file>
+=======
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Venda.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Cliente.java</file>
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/RelatorioVendaController.java</file>
+>>>>>>> Stashed changes
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/FornecedorDAO.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/dao/ClienteVendaDAO.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Fornecedor.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/MenuPrincipalController.java</file>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/ProdutoController.java</file>
+=======
+            <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/view/RelatorioVenda.fxml</file>
+>>>>>>> Stashed changes
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/ClienteVenda.java</file>
         </group>
     </open-files>

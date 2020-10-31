@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.SisFarma.Controller.RelatorioVendaController">
+   <children>
+      <TableView fx:id="tableRelatorioVenda" layoutX="7.0" layoutY="7.0" prefHeight="312.0" prefWidth="600.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="clmRelatorioVendaId" prefWidth="54.0" text="ID" />
+          <TableColumn fx:id="clmRelatorioVendaQuantidade" prefWidth="77.0" text="Quantidade" />
+            <TableColumn fx:id="clmRelatorioVendaValor" prefWidth="75.0" text="Valor" />
+            <TableColumn fx:id="clmRelatorioVendaData" prefWidth="102.0" text="Data" />
+            <TableColumn fx:id="clmRelatorioVendaVendedor" prefWidth="142.0" text="Vendedor" />
+            <TableColumn fx:id="clmRelatorioVendaCliente" prefWidth="149.0" text="Cliente" />
+        </columns>
+      </TableView>
+      <Button fx:id="btRelatorioVendaVoltar" layoutX="306.0" layoutY="345.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FF6347;" text="Voltar" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btRelatorioVendaImprimir" layoutX="138.0" layoutY="345.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #90EE90;" text="Imprimir" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

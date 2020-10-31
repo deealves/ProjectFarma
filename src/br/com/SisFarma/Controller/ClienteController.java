@@ -142,6 +142,7 @@ public class ClienteController implements Initializable {
             }
         });
         
+        
         btCadastrar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
                 if(btCadastrar.getText().equals("Realizar Venda")){

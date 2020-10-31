@@ -65,15 +65,16 @@
                </font></Label>
             <MenuBar prefHeight="25.0" prefWidth="324.0">
               <menus>
-                <Menu mnemonicParsing="false" text="Relatorio">
+                <Menu mnemonicParsing="false" text="Relatorios">
                   <items>
-                    <MenuItem fx:id="menuItemRelatorioCliente" mnemonicParsing="false" text="Cliente" />
-                        <MenuItem mnemonicParsing="false" text="Funcionario" />
-                        <MenuItem fx:id="menuItemRelatorioFornecedor" mnemonicParsing="false" text="Fornecedor" />
+                    <MenuItem fx:id="menuItemRelatorioCliente" mnemonicParsing="false" text="Clientes" />
+                        <MenuItem fx:id="menuItemRelatorioUsuario" mnemonicParsing="false" text="Usuários" />
+                        <MenuItem fx:id="menuItemRelatorioFornecedor" mnemonicParsing="false" text="Fornecedores" />
                         <MenuItem fx:id="menuItemRelatorioProduto" mnemonicParsing="false" text="Produtos" />
+                        <MenuItem fx:id="menuItemRelatorioVenda" mnemonicParsing="false" text="Vendas" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" onAction="#handleMenuItemGraficoVendasPorMes" text="Gráfico">
+                  <Menu mnemonicParsing="false" onAction="#handleMenuItemGraficoVendasPorMes" text="Gráficos">
                     <items>
                       <MenuItem fx:id="menuItemVendas" mnemonicParsing="false" onAction="#handleMenuItemGraficoVendasPorMes" text="Vendas por Meses" />
                         <MenuItem fx:id="menuItemValor" mnemonicParsing="false" onAction="#handleMenuItemGraficoValorVendas" text="Valor de Vendas" />

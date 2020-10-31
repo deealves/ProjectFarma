@@ -133,3 +133,10 @@ CREATE TABLE usuario (
 	
 	select * from cliente_venda where id_cliente != null;
 	
+	select venda.*, cliente.nome from venda, cliente 
+	join cliente_venda on venda.id = cliente_venda.id_venda where cliente_venda.id_cliente = cliente.id 
+	order by venda.valor;
+	
+	select venda.id, venda.quant, venda.valor, venda.data, usuario.nome,cliente.nome 
+	from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda
+	and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor;
