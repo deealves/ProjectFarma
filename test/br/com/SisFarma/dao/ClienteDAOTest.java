@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.SisFarma.dao;
+/*package br.com.SisFarma.dao;
 
 import br.com.SisFarma.model.Cliente;
 import java.sql.SQLException;
 import java.util.List;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
  * @author diego
  */
-public class ClienteDAOTest {
+/*public class ClienteDAOTest {
     ClienteDAO dao;
  
     public ClienteDAOTest() {
@@ -34,7 +34,7 @@ public class ClienteDAOTest {
      * Test of inserir method, of class ClienteDAO.
      * @throws java.sql.SQLException
      */
-    @Test
+    /*@Test
     public void testInserir() throws SQLException {
         Cliente c = new Cliente();
         
@@ -56,7 +56,7 @@ public class ClienteDAOTest {
      * Test of listar method, of class ClienteDAO.
      * @throws java.sql.SQLException
      */
-    @Test
+    /*@Test
     public void testListar() throws SQLException {
         List<Cliente> teste = dao.listar();
         
@@ -68,7 +68,7 @@ public class ClienteDAOTest {
      * Test of editar method, of class ClienteDAO.
      * @throws java.sql.SQLException
      */
-    @Test
+   /* @Test
     public void testEditar() throws SQLException{
         Cliente c = new Cliente();
        
@@ -89,7 +89,7 @@ public class ClienteDAOTest {
      * Test of buscar method, of class ClienteDAO.
      * @throws java.sql.SQLException
      */
-    @Test
+    /*@Test
     public void testBuscar_int() throws SQLException{
         Cliente teste = dao.buscar(10);
         
@@ -100,7 +100,7 @@ public class ClienteDAOTest {
      * Test of buscar method, of class ClienteDAO.
      * @throws java.sql.SQLException
      */
-    @Test
+    /*@Test
     public void testBuscar_String() throws SQLException{
         List<Cliente> teste = dao.buscar("Irineu");
         
@@ -111,7 +111,7 @@ public class ClienteDAOTest {
      * Test of remover method, of class ClienteDAO.
      * @throws java.sql.SQLException
      */
-    @Test
+    /*@Test
     public void testRemover() throws SQLException{
         
         Cliente c = new Cliente();
@@ -121,4 +121,4 @@ public class ClienteDAOTest {
         Assert.assertFalse(!(dao.remover(c)));
     }
     
-}
+}*/
