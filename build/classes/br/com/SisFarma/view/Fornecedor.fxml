@@ -41,11 +41,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="labelFornecedores" alignment="CENTER" layoutY="21.0" prefHeight="17.0" prefWidth="335.0" text="Fornecedores" textAlignment="CENTER">
+            <Label fx:id="labelFornecedores" alignment="CENTER" layoutY="1.0" prefHeight="17.0" prefWidth="335.0" text="Fornecedores" textAlignment="CENTER">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
+            <TextField fx:id="txBuscar" layoutX="14.0" layoutY="55.0" prefHeight="25.0" prefWidth="312.0" promptText="Pesquisar..." />
          </children>
       </Pane>
       <Pane layoutX="335.0" prefHeight="450.0" prefWidth="273.0" style="-fx-background-color: #f2f2f2;">

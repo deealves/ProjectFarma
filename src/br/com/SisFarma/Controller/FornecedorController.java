@@ -6,11 +6,15 @@
 package br.com.SisFarma.Controller;
 
 
+import br.com.SisFarma.dao.ClienteDAO;
 import br.com.SisFarma.dao.FornecedorDAO;
 import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.MenuPrincipal;
+import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.Fornecedor;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +54,7 @@ public class FornecedorController implements Initializable {
                         labelEstado, labelCep, labelTelefone, labelEmail;
     @FXML private TextField textNome,  textCnpj, textRua, textCidade, textCep, 
                             textEstado, textTelefone, textEmail;
+    @FXML private TextField txBuscar;
     private Fornecedor selecionado;
    
     /**
@@ -97,6 +102,10 @@ public class FornecedorController implements Initializable {
         
         btEditar.setOnMouseClicked((Event e) ->{
             editarFornecedor();
+        });
+        
+        txBuscar.setOnKeyReleased((KeyEvent e)-> {
+            buscarProduto();
         });
                 
         btRemover.setOnMouseClicked((Event e)->{
@@ -263,5 +272,30 @@ public class FornecedorController implements Initializable {
         textTelefone.setText("");
         textEmail.setText("");
     }
-}    
+
+    private void buscarProduto() {
+       String busca = txBuscar.getText();
+        FornecedorDAO dao = new FornecedorDAO();
+        try {
+            List<Fornecedor> resultado = dao.buscar(busca);
+            initTable2(busca);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    private void initTable2(String busca) throws SQLException {
+        columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        columnCnpj.setCellValueFactory(new PropertyValueFactory("cnpj")); 
+        columnTelefone.setCellValueFactory(new PropertyValueFactory("telefone"));
+        columnEmail.setCellValueFactory(new PropertyValueFactory("email"));
+        tableFornecedores.setItems(buscaTabela(busca));
+    }
+    
+    private ObservableList<Fornecedor> buscaTabela(String busca) throws SQLException {
+        FornecedorDAO dao = new FornecedorDAO();
+        return FXCollections.observableArrayList(dao.buscar(busca));
+    }
+ }
+  
 

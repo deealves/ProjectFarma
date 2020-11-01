@@ -35,7 +35,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label fx:id="labelCliente" alignment="CENTER" layoutX="17.0" layoutY="45.0" prefHeight="39.0" prefWidth="330.0" style="-fx-background-color: #90EE90;" text="CLIENTES" textAlignment="CENTER" textFill="#050505">
+            <Label fx:id="labelCliente" alignment="CENTER" layoutX="17.0" layoutY="11.0" prefHeight="39.0" prefWidth="330.0" style="-fx-background-color: #90EE90;" text="CLIENTES" textAlignment="CENTER" textFill="#050505">
                <font>
                   <Font name="Segoe UI" size="32.0" />
                </font>
@@ -50,6 +50,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <TextField fx:id="txBuscar" layoutX="17.0" layoutY="65.0" prefHeight="25.0" prefWidth="346.0" promptText="Pesquisar..." />
          </children>
       </Pane>
       <Pane layoutX="388.0" layoutY="-1.0" prefHeight="450.0" prefWidth="228.0" style="-fx-background-color: #f2f2f2;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

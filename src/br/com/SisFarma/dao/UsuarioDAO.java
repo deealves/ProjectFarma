@@ -96,5 +96,37 @@ public class UsuarioDAO {
         
      }
      
+     public List<Usuario> buscar(String query) throws SQLException{
+        List<Usuario> lista = new ArrayList<>();
+
+        
+        sql = "select p.* from produto p  where p.nome ilike ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, query + '%');
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            int id = rs.getInt(1);
+            String nome = rs.getString("nome");
+            String cpf = rs.getString("cpf");
+            String usuario = rs.getString("usuario");
+            String senha = rs.getString("senha");
+            
+            
+            Usuario u = new Usuario();
+            
+            u.setId(id);
+            u.setNome(nome);
+            u.setCpf(cpf);
+            u.setUsuario(usuario);
+            u.setSenha(senha);
+         
+            lista.add(u);
+        }
+        con.close();
+        return lista;
+    }
+     
     
 }

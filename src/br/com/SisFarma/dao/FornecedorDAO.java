@@ -121,93 +121,46 @@ public class FornecedorDAO {
             return false;
         }    
     }
+   
     
-    public Fornecedor buscar(int id) {
-        //Buscar um cliente com determinado código no BD
-        Fornecedor f = null;    
-        sql = "SELECT f.* FROM fornecedor f WHERE f.id = ?";
-        
-        try {
-            st = con.prepareStatement(sql);
-            st.setInt(1, id);
-        
-            rs = st.executeQuery();
-
-            if(rs.next()){
-                String nome = rs.getString("nome");
-                String cnpj = rs.getString("cnpj");
-                String rua = rs.getString("rua");
-                String cidade = rs.getString("cidade");
-                String estado = rs.getString("estado");
-                String cep = rs.getString("cep");
-                String telefone = rs.getString("telefone");
-                String email = rs.getString("email");
-
-                f = new Fornecedor();
-
-                f.setId(id);
-                f.setNome(nome);
-                f.setCnpj(cnpj);
-                f.setRua(rua);
-                f.setCidade(cidade);
-                f.setEstado(estado);
-                f.setCep(cep);
-                f.setTelefone(telefone);
-                f.setEmail(email);  
-            }
-            st.close();
-            rs.close();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-        return f;   
-    }
-    
-    public List<Fornecedor> buscar(String query){
-        //Buscar cliente com determinado nome no BD
+    public List<Fornecedor> buscar(String query) throws SQLException{
         List<Fornecedor> lista = new ArrayList<>();
-        sql = "SELECT f.* FROM fornecedor f WHERE c.nome ILIKE ?";
+
         
-        try {
-            st = con.prepareStatement(sql);
-            st.setString(1, query + '%');
-         
-            rs = st.executeQuery();
-
-            while(rs.next()){
-               int id = rs.getInt(1); 
-               String nome = rs.getString("nome");
-               String cnpj = rs.getString("cnpj");
-               String rua = rs.getString("rua");
-               String cidade = rs.getString("cidade");
-               String estado = rs.getString("estado");
-               String cep = rs.getString("cep");
-               String telefone = rs.getString("telefone");
-               String email = rs.getString("email");
-
-               Fornecedor f = new Fornecedor();
-
-               f.setId(id);
-               f.setNome(nome);
-               f.setCnpj(cnpj);
-               f.setRua(rua);
-               f.setCidade(cidade);
-               f.setEstado(estado);
-               f.setCep(cep);
-               f.setTelefone(telefone);
-               f.setEmail(email);  
-
-               lista.add(f);
-            }
-            st.close();
-            rs.close();
-            con.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
+        sql = "select f.* from fornecedor f  where f.nome ilike ?";
+        st = con.prepareStatement(sql);
+        st.setString(1, query + '%');
+        
+        ResultSet rs = st.executeQuery();
+        
+        while(rs.next()){
+            int id = rs.getInt(1);
+            String nome = rs.getString("nome");
+            String cnpj = rs.getString("cnpj");
+            String telefone = rs.getString("telefone");
+            String rua = rs.getString("rua");
+            String cidade = rs.getString("cidade");
+            String estado = rs.getString("estado");
+            String cep = rs.getString("cep");
+            String email = rs.getString("email");
+            
+            
+            Fornecedor f = new Fornecedor();
+           
+            f.setId(id);
+            f.setNome(nome);
+            f.setCnpj(cnpj);
+            f.setTelefone(telefone);
+            f.setRua(rua);
+            f.setCidade(cidade);
+            f.setEstado(estado);
+            f.setCep(cep);
+            f.setEmail(email);
+            
+            
+            lista.add(f);
         }
+        con.close();
         return lista;
     }
     
