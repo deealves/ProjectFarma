@@ -75,6 +75,7 @@ public class VendaController extends ClienteController implements Initializable 
     @FXML private Label labelData;
     @FXML private Button btAplicar;
     @FXML private TextField txDesconto;
+    private float rvdesconto;
     private Produto selecionada;
     private Produto selecionada2;
     private float total = 0;
@@ -211,8 +212,13 @@ public class VendaController extends ClienteController implements Initializable 
         });
         
         btAplicar.setOnMouseClicked((MouseEvent e) ->{
+            if(btAplicar.getText().equals("Aplicar")){
+                aplicaDesconto();
+            }
+            else{
+                removerDesconto();
+            }
             
-            aplicaDesconto();
             
         });
     
@@ -357,6 +363,7 @@ public class VendaController extends ClienteController implements Initializable 
         float desconto = Float.parseFloat(txDesconto.getText()) / 100;
         System.out.println(desconto);
         System.out.println(venda.getValor());
+        rvdesconto = total;
         float calculo = total - (total * desconto);
         DecimalFormat df = new DecimalFormat("0.00");
         df.format(calculo);
@@ -364,7 +371,24 @@ public class VendaController extends ClienteController implements Initializable 
         venda.setValor(calculo);
         txTotal.setText(String.valueOf(dinheiro.format(calculo)));
         total = calculo;
+        Alert al = new Alert(Alert.AlertType.CONFIRMATION);
+        al.setHeaderText("Desconto Aplicado com Sucesso");
+        al.show();
+        txDesconto.setDisable(true);
+        btAplicar.setText("Remover Desconto");
         
        
+    }
+
+    private void removerDesconto() {
+        total = rvdesconto;
+        txTotal.setText(String.valueOf(dinheiro.format(total)));
+        venda.setValor(total);
+        txDesconto.setDisable(false);
+        txDesconto.setText("");
+        btAplicar.setText("Aplicar");
+        Alert al = new Alert(Alert.AlertType.CONFIRMATION);
+        al.setHeaderText("Desconto Removido com Sucesso");
+        al.show();
     }
 }
