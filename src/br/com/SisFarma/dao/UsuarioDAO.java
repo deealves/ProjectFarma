@@ -100,7 +100,7 @@ public class UsuarioDAO {
         List<Usuario> lista = new ArrayList<>();
 
         
-        sql = "select p.* from produto p  where p.nome ilike ?";
+        sql = "select u.* from usuario u  where u.nome ilike ?";
         stmt = con.prepareStatement(sql);
         stmt.setString(1, query + '%');
         
