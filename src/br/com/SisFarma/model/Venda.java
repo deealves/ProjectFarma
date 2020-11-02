@@ -16,21 +16,25 @@ public class Venda {
     private float valor;
     private LocalDate data;
     private int quant;
+    private String nomeU;
     private Usuario u;
+    private Produto p;
 
-    public Venda(int id, float valor, LocalDate data, int quant, Usuario u) {
+    public Venda(int id, float valor, LocalDate data, int quant, Usuario u, Produto p) {
         this.id = id;
         this.valor = valor;
         this.data = data;
         this.quant = quant;
         this.u = u;
+        this.p = p;
     }
 
-    public Venda(float valor, LocalDate data, int quant, Usuario u) {
+    public Venda(float valor, LocalDate data, int quant, Usuario u, Produto p) {
         this.valor = valor;
         this.data = data;
         this.quant = quant;
         this.u = u;
+        this.p = p;
     }
 
     public Venda() {
@@ -76,14 +80,32 @@ public class Venda {
     public void setData(LocalDate data) {
         this.data = data;
     }
-  
+
+    public String getNomeU() {
+        this.setNomeU(u.getNome());
+        return nomeU;
+    }
+
+    public void setNomeU(String nomeU) {
+        this.nomeU = nomeU;
+    }
+
+    public Produto getP() {
+        return p;
+    }
+
+    public void setP(Produto p) {
+        this.p = p;
+    }
+
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder();
         sb.append(" | ").append(valor)
                 .append(" | ").append(quant)
                 .append(" | ").append(data)
-                .append(" | ").append(u);
+                .append(" | ").append(u)
+                .append(" | ").append(p);
   
         return sb.toString();
     }

@@ -9,6 +9,7 @@ import br.com.SisFarma.dao.ClienteVendaDAO;
 import br.com.SisFarma.dao.VendaDAO;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.ClienteVenda;
+import br.com.SisFarma.model.ClienteVendaProperty;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
@@ -36,13 +37,13 @@ public class RelatorioVendaController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @FXML private TableView<ClienteVenda> tableRelatorioVenda;
-    @FXML private TableColumn<ClienteVenda, Integer> clmRelatorioVendaId;
-    @FXML private TableColumn<ClienteVenda, Integer> clmRelatorioVendaQuantidade;
-    @FXML private TableColumn<ClienteVenda, Float> clmRelatorioVendaValor;
-    @FXML private TableColumn<ClienteVenda, Date> clmRelatorioVendaData;
-    @FXML private TableColumn<ClienteVenda, String> clmRelatorioVendaVendedor;
-    @FXML private TableColumn<ClienteVenda, String> clmRelatorioVendaCliente;
+    @FXML private TableView<ClienteVendaProperty> tableRelatorioVenda;
+    @FXML private TableColumn<ClienteVendaProperty, Integer> clmRelatorioVendaId;
+    @FXML private TableColumn<ClienteVendaProperty, Integer> clmRelatorioVendaQuantidade;
+    @FXML private TableColumn<ClienteVendaProperty, Float> clmRelatorioVendaValor;
+    @FXML private TableColumn<ClienteVendaProperty, Date> clmRelatorioVendaData;
+    @FXML private TableColumn<ClienteVendaProperty, String> clmRelatorioVendaVendedor;
+    @FXML private TableColumn<ClienteVendaProperty, String> clmRelatorioVendaCliente;
     @FXML private Button btRelatorioVendaVoltar;
     @FXML private Button btRelatorioVendaImprimir;
    
@@ -62,12 +63,12 @@ public class RelatorioVendaController implements Initializable {
         clmRelatorioVendaQuantidade.setCellValueFactory(new PropertyValueFactory("quant"));
         clmRelatorioVendaValor.setCellValueFactory(new PropertyValueFactory("valor"));
         clmRelatorioVendaData.setCellValueFactory(new PropertyValueFactory("data"));
-        clmRelatorioVendaVendedor.setCellValueFactory(new PropertyValueFactory("nome"));
+        clmRelatorioVendaVendedor.setCellValueFactory(new PropertyValueFactory("nomeV"));
         clmRelatorioVendaCliente.setCellValueFactory(new PropertyValueFactory("nomeC"));
         tableRelatorioVenda.setItems(atualizaTabela());
     }
 
-    private ObservableList<ClienteVenda> atualizaTabela() throws SQLException {
+    private ObservableList<ClienteVendaProperty> atualizaTabela() throws SQLException {
         ClienteVendaDAO dao = new ClienteVendaDAO();
         return FXCollections.observableArrayList(dao.listar());
     }

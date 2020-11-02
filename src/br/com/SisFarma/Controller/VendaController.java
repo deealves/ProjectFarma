@@ -13,6 +13,7 @@ import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Vendas;
 import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.Produto;
+
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
@@ -87,6 +88,15 @@ public class VendaController extends ClienteController implements Initializable 
     private final List<Produto> produto = new ArrayList<>();
     private Venda venda;
     private static int id_venda;
+    private static int id_produto;
+
+    public static int getId_produto() {
+        return id_produto;
+    }
+
+    public static void setId_produto(int id_produto) {
+        VendaController.id_produto = id_produto;
+    }
 
     public static int getId_venda() {
         return id_venda;
@@ -253,6 +263,9 @@ public class VendaController extends ClienteController implements Initializable 
             novo = Integer.parseInt(txQuant.getText());
             Produto p = new Produto();
             p.setId(selecionada.getId());
+            System.out.println(selecionada.getId());
+            id_produto = selecionada.getId();
+            System.out.println(id_produto);
             p.setCodproduto(selecionada.getCodproduto());
             p.setNome(selecionada.getNome());
             p.setPreco(selecionada.getPreco() * novo);
@@ -266,7 +279,7 @@ public class VendaController extends ClienteController implements Initializable 
                 al.show();
             }else{
                 p.setQuant(novo);
-                
+
                 if(produto.add(p)){
                     Alert al = new Alert(Alert.AlertType.CONFIRMATION);
                     al.setHeaderText("Produto Selecionado para Venda");
@@ -343,11 +356,19 @@ public class VendaController extends ClienteController implements Initializable 
             quantAux += produto.get(i).getQuant();
             
         }
+        
+        
         venda.setValor(total);
         venda.setQuant(quantAux);
         venda.setData(data);
+        
         venda.getU().setId(getId_usuario());
+        Produto p = new Produto();
+        p.setId(getId_produto());
+        
+        venda.setP(p);
        // aplicaDesconto();
+        System.out.println(venda);
         dao.insert(venda);
         
         

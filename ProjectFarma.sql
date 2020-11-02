@@ -110,6 +110,8 @@ CREATE TABLE usuario (
 	alter table produto drop column id_cliente;
 	alter table produto add column id_venda int;
 	alter table produto add column id_cliente int;
+	alter table venda add column id_produto int;
+	alter table venda add foreign key (id_produto) references produto (id);
 	alter table venda add column id_cliente int;
 	alter table venda add foreign key (id_cliente) references cliente (id);
 	alter table venda drop column id_cliente;
@@ -137,6 +139,14 @@ CREATE TABLE usuario (
 	join cliente_venda on venda.id = cliente_venda.id_venda where cliente_venda.id_cliente = cliente.id 
 	order by venda.valor;
 	
-	select venda.id, venda.quant, venda.valor, venda.data, usuario.nome,cliente.nome 
+	select venda.id, venda.quant, venda.valor, venda.data, usuario.nome,cliente.nomeC 
 	from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda
 	and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor;
+	
+	select produto.nome, venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC
+	from produto, venda, cliente, cliente_venda, usuario where venda.id = produto.id_venda and cliente.id = produto.id_cliente
+	order by venda.valor;
+	
+	alter table cliente rename nome to nomeC
+	
+	insert into venda (id, quant, data, id_usuario, valor, id_produto) values ()
