@@ -105,6 +105,15 @@ CREATE TABLE usuario (
 		
 	);
 	
+	CREATE TABLE venda_produto(
+		id_venda int not null,
+		id_produto int not null,
+		primary key (id_venda, id_produto),
+		
+		foreign key (id_venda) references venda (id),
+		foreign key (id_produto) references produto (id)
+	);
+	
 	alter table venda add column valor float;
 	alter table produto drop column id_venda;
 	alter table produto drop column id_cliente;

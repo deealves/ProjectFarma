@@ -27,7 +27,7 @@ public class VendaDAO {
     private PreparedStatement stmt;
     
     public boolean insert(Venda v) throws SQLException {
-        sql = "INSERT INTO venda (quant, valor, data, id_usuario, id_produto) VALUES (?,?,?,?,?)";
+        sql = "INSERT INTO venda (quant, valor, data, id_usuario) VALUES (?,?,?,?)";
        
         con = ConnectionFactory.getConnection();
         stmt = con.prepareStatement(sql);
@@ -35,8 +35,7 @@ public class VendaDAO {
         stmt.setFloat(2,v.getValor());
         stmt.setDate(3, Date.valueOf(v.getData()));
         stmt.setInt(4,v.getU().getId()); 
-        stmt.setInt(5, v.getP().getId());
-        System.out.println(v.getP().getId());
+        
         stmt.execute();
         stmt.close();
         con.close();

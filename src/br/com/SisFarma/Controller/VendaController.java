@@ -7,12 +7,14 @@ package br.com.SisFarma.Controller;
 
 import static br.com.SisFarma.Controller.LoginController.getId_usuario;
 import br.com.SisFarma.dao.ProdutoDAO;
+import br.com.SisFarma.dao.ProdutoVendaDAO;
 import br.com.SisFarma.dao.VendaDAO;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Vendas;
 import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.Produto;
+import br.com.SisFarma.model.ProdutoVenda;
 
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
@@ -363,19 +365,52 @@ public class VendaController extends ClienteController implements Initializable 
         venda.setData(data);
         
         venda.getU().setId(getId_usuario());
-        Produto p = new Produto();
-        p.setId(getId_produto());
         
-        venda.setP(p);
+        
+        
        // aplicaDesconto();
         System.out.println(venda);
         dao.insert(venda);
         
         
-        
         for(int i = 0; i < dao.listar().size(); i++){
            id_venda = dao.listar().get(i).getId(); 
         }
+        
+        //ProdutoVenda pv = new ProdutoVenda();
+        ProdutoVendaDAO daoo = new ProdutoVendaDAO();
+        System.out.println("Tamanho" + produto.size());
+        if(produto.size() > 1 ){
+            
+            for(int i = 0; i < produto.size(); i++){
+                ProdutoVenda pv = new ProdutoVenda();
+         
+                Produto p = new Produto();
+                p.setId(produto.get(i).getId());
+                Venda v = new Venda();
+                v.setId(getId_venda());
+                pv.setVenda(v);
+                pv.setProduto(p);
+                System.out.println("V" + getId_venda());
+                System.out.println("P" + produto.get(i).getId());
+                daoo.insert(pv);
+            }
+            
+         
+        }
+        else{
+            ProdutoVenda pv = new ProdutoVenda();
+             Produto p = new Produto();
+                p.setId(getId_produto());
+                Venda v = new Venda();
+                v.setId(getId_venda());
+                pv.setVenda(v);
+                pv.setProduto(p);
+                System.out.println("V" + getId_venda());
+                System.out.println("P" + getId_produto());
+                daoo.insert(pv);
+        }
+        
         
         //System.out.println(id_venda);
     }
