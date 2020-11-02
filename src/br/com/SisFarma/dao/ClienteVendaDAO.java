@@ -7,6 +7,8 @@ package br.com.SisFarma.dao;
 
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.ClienteVenda;
+import br.com.SisFarma.model.ClienteVendaProperty;
+import br.com.SisFarma.model.Usuario;
 import br.com.SisFarma.model.Venda;
 import br.com.SisFarma.util.ConnectionFactory;
 import java.sql.Connection;
@@ -27,6 +29,7 @@ public class ClienteVendaDAO {
     private String sql;
     private PreparedStatement stmt;
     private ResultSet rs;
+    private static ClienteVendaProperty cp;
     
     
     public boolean insertClienteVenda(ClienteVenda cv) throws SQLException{
@@ -42,7 +45,7 @@ public class ClienteVendaDAO {
         return true;
     }
     
-   public List<ClienteVenda> listar() throws SQLException{
+   public List<ClienteVendaProperty> listar() throws SQLException{
         sql = "select venda.id, venda.quant, venda.valor, venda.data, usuario.nome,cliente.nomeC \n" +
         "from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda\n" +
         "and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor;";
@@ -50,7 +53,7 @@ public class ClienteVendaDAO {
         stmt = con.prepareStatement(sql);
         rs = stmt.executeQuery();
 
-        List<ClienteVenda> vendas = new ArrayList<>();
+        List<ClienteVendaProperty> vendas = new ArrayList<>();
         while (rs.next()){
             int id = rs.getInt("id");
             System.out.println(id);
@@ -69,25 +72,20 @@ public class ClienteVendaDAO {
             Venda v = new Venda();
             Cliente c = new Cliente();
             
-            cv.setId(id);
-            cv.getVenda().setQuant(quant);
-            cv.getVenda().setValor(valor);
-            cv.getVenda().setData(data);
-            cv.getVenda().getU().setNome(nomeV);
-            cv.getCliente().setNomeC(nomeC);
-           /* 
+            v.setId(id);
             v.setQuant(quant);
             v.setValor(valor);
             v.setData(data);
             v.getU().setNome(nomeV);
             
-            c.setNome(nomeC);
+            c.setNomeC(nomeC);
             
-            cv.setId(id);
             cv.setCliente(c);
-            cv.setVenda(v);*/
+            cv.setVenda(v);
+   
+            cp = new ClienteVendaProperty(v, c);
 
-            vendas.add(cv);
+            vendas.add(cp);
             
         }
 

@@ -34,7 +34,7 @@ public class ClienteDAO {
     
     public boolean inserir(Cliente cliente) throws SQLException{
         //Inserir no banco de dados 
-        sql = "INSERT INTO cliente(nome, cpf, rua, cidade, estado, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO cliente(nomeC, cpf, rua, cidade, estado, cep, telefone, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         
         
             st = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -67,7 +67,7 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
 
                 cliente.setId(rs.getInt("id"));
-                cliente.setNomeC(rs.getString("nome"));
+                cliente.setNomeC(rs.getString("nomeC"));
                 cliente.setCpf(rs.getString("cpf"));
 
                 cliente.setRua(rs.getString("rua"));
@@ -89,7 +89,7 @@ public class ClienteDAO {
  
     public boolean editar(Cliente cliente) throws SQLException{
         //Atualizar um cliente no BD
-        sql = "UPDATE cliente SET nome = ?, cpf = ?, rua = ?, cidade = ?, estado = ?,"
+        sql = "UPDATE cliente SET nomeC = ?, cpf = ?, rua = ?, cidade = ?, estado = ?,"
                 + "cep = ?, telefone = ?, email = ? WHERE id = ?";
   
      
@@ -125,7 +125,7 @@ public class ClienteDAO {
             rs = st.executeQuery();
 
             if(rs.next()){
-                String nome = rs.getString("nome");
+                String nome = rs.getString("nomeC");
                 String cpf = rs.getString("cpf");
                 String rua = rs.getString("rua");
                 String cidade = rs.getString("cidade");
@@ -166,7 +166,7 @@ public class ClienteDAO {
 
             while(rs.next()){
                int id = rs.getInt(1); 
-               String nome = rs.getString("nome");
+               String nome = rs.getString("nomeC");
                String cpf = rs.getString("cpf");
                String rua = rs.getString("rua");
                String cidade = rs.getString("cidade");

@@ -52,6 +52,8 @@ public class ProdutoController implements Initializable {
     @FXML private Button btRemover;
     @FXML private Button btEditar;
     private Produto selecionada;
+    
+   
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -208,7 +210,7 @@ public class ProdutoController implements Initializable {
             float preco = Float.parseFloat(txPreco.getText());
             int quant = Integer.parseInt(txQuant.getText());
 
-            Produto p = new Produto();
+            Produto p = new Produto();      
             p.setCodproduto(codproduto);
             p.setNome(nome);
             p.setPreco(preco);
