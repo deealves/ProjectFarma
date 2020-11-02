@@ -46,6 +46,7 @@
                   <Font name="Bank Gothic Medium BT" size="32.0" />
                </font>
             </Label>
+            <TextField fx:id="txBuscar" layoutX="29.0" layoutY="91.0" prefHeight="25.0" prefWidth="328.0" promptText="Pesquisar..." />
          </children>
       </Pane>
       <Pane layoutX="389.0" prefHeight="450.0" prefWidth="218.0" style="-fx-background-color: #f2f2f2;">

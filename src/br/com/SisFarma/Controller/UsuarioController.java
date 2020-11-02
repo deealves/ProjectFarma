@@ -7,6 +7,7 @@ import br.com.SisFarma.model.Usuario;
 import br.com.SisFarma.gui.Usuarios;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -46,6 +48,7 @@ public class UsuarioController implements Initializable {
     @FXML private TextField txNome;
     @FXML private TextField txCpf;
     @FXML private Label lbId;
+    @FXML private TextField txBuscar;
     private Usuario selecionada;
     
    
@@ -90,6 +93,10 @@ public class UsuarioController implements Initializable {
               selecionada = (Usuario) newValue;            
           }
       });
+        
+        txBuscar.setOnKeyReleased((KeyEvent e)-> {
+            buscarProduto();
+        });
         
         btRemover.setOnMouseClicked((MouseEvent e) ->{
           try {
@@ -230,5 +237,28 @@ public class UsuarioController implements Initializable {
             }
             
         }
+
+    private void buscarProduto() {
+     String busca = txBuscar.getText();
+        UsuarioDAO dao = new UsuarioDAO();
+        try {
+            List<Usuario> resultado = dao.buscar(busca);
+            initTable2(busca);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    private void initTable2(String busca) throws SQLException {
+        clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        clmCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
+        clmUsuario.setCellValueFactory(new PropertyValueFactory("usuario"));
+        tabela.setItems(buscaTabela(busca));
+    }
+    
+    private ObservableList<Usuario> buscaTabela(String busca) throws SQLException {
+        UsuarioDAO dao = new UsuarioDAO();
+        return FXCollections.observableArrayList(dao.buscar(busca));
+    }
     
 }

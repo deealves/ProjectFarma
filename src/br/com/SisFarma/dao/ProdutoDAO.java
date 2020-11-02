@@ -22,6 +22,10 @@ public class ProdutoDAO {
     private Connection con;
     private String sql;
     private PreparedStatement stmt;
+    
+    public ProdutoDAO() {
+        this.con = ConnectionFactory.getConnection();
+    }
  
    public boolean insert(Produto p) throws SQLException {
         sql = "INSERT INTO produto (codproduto, nome, preco, fabricante, descricao, quant) VALUES (?,?,?,?,?,?)";
@@ -96,4 +100,44 @@ public class ProdutoDAO {
          return produtos;
         
      }
+     
+     public List<Produto> buscar(String query) throws SQLException{
+        List<Produto> lista = new ArrayList<>();
+
+        
+        sql = "select p.* from produto p  where p.nome ilike ?";
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, query + '%');
+        
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            int id = rs.getInt(1);
+            int Codproduto = rs.getInt("codproduto");
+            String nome = rs.getString("nome");
+            float preco = rs.getFloat("preco");
+            String fabricante = rs.getString("fabricante");
+            String descricao = rs.getString("descricao");
+            int quant = rs.getInt("quant");
+            
+            
+            
+            
+            Produto p = new Produto();
+            
+            p.setId(id);
+            p.setCodproduto(Codproduto);
+            p.setNome(nome);
+            p.setPreco(preco);
+            p.setFabricante(fabricante);
+            p.setDescricao(descricao);
+            p.setQuant(quant);
+            
+            
+            
+            lista.add(p);
+        }
+        con.close();
+        return lista;
+    }
 }

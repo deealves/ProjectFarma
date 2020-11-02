@@ -5,12 +5,15 @@
  */
 package br.com.SisFarma.Controller;
 
+import br.com.SisFarma.dao.ClienteDAO;
 import br.com.SisFarma.dao.ProdutoDAO;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Produtos;
+import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.Produto;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +31,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -49,6 +53,7 @@ public class ProdutoController implements Initializable {
     @FXML private Button btCadastrar;
     @FXML private TextField txPreco;
     @FXML private TextField txCodproduto;
+    @FXML private TextField txBuscar;
     @FXML private Button btRemover;
     @FXML private Button btEditar;
     private Produto selecionada;
@@ -114,6 +119,10 @@ public class ProdutoController implements Initializable {
                 Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });  
+        
+        txBuscar.setOnKeyReleased((KeyEvent e)-> {
+            buscarProduto();
+        });
         
         btEditar.setOnMouseClicked((MouseEvent e) ->{
             try {
@@ -273,6 +282,32 @@ public class ProdutoController implements Initializable {
             al.setHeaderText("Nenhum Produto Selecionado");
             al.show();
         }
+    }
+
+    private void buscarProduto() {
+       String busca = txBuscar.getText();
+        ClienteDAO dao = new ClienteDAO();
+        try {
+            List<Cliente> resultado = dao.buscar(busca);
+            initTable2(busca);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    private void initTable2(String busca) throws SQLException {
+        clmCodProduto.setCellValueFactory(new PropertyValueFactory("codproduto"));
+        clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        clmPreco.setCellValueFactory(new PropertyValueFactory("preco"));
+        clmFabricante.setCellValueFactory(new PropertyValueFactory("fabricante"));
+        clmDescricao.setCellValueFactory(new PropertyValueFactory("descricao"));
+        clmQuant.setCellValueFactory(new PropertyValueFactory("quant"));
+        tabela.setItems(buscaTabela(busca));
+    }
+    
+    private ObservableList<Produto> buscaTabela(String busca) throws SQLException {
+        ProdutoDAO dao = new ProdutoDAO();
+        return FXCollections.observableArrayList(dao.buscar(busca));
     }
     
 }

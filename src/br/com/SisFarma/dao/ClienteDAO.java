@@ -113,52 +113,20 @@ public class ClienteDAO {
           
     }
     
-    public Cliente buscar(int id) throws SQLException {
-        //Buscar um cliente com determinado código no BD
-        Cliente c = null;    
-        sql = "SELECT c.* FROM cliente c WHERE c.id = ?";
-        
-      
-            st = con.prepareStatement(sql);
-            st.setInt(1, id);
-        
-            rs = st.executeQuery();
 
-            if(rs.next()){
-                String nome = rs.getString("nomeC");
-                String cpf = rs.getString("cpf");
-                String rua = rs.getString("rua");
-                String cidade = rs.getString("cidade");
-                String estado = rs.getString("estado");
-                String cep = rs.getString("cep");
-                String telefone = rs.getString("telefone");
-                String email = rs.getString("email");
 
-                c = new Cliente();
-
-                c.setId(id);
-                c.setNomeC(nome);
-                c.setCpf(cpf);
-                c.setRua(rua);
-                c.setCidade(cidade);
-                c.setEstado(estado);
-                c.setCep(cep);
-                c.setTelefone(telefone);
-                c.setEmail(email);  
-            }
-            st.close();
-            rs.close();
-            con.close();
-        
-        return c;   
-    }
-    
-    public List<Cliente> buscar(String query) throws SQLException{
-        //Buscar cliente com determinado nome no BD
+     public List<Cliente> buscar(String query) throws SQLException{
         List<Cliente> lista = new ArrayList<>();
-        sql = "SELECT c.* FROM cliente c WHERE c.nome ILIKE ?";
+
+
         
+        sql = "select c.* from cliente c  where c.nomeC ilike ?";
+        st = con.prepareStatement(sql);
+        st.setString(1, query + '%');
         
+        ResultSet rs = st.executeQuery();
+        
+
             st = con.prepareStatement(sql);
             st.setString(1, query + '%');
          
@@ -193,6 +161,36 @@ public class ClienteDAO {
             rs.close();
             con.close();
        
+
+        while(rs.next()){
+            int id = rs.getInt(1);
+            String nomeC = rs.getString("nomeC");
+            String cpf = rs.getString("cpf");
+            String telefone = rs.getString("telefone");
+            String rua = rs.getString("rua");
+            String cidade = rs.getString("cidade");
+            String estado = rs.getString("estado");
+            String cep = rs.getString("cep");
+            String email = rs.getString("email");
+            
+            
+            Cliente c = new Cliente();
+            
+            c.setId(id);
+            c.setNomeC(nomeC);
+            c.setCpf(cpf);
+            c.setTelefone(telefone);
+            c.setRua(rua);
+            c.setCidade(cidade);
+            c.setEstado(estado);
+            c.setCep(cep);
+            c.setEmail(email);
+            
+            
+            lista.add(c);
+        }
+        con.close();
+
         return lista;
     }
     

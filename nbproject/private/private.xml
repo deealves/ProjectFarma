@@ -29,6 +29,11 @@
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/Fornecedor.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/Controller/MenuPrincipalController.java</file>
             <file>file:/C:/Users/diego/Desktop/Git/ProjectFarma/src/br/com/SisFarma/model/ClienteVenda.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/UsuarioController.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/dao/UsuarioDAO.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/dao/ProdutoDAO.java</file>
+            <file>file:/C:/Users/deeal/Documents/GitHub/ProjectFarma/src/br/com/SisFarma/Controller/ProdutoController.java</file>
+
         </group>
     </open-files>
 </project-private>

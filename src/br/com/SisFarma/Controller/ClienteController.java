@@ -17,6 +17,7 @@ import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +75,7 @@ public class ClienteController implements Initializable {
     @FXML private Button btVoltar;
     @FXML private ImageView imageCliente;
     @FXML private TextField textCep;
+    @FXML private TextField txBuscar;
     @FXML private Label labelCep;
     Cliente selecionado;
     //private ClienteVenda teste;
@@ -220,6 +222,10 @@ public class ClienteController implements Initializable {
                 editar();
             }
         });
+        
+        txBuscar.setOnKeyReleased((KeyEvent e)-> {
+            buscarProduto();
+        });
                 
         btRemover.setOnMouseClicked((Event e)->{
             try {
@@ -297,7 +303,7 @@ public class ClienteController implements Initializable {
     }
     
     public void initTable() throws SQLException {
-        columnNome.setCellValueFactory(new PropertyValueFactory("nome"));
+        columnNome.setCellValueFactory(new PropertyValueFactory("nomeC"));
         columnCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         columnTelefone.setCellValueFactory(new PropertyValueFactory("telefone"));
         tableCliente.setItems(atualizaTable());
@@ -452,5 +458,29 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    private void buscarProduto() {
+        String busca = txBuscar.getText();
+        ClienteDAO dao = new ClienteDAO();
+        try {
+            List<Cliente> resultado = dao.buscar(busca);
+            initTable2(busca);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    private void initTable2(String busca) throws SQLException {
+        columnNome.setCellValueFactory(new PropertyValueFactory("nomeC"));
+        columnCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
+        columnTelefone.setCellValueFactory(new PropertyValueFactory("telefone"));
+        tableCliente.setItems(buscaTabela(busca));
+    }
+    
+    private ObservableList<Cliente> buscaTabela(String busca) throws SQLException {
+        ClienteDAO dao = new ClienteDAO();
+        return FXCollections.observableArrayList(dao.buscar(busca));
+    }
+ }
    
-}
+
