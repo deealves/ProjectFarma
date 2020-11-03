@@ -43,7 +43,6 @@ public class RelatorioProdutoController implements Initializable {
      * Initializes the controller class.
      */
     @FXML private TableView<Produto> tableRelatorioProduto;
-    @FXML private TableColumn<Produto, Integer> clmRelatorioProdutoId;
     @FXML private TableColumn<Produto, Integer> clmRelatorioProdutoCodigo;
     @FXML private TableColumn<Produto, String> clmRelatorioProdutoNome;
     @FXML private TableColumn<Produto, Integer> clmRelatorioProdutoQuantidade;
@@ -77,7 +76,6 @@ public class RelatorioProdutoController implements Initializable {
     }    
     
     private void initTable() throws SQLException {
-        clmRelatorioProdutoId.setCellValueFactory(new PropertyValueFactory("id"));
         clmRelatorioProdutoCodigo.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmRelatorioProdutoNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmRelatorioProdutoPreco.setCellValueFactory(new PropertyValueFactory("preco"));

@@ -85,13 +85,31 @@ public class VendaController extends ClienteController implements Initializable 
     private int novo, quant2, valorAtual = 0;
     private final  Locale locale = new Locale("pt", "BR");
     private final  NumberFormat dinheiro;
-    private int teste;
+    private static int teste;
     private float teste2;
     private final List<Produto> produto = new ArrayList<>();
+    private static List<Produto> pro = new ArrayList<>();
     private Venda venda;
     private static int id_venda;
     private static int id_produto;
 
+    public static List<Produto> getPro() {
+        return pro;
+    }
+
+    public static void setPro(List<Produto> pro) {
+        VendaController.pro = pro;
+    }
+
+    public static int getTeste() {
+        return teste;
+    }
+
+    public static void setTeste(int teste) {
+        VendaController.teste = teste;
+    }
+    
+    
     public static int getId_produto() {
         return id_produto;
     }
@@ -261,7 +279,8 @@ public class VendaController extends ClienteController implements Initializable 
     }
 
     public void selecionarProduto() throws SQLException {
-        if(selecionada != null){    
+        if(selecionada != null){
+            pro.add(selecionada);
             novo = Integer.parseInt(txQuant.getText());
             Produto p = new Produto();
             p.setId(selecionada.getId());
@@ -273,6 +292,8 @@ public class VendaController extends ClienteController implements Initializable 
             p.setPreco(selecionada.getPreco() * novo);
             p.setFabricante(selecionada.getFabricante());
             p.setDescricao(selecionada.getDescricao());
+            teste = selecionada.getQuant();
+            System.out.println("Teste"+teste);
             quant2 = selecionada.getQuant();
             valorAtual = quant2 - novo;
             if(valorAtual < 0){
@@ -356,10 +377,16 @@ public class VendaController extends ClienteController implements Initializable 
         for(int i = 0; i < produto.size(); i++){
             //valorAux += produto.get(i).getPreco();
             quantAux += produto.get(i).getQuant();
-            
         }
         
+        DecimalFormat df = new DecimalFormat("0.0");
+        //DecimalFormat df = new DecimalFormat("0.00");
+        df.format(total);
+        //NumberFormat nf = NumberFormat.getInstance();
+        //nf.setMaximumFractionDigits(2);
         
+        //nf.format(total);
+   
         venda.setValor(total);
         venda.setQuant(quantAux);
         venda.setData(data);
@@ -421,10 +448,12 @@ public class VendaController extends ClienteController implements Initializable 
         System.out.println(venda.getValor());
         rvdesconto = total;
         float calculo = total - (total * desconto);
-        DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat df = new DecimalFormat("0.##");
         df.format(calculo);
+        String v = String.valueOf(calculo);
+        System.out.println(v);
         System.out.println(calculo);
-        venda.setValor(calculo);
+        venda.setValor(Float.parseFloat(v));
         txTotal.setText(String.valueOf(dinheiro.format(calculo)));
         total = calculo;
         Alert al = new Alert(Alert.AlertType.CONFIRMATION);

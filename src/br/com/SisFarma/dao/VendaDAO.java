@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,10 +43,12 @@ public class VendaDAO {
         return true;
     }
     public boolean delete(int v) throws SQLException{
-            sql = "DELETE FROM venda WHERE id=?";
+            sql = "delete from venda_produto where venda_produto.id_venda = ?;"
+                    + "DELETE FROM venda WHERE venda.id=?";
             con = ConnectionFactory.getConnection();
             stmt = con.prepareStatement(sql);
             stmt.setInt(1,v);
+            stmt.setInt(2, v);
             stmt.execute();
             stmt.close();
             con.close();

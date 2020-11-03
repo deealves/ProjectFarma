@@ -6,14 +6,20 @@
 package br.com.SisFarma.Controller;
 
 import static br.com.SisFarma.Controller.VendaController.getId_venda;
+import static br.com.SisFarma.Controller.VendaController.getPro;
+import static br.com.SisFarma.Controller.VendaController.getTeste;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.dao.ClienteDAO;
 import br.com.SisFarma.dao.ClienteVendaDAO;
+import br.com.SisFarma.dao.ProdutoDAO;
 import br.com.SisFarma.dao.VendaDAO;
 import br.com.SisFarma.gui.Vendas;
 import br.com.SisFarma.model.ClienteVenda;
+import br.com.SisFarma.model.ClienteVendaProperty;
+import br.com.SisFarma.model.Produto;
+import br.com.SisFarma.model.ProdutoVenda;
 import br.com.SisFarma.model.Venda;
 import java.net.URL;
 import java.sql.SQLException;
@@ -143,8 +149,7 @@ public class ClienteController implements Initializable {
                 }
             }
         });
-        
-        
+
         btCadastrar.setOnKeyPressed((KeyEvent e)->{
             if(e.getCode() == KeyCode.ENTER){
                 if(btCadastrar.getText().equals("Realizar Venda")){
@@ -171,6 +176,11 @@ public class ClienteController implements Initializable {
         btVoltar.setOnMouseClicked((Event e)->{
             if(btVoltar.getText().equals("Cancelar Venda")){
                 try {
+                    ProdutoDAO dao = new ProdutoDAO(); 
+                    Produto p = new Produto();
+                    for(int i = 0; i < getPro().size(); i++){
+                        dao.update(getPro().get(i));
+                    }
                     cancelavenda();
                     abreVenda();
                 } catch (SQLException ex) {
@@ -413,8 +423,16 @@ public class ClienteController implements Initializable {
         teste.getVenda().setId(getId_venda());
         
         cv.insertClienteVenda(teste);
-       
         
+        ProdutoVenda p = new ProdutoVenda();
+        p.setProduto(teste.getVenda().getP());
+        
+        ClienteVendaProperty cp = new ClienteVendaProperty(teste.getVenda(), selecionado, p);
+        for(int i = 0; i < cv.listar().size(); i++){
+            cp = cv.listar().get(i);
+        }
+        
+        System.out.println("U Venda: "+cp);
        /* try {
             cadastraCliente();
         } catch (SQLException ex) {
@@ -447,6 +465,7 @@ public class ClienteController implements Initializable {
     private void cancelavenda() throws SQLException {
         VendaDAO dao = new VendaDAO();
         dao.delete(getId_venda());
+        
     }
 
     private void abreVenda() {

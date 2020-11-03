@@ -6,12 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.SisFarma.Controller.RelatorioFornecedorController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SisFarma.Controller.RelatorioFornecedorController">
    <children>
       <TableView fx:id="tableRelatorioFornecedor" prefHeight="312.0" prefWidth="600.0">
         <columns>
-          <TableColumn fx:id="clmRelatorioFornecedorId" prefWidth="49.0" text="ID" />
           <TableColumn fx:id="clmRelatorioFornecedorNome" prefWidth="86.0" text="Nome" />
             <TableColumn fx:id="clmRelatorioFornecedorCnpj" prefWidth="75.0" text="CNPJ" />
             <TableColumn fx:id="clmRelatorioFornecedorRua" prefWidth="84.0" text="Rua" />

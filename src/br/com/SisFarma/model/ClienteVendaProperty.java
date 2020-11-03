@@ -19,26 +19,37 @@ import javafx.beans.property.SimpleStringProperty;
  * @author diego
  */
 public class ClienteVendaProperty {
-    private SimpleIntegerProperty id;
+    private final SimpleIntegerProperty id;
     private final SimpleIntegerProperty quant;
     private final SimpleFloatProperty valor;
     private final SimpleObjectProperty <LocalDate> data;
     private final SimpleStringProperty nomeV;
     private final SimpleStringProperty nomeC;
+    private final SimpleStringProperty produto;
     
-    private Venda venda;
+    /*private Venda venda;
     private Cliente cliente;
-  
+    */
 
-    public ClienteVendaProperty(Venda venda, Cliente cliente) {
+    public ClienteVendaProperty(Venda venda, Cliente cliente, ProdutoVenda produto) {
         this.id = new SimpleIntegerProperty(venda.getId());
         this.quant = new SimpleIntegerProperty(venda.getQuant());
         this.valor = new SimpleFloatProperty(venda.getValor());
         this.data = new SimpleObjectProperty <>(venda.getData());
         this.nomeV = new SimpleStringProperty(venda.getU().getNome());
         this.nomeC = new SimpleStringProperty(cliente.getNomeC());
+        this.produto = new SimpleStringProperty(produto.getProduto().getNome());
     }
 
+    public String getProduto() {
+        return produto.get();
+    }
+
+    public void setProduto(ProdutoVenda produto) {
+        this.produto.set(produto.getProduto().getNome());
+    }
+    
+ 
     public int getId() {
         return id.get();
     }
@@ -95,7 +106,8 @@ public class ClienteVendaProperty {
                 .append(" | ").append(valor)
                 .append(" | ").append(data)
                 .append(" | ").append(nomeV)
-                .append(" | ").append(nomeC);
+                .append(" | ").append(nomeC)
+                .append(" | ").append(produto);
 
   
         return sb.toString();

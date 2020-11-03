@@ -43,7 +43,6 @@ public class RelatorioFornecedorController implements Initializable {
      * Initializes the controller class.
      */
     @FXML private TableView<Fornecedor> tableRelatorioFornecedor;
-    @FXML private TableColumn<Fornecedor, Integer> clmRelatorioFornecedorId;
     @FXML private TableColumn<Fornecedor, String> clmRelatorioFornecedorNome;
     @FXML private TableColumn<Fornecedor, String> clmRelatorioFornecedorCnpj;
     @FXML private TableColumn<Fornecedor, String> clmRelatorioFornecedorRua;
@@ -78,7 +77,6 @@ public class RelatorioFornecedorController implements Initializable {
         });
     }    
     private void initTable() throws SQLException {
-        clmRelatorioFornecedorId.setCellValueFactory(new PropertyValueFactory("id"));
         clmRelatorioFornecedorNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmRelatorioFornecedorCnpj.setCellValueFactory(new PropertyValueFactory("cnpj"));
         clmRelatorioFornecedorRua.setCellValueFactory(new PropertyValueFactory("rua"));

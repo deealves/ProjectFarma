@@ -8,6 +8,7 @@ package br.com.SisFarma.dao;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.ClienteVendaProperty;
+import br.com.SisFarma.model.ProdutoVenda;
 import br.com.SisFarma.model.Usuario;
 import br.com.SisFarma.model.Venda;
 import br.com.SisFarma.util.ConnectionFactory;
@@ -46,20 +47,20 @@ public class ClienteVendaDAO {
     }
     
    public List<ClienteVendaProperty> listar() throws SQLException{
-        sql = "select venda.id, venda.quant, venda.valor, venda.data, usuario.nome,cliente.nomeC \n" +
-        "from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda\n" +
-        "and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor;";
+        sql = "select venda.quant, round(cast(venda.valor as numeric), 2), venda.data, usuario.nome, cliente.nomeC, STRING_AGG(produto.nome, ',') as produto\n" +
+        "from produto, venda, cliente, cliente_venda, usuario, venda_produto where venda.id = venda_produto.id_venda \n" +
+        "and produto.id = venda_produto.id_produto and venda.id = cliente_venda.id_venda\n" +
+        "and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id\n" +
+        "group by (venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC) order by venda.data;";
         con = ConnectionFactory.getConnection();
         stmt = con.prepareStatement(sql);
         rs = stmt.executeQuery();
 
         List<ClienteVendaProperty> vendas = new ArrayList<>();
         while (rs.next()){
-            int id = rs.getInt("id");
-            System.out.println(id);
             int quant = rs.getInt("quant");
             System.out.println(quant);
-            float valor = rs.getFloat("valor");
+            float valor = rs.getFloat("round");
             System.out.println(valor);
             LocalDate data = rs.getDate("data").toLocalDate();
             System.out.println(data);
@@ -67,12 +68,14 @@ public class ClienteVendaDAO {
             System.out.println(nomeV);
             String nomeC = rs.getString("nomeC");
             System.out.println(nomeC);
+            String produto = rs.getString("produto");
             
             ClienteVenda cv = new ClienteVenda();
             Venda v = new Venda();
             Cliente c = new Cliente();
+            ProdutoVenda pv = new ProdutoVenda();
             
-            v.setId(id);
+            
             v.setQuant(quant);
             v.setValor(valor);
             v.setData(data);
@@ -80,10 +83,12 @@ public class ClienteVendaDAO {
             
             c.setNomeC(nomeC);
             
+            pv.getProduto().setNome(produto);
+            
             cv.setCliente(c);
             cv.setVenda(v);
    
-            cp = new ClienteVendaProperty(v, c);
+            cp = new ClienteVendaProperty(v, c, pv);
 
             vendas.add(cp);
             

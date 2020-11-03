@@ -43,7 +43,6 @@ public class RelatorioUsuarioController implements Initializable {
      * Initializes the controller class.
      */
     @FXML private TableView<Usuario> tableRelatorioUsuario;
-    @FXML private TableColumn<Usuario, Integer> clmRelatorioUsuarioId;
     @FXML private TableColumn<Usuario, String> clmRelatorioUsuarioNome;
     @FXML private TableColumn<Usuario, String> clmRelatorioUsuarioCpf;
     @FXML private TableColumn<Usuario, String> clmRelatorioUsuarioUsuario;
@@ -74,7 +73,6 @@ public class RelatorioUsuarioController implements Initializable {
     }    
     
     private void initTable() throws SQLException {
-        clmRelatorioUsuarioId.setCellValueFactory(new PropertyValueFactory("id"));
         clmRelatorioUsuarioNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmRelatorioUsuarioCpf.setCellValueFactory(new PropertyValueFactory("cpf"));
         clmRelatorioUsuarioUsuario.setCellValueFactory(new PropertyValueFactory("usuario"));

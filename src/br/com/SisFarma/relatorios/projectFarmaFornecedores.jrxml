@@ -76,16 +76,7 @@
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="c80a145c-5a15-4414-a749-0282ab192d1b"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="-10" y="0" width="51" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="f26b66c5-7794-4ac3-b0e1-71796db806f5">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f77fadd0-c17d-475e-90b9-cf7a1164b11b"/>
-				</reportElement>
-				<textElement textAlignment="Center">
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[ID]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="46" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="5ad619ec-607d-4149-beeb-49026deaca4c">
+				<reportElement mode="Opaque" x="0" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="5ad619ec-607d-4149-beeb-49026deaca4c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="733aa059-90c9-458d-b4cb-0648f04436ee"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -94,7 +85,7 @@
 				<text><![CDATA[Nome]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="112" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="fff7e3fb-adff-4702-8a4c-65d69f9d747d">
+				<reportElement mode="Opaque" x="66" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="fff7e3fb-adff-4702-8a4c-65d69f9d747d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ae30adf7-302a-477b-9bae-b050edbb4c6c"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -103,7 +94,7 @@
 				<text><![CDATA[CNPJ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="178" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="f6fa4e95-cbae-42d4-93d0-1badb77929bd">
+				<reportElement mode="Opaque" x="132" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="f6fa4e95-cbae-42d4-93d0-1badb77929bd">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c515e491-c1b6-48d0-80c5-1d8586cefc17"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -112,7 +103,7 @@
 				<text><![CDATA[E-mail]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="244" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="4fbf1e9d-f1bc-4a17-80e0-52a5538d3676">
+				<reportElement mode="Opaque" x="198" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="4fbf1e9d-f1bc-4a17-80e0-52a5538d3676">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c4d62897-02cb-4b3b-8d88-b9a9c00b9b8b"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -121,7 +112,7 @@
 				<text><![CDATA[Telefone]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="310" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="fb361a5e-d701-4c46-b81a-5d34baac1770">
+				<reportElement mode="Opaque" x="264" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="fb361a5e-d701-4c46-b81a-5d34baac1770">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="507be579-155c-4808-877f-799dfcb53186"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -130,7 +121,7 @@
 				<text><![CDATA[Rua]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="376" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="cf4a9b42-01e3-4876-8939-d199a5f6a50d">
+				<reportElement mode="Opaque" x="330" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="cf4a9b42-01e3-4876-8939-d199a5f6a50d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f76d93c1-4393-41d0-a0f5-00d4146c96a8"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -139,7 +130,7 @@
 				<text><![CDATA[Cidade]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="442" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="16bba395-6b3e-4a4f-a8e2-4d30851c552d">
+				<reportElement mode="Opaque" x="396" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="16bba395-6b3e-4a4f-a8e2-4d30851c552d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3f49489-8020-4788-bf64-83470de464e6"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -148,7 +139,7 @@
 				<text><![CDATA[Estado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="508" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="e6e512e6-8af8-4d39-979f-769db10c1230">
+				<reportElement mode="Opaque" x="462" y="0" width="61" height="20" forecolor="#000000" backcolor="#F2F2F2" uuid="e6e512e6-8af8-4d39-979f-769db10c1230">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac460f4b-6676-40db-97fb-642fb0c2b810"/>
 				</reportElement>
 				<textElement textAlignment="Center">
@@ -159,18 +150,12 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="4f969b90-bafe-43ce-8a35-8a909651e9e7"/>
+			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="-10" y="-1" width="51" height="20" uuid="58676220-1e69-4451-99af-b59e836646b1">
-					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f77fadd0-c17d-475e-90b9-cf7a1164b11b"/>
-				</reportElement>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="46" y="-1" width="61" height="20" uuid="ef0d7435-66a3-4f13-bfa6-90a66722244d">
+				<reportElement x="0" y="-1" width="61" height="20" uuid="ef0d7435-66a3-4f13-bfa6-90a66722244d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="733aa059-90c9-458d-b4cb-0648f04436ee"/>
 				</reportElement>
 				<textElement>
@@ -179,7 +164,7 @@
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="112" y="-1" width="61" height="20" uuid="48683ed9-4652-47f6-8e60-a06ee9abbf8d">
+				<reportElement x="66" y="-1" width="61" height="20" uuid="48683ed9-4652-47f6-8e60-a06ee9abbf8d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ae30adf7-302a-477b-9bae-b050edbb4c6c"/>
 				</reportElement>
 				<textElement>
@@ -188,7 +173,7 @@
 				<textFieldExpression><![CDATA[$F{cnpj}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="178" y="-1" width="61" height="20" uuid="7573bdfb-84ce-4718-b4ed-caf5c26f5dfc">
+				<reportElement x="132" y="-1" width="61" height="20" uuid="7573bdfb-84ce-4718-b4ed-caf5c26f5dfc">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c515e491-c1b6-48d0-80c5-1d8586cefc17"/>
 				</reportElement>
 				<textElement>
@@ -197,7 +182,7 @@
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="244" y="-1" width="61" height="20" uuid="29218388-8e48-4b9b-8bae-2c487b5fc8ca">
+				<reportElement x="198" y="-1" width="61" height="20" uuid="29218388-8e48-4b9b-8bae-2c487b5fc8ca">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c4d62897-02cb-4b3b-8d88-b9a9c00b9b8b"/>
 				</reportElement>
 				<textElement>
@@ -206,7 +191,7 @@
 				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="310" y="-1" width="61" height="20" uuid="24502881-99ba-4a4d-9567-66766a1df60b">
+				<reportElement x="264" y="-1" width="61" height="20" uuid="24502881-99ba-4a4d-9567-66766a1df60b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="507be579-155c-4808-877f-799dfcb53186"/>
 				</reportElement>
 				<textElement>
@@ -215,7 +200,7 @@
 				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="376" y="-1" width="61" height="20" uuid="8cb5bc2c-e104-4ca7-a98e-5f613ae01d40">
+				<reportElement x="330" y="-1" width="61" height="20" uuid="8cb5bc2c-e104-4ca7-a98e-5f613ae01d40">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f76d93c1-4393-41d0-a0f5-00d4146c96a8"/>
 				</reportElement>
 				<textElement>
@@ -224,7 +209,7 @@
 				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="442" y="-1" width="61" height="20" uuid="aa55d1eb-79b9-45d9-837d-585b3b05a7bf">
+				<reportElement x="396" y="-1" width="61" height="20" uuid="aa55d1eb-79b9-45d9-837d-585b3b05a7bf">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3f49489-8020-4788-bf64-83470de464e6"/>
 				</reportElement>
 				<textElement>
@@ -233,7 +218,7 @@
 				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="508" y="-1" width="61" height="20" uuid="0e5ca1d2-b853-4c96-8cd8-b4f3ed1bc563">
+				<reportElement x="462" y="-1" width="61" height="20" uuid="0e5ca1d2-b853-4c96-8cd8-b4f3ed1bc563">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac460f4b-6676-40db-97fb-642fb0c2b810"/>
 				</reportElement>
 				<textElement>

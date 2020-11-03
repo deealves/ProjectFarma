@@ -6,17 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.SisFarma.Controller.RelatorioVendaController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SisFarma.Controller.RelatorioVendaController">
    <children>
       <TableView fx:id="tableRelatorioVenda" layoutX="7.0" layoutY="7.0" prefHeight="312.0" prefWidth="600.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="clmRelatorioVendaId" prefWidth="54.0" text="ID" />
-          <TableColumn fx:id="clmRelatorioVendaQuantidade" prefWidth="77.0" text="Quantidade" />
-            <TableColumn fx:id="clmRelatorioVendaValor" prefWidth="75.0" text="Valor" />
-            <TableColumn fx:id="clmRelatorioVendaData" prefWidth="102.0" text="Data" />
-            <TableColumn fx:id="clmRelatorioVendaVendedor" prefWidth="142.0" text="Vendedor" />
-            <TableColumn fx:id="clmRelatorioVendaCliente" prefWidth="149.0" text="Cliente" />
+          <TableColumn fx:id="clmRelatorioVendaQuantidade" prefWidth="87.0" text="Quantidade" />
+            <TableColumn fx:id="clmRelatorioVendaValor" prefWidth="65.0" text="Valor" />
+            <TableColumn fx:id="clmRelatorioVendaData" prefWidth="85.0" text="Data" />
+            <TableColumn fx:id="clmRelatorioVendaVendedor" prefWidth="94.0" text="Vendedor" />
+            <TableColumn fx:id="clmRelatorioVendaCliente" prefWidth="120.0" text="Cliente" />
+            <TableColumn fx:id="clmRelatorioVendaProduto" prefWidth="148.0" text="Produtos" />
         </columns>
       </TableView>
       <Button fx:id="btRelatorioVendaVoltar" layoutX="306.0" layoutY="345.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FF6347;" text="Voltar" textFill="WHITE" AnchorPane.bottomAnchor="30.0">

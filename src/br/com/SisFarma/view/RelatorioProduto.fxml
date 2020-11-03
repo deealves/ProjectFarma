@@ -6,18 +6,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f2f2f2;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.SisFarma.Controller.RelatorioProdutoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f2f2f2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.SisFarma.Controller.RelatorioProdutoController">
    <children>
       <TableView fx:id="tableRelatorioProduto" layoutX="171.0" layoutY="24.0" prefHeight="312.0" prefWidth="600.0" AnchorPane.bottomAnchor="88.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-            <TableColumn fx:id="clmRelatorioProdutoId" prefWidth="50.0" text="ID" />
           <TableColumn fx:id="clmRelatorioProdutoCodigo" text="Código" />
           <TableColumn fx:id="clmRelatorioProdutoNome" prefWidth="85.0" text="Nome" />
             <TableColumn fx:id="clmRelatorioProdutoQuantidade" prefWidth="87.0" text="Quantidade" />
-            <TableColumn fx:id="clmRelatorioProdutoDescricao" prefWidth="119.0" text="Descrição" />
-            <TableColumn fx:id="clmRelatorioProdutoFabricante" prefWidth="93.0" text="Fabricante" />
-            <TableColumn fx:id="clmRelatorioProdutoPreco" prefWidth="85.0" text="Preço" />
+            <TableColumn fx:id="clmRelatorioProdutoDescricao" prefWidth="126.0" text="Descrição" />
+            <TableColumn fx:id="clmRelatorioProdutoFabricante" prefWidth="137.0" text="Fabricante" />
+            <TableColumn fx:id="clmRelatorioProdutoPreco" prefWidth="84.0" text="Preço" />
         </columns>
       </TableView>
       <Button fx:id="btRelatorioProdutoVoltar" layoutX="306.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="156.0" style="-fx-background-color: #FF6347;" text="Voltar" textFill="WHITE" AnchorPane.bottomAnchor="30.0">
