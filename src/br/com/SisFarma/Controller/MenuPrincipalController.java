@@ -14,6 +14,7 @@ import br.com.SisFarma.gui.Fornecedores;
 import br.com.SisFarma.gui.Login;
 import br.com.SisFarma.gui.MenuPrincipal;
 import br.com.SisFarma.gui.Produtos;
+import br.com.SisFarma.gui.Sobre;
 import br.com.SisFarma.gui.Usuarios;
 import br.com.SisFarma.gui.Vendas;
 import java.io.IOException;
@@ -35,6 +36,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -61,6 +63,7 @@ public class MenuPrincipalController implements Initializable {
     @FXML private MenuItem menuItemRelatorioCliente;
     @FXML private MenuItem menuItemRelatorioFornecedor;
     @FXML private MenuItem menuItemRelatorioVenda;
+    @FXML private MenuItem menuItemSobre;
     @FXML private AnchorPane anchorPane;
     @FXML private Pane pane;
     @FXML private Label lbUsuario;
@@ -170,6 +173,14 @@ public class MenuPrincipalController implements Initializable {
             }
         });
         
+        menuItemSobre.setOnAction((ActionEvent e)->{
+            try {
+                handleMenuItemSobre(e);
+            } catch (IOException ex) {
+                Logger.getLogger(MenuPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+        
 
 }
     
@@ -213,6 +224,16 @@ public class MenuPrincipalController implements Initializable {
     public void handleMenuItemRelatorioVenda(ActionEvent e) throws IOException{ 
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("/br/com/SisFarma/view/RelatorioVenda.fxml"));
         anchorPane.getChildren().setAll(a);
+    }
+    
+    @FXML
+    public void handleMenuItemSobre(ActionEvent e) throws IOException{ 
+        Sobre pr = new Sobre();
+        try {
+            pr.start(new Stage());
+        } catch (Exception ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void fecha(){

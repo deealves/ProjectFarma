@@ -34,11 +34,11 @@ public class ProdutoDAOTest {
     @Test
     public void testInsert() throws Exception {
         Produto p = new Produto();
-        
+ 
         p.setCodproduto(22345);
         p.setNome("Amoxicilina");
         p.setPreco(15);
-        p.setFabricante("União Química Farmacêutica Nacional S.A");
+        p.setFabricante("União Química Farmacêutica Nacional S.AT");
         p.setDescricao("Recomendado para infecção urinária");
         p.setQuant(20); 
         
@@ -52,7 +52,13 @@ public class ProdutoDAOTest {
     public void testUpdate() throws Exception {
         Produto p = new Produto();
         
-        p.setId(2);
+        int aux = 0;
+        for(int i = 1; i < dao.listar().size(); i++){
+            aux = dao.listar().get(i).getId();
+        }
+        p.setId(aux);
+        
+        p.setId(aux);
         p.setCodproduto(454343);
         p.setNome("Cloroquina");
         p.setPreco(40);
@@ -70,7 +76,12 @@ public class ProdutoDAOTest {
     public void testDelete() throws Exception {
         Produto p = new Produto();
         
-        p.setId(1);
+        int aux = 0;
+        for(int i = 1; i < dao.listar().size(); i++){
+            aux = dao.listar().get(i).getId();
+        }
+        System.out.println(aux);
+        p.setId(aux);
         
         Assert.assertFalse(!(dao.delete(p)));
     }

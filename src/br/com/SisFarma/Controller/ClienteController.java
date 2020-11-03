@@ -114,9 +114,9 @@ public class ClienteController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        textNome.setOnMouseClicked((Event e) ->{
-            btCadastrar.setText("Cadastrar");
-        });
+        /*textNome.setOnMouseClicked((Event e) ->{
+        btCadastrar.setText("Cadastrar");
+        });*/
         btCadastrar.setOnMouseClicked((Event e)->{
             if(btCadastrar.getText().equals("Realizar Venda")){
                 try {
