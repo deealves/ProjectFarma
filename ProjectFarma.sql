@@ -18,13 +18,8 @@ CREATE TABLE usuario (
 		descricao varchar(50) not null,
 		fabricante varchar(50) not null,
 		preco float not null,
-		id_venda int not null,
-		id_cliente int not null,
-		primary key (id),
-		
-		foreign key (id_venda) references venda (id),
-		foreign key (id_cliente) references cliente (id)
-		
+		primary key (id)
+	
 	);
 	
 	CREATE TABLE fornecedor (
@@ -62,6 +57,7 @@ CREATE TABLE usuario (
 		id serial not null,
 		quant int not null,
 		data date not null,
+		valor float not null,
 		id_usuario int not null,
 		primary key (id),
 		
@@ -75,7 +71,7 @@ CREATE TABLE usuario (
 		id_venda int not null,
 		primary key (id_cliente, id_venda),
 		
-		foreign key (id_cliente) references venda (id),
+		foreign key (id_cliente) references cliente (id),
 		foreign key (id_venda) references venda (id)
 	
 	);
@@ -121,6 +117,8 @@ CREATE TABLE usuario (
 	alter table produto add column id_cliente int;
 	alter table venda add column id_produto int;
 	alter table venda add foreign key (id_produto) references produto (id);
+	alter table venda drop column id_produto;
+	alter table venda drop foreign key id_produto;
 	alter table venda add column id_cliente int;
 	alter table venda add foreign key (id_cliente) references cliente (id);
 	alter table venda drop column id_cliente;
@@ -152,10 +150,40 @@ CREATE TABLE usuario (
 	from venda, cliente, cliente_venda, usuario where venda.id = cliente_venda.id_venda
 	and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id order by venda.valor;
 	
-	select produto.nome, venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC
-	from produto, venda, cliente, cliente_venda, usuario where venda.id = produto.id_venda and cliente.id = produto.id_cliente
-	order by venda.valor;
+	select venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC, STRING_AGG(produto.nome, ',') as produto
+	from produto, venda, cliente, cliente_venda, usuario, venda_produto where venda.id = venda_produto.id_venda 
+	and produto.id = venda_produto.id_produto and venda.id = cliente_venda.id_venda
+	and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id
+	group by (venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC) order by venda.data;
+	
+	select venda.quant, round(cast(venda.valor as numeric), 2), venda.data, usuario.nome, cliente.nomeC, STRING_AGG(produto.nome, ',') as produto
+	from produto, venda, cliente, cliente_venda, usuario, venda_produto where venda.id = venda_produto.id_venda 
+	and produto.id = venda_produto.id_produto and venda.id = cliente_venda.id_venda
+	and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id
+	group by (venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC) order by venda.data;
+	
+	select venda.id, string_agg(produto.nome, ', ') as produto from produto, venda, venda_produto where venda.id = venda_produto.id_venda
+	group by (venda.id);
+	
+	select venda.quant, round(cast(venda.valor as numeric), 2), venda.data, usuario.nome, cliente.nomeC, STRING_AGG(produto.nome, ',') as produto
+	from produto, venda, cliente, cliente_venda, usuario, venda_produto where venda.id = venda_produto.id_venda 
+	and produto.id = venda_produto.id_produto and venda.id = cliente_venda.id_venda
+	and cliente_venda.id_cliente = cliente.id and venda.id_usuario = usuario.id and venda.id in (SELECT MAX(id) FROM venda)
+	group by (venda.quant, venda.valor, venda.data, usuario.nome, cliente.nomeC) order by venda.data;
 	
 	alter table cliente rename nome to nomeC
 	
 	insert into venda (id, quant, data, id_usuario, valor, id_produto) values ()
+	
+	select trunc(cast(float8 (venda.valor) as numeric), 2) from venda where venda.id = 21;
+	insert into venda (id, quant, data, id_usuario, trunc(cast(float8 (valor)))) values ('45', 3, '2020-11-03', '2', 4.5788);
+	SELECT to_char(float8 'venda.valor', 'FM999999999.00') from venda where venda.id = 21;
+	
+	delete from venda_produto where venda_produto.id_venda in (select venda.id from venda where venda.id_usuario = 5);
+    delete from venda where venda.id_usuario = 5;
+    DELETE FROM usuario WHERE id = 5;
+	
+	select * from usuario
+	
+	SELECT COUNT(*) from pg_stat_activity;
+	select min_val, max_val from pg_settings where name='max_connections';

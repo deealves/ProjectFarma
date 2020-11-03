@@ -286,9 +286,9 @@ public class ProdutoController implements Initializable {
 
     private void buscarProduto() {
        String busca = txBuscar.getText();
-        ClienteDAO dao = new ClienteDAO();
+        ProdutoDAO dao = new ProdutoDAO();
         try {
-            List<Cliente> resultado = dao.buscar(busca);
+            List<Produto> resultado = dao.buscar(busca);
             initTable2(busca);
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);

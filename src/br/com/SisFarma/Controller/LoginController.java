@@ -119,10 +119,20 @@ public class LoginController implements Initializable {
     public void logar() throws SQLException{
         
         UsuarioDAO dao = new UsuarioDAO();
+        
+        System.out.println(dao.listar());
         List<Usuario> usuarios = dao.listar();
+        System.out.println(usuarios.size());
+        if(txEmail.getText().equals("") || txSenha.getText().equals("") || usuarios.size() == 0){
+            Alert al = new Alert(AlertType.ERROR);              
+            al.setHeaderText("Login Incorreto");
+            al.setContentText("Usuario ou Senha Incorreto");
+            al.show();
+        }
         for(int x = 0; x< usuarios.size(); x++){
             if(txEmail.getText().equals(usuarios.get(x).getUsuario()) && txSenha.getText().equals(usuarios.get(x).getSenha())){
                 id_usuario = usuarios.get(x).getId();
+                System.out.println(id_usuario);
                 nomeUsuario = usuarios.get(x).getUsuario();
                 MenuPrincipal p = new MenuPrincipal();
                 x = usuarios.size();

@@ -60,7 +60,7 @@ public class VendaController extends ClienteController implements Initializable 
     @FXML private TableView<Produto> tabela1;
     @FXML private TableColumn<Produto, String> clmNome2;
     @FXML private Button btSelecionar;
-    @FXML private TableColumn<Produto, Integer> clmId1;
+   //@FXML private TableColumn<Produto, Integer> clmId1;
     @FXML private TableColumn<Produto, Integer> clmQuant1;
     //@FXML private TableColumn<Produto, Integer> clmId2;
     @FXML private TableColumn<Produto, Integer> clmQuant2;
@@ -255,7 +255,7 @@ public class VendaController extends ClienteController implements Initializable 
 }    
 
     public void initTable() throws SQLException {
-        clmId1.setCellValueFactory(new PropertyValueFactory("id"));
+        //clmId1.setCellValueFactory(new PropertyValueFactory("id"));
         clmCodigo1.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmNome1.setCellValueFactory(new PropertyValueFactory("nome"));
         clmPreco1.setCellValueFactory(new PropertyValueFactory("preco"));

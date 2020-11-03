@@ -52,7 +52,7 @@ public class ProdutoDAOTest {
     public void testUpdate() throws Exception {
         Produto p = new Produto();
         
-        p.setId(1);
+        p.setId(2);
         p.setCodproduto(454343);
         p.setNome("Cloroquina");
         p.setPreco(40);
@@ -70,7 +70,7 @@ public class ProdutoDAOTest {
     public void testDelete() throws Exception {
         Produto p = new Produto();
         
-        p.setId(12);
+        p.setId(1);
         
         Assert.assertFalse(!(dao.delete(p)));
     }

@@ -39,14 +39,14 @@ public class ClienteDAOTest {
         Cliente c = new Cliente();
         
        
-        c.setNomeC("Marcio");
-        c.setCpf("23231");
-        c.setCep("34232");
-        c.setCidade("SM");
+        c.setNomeC("Marcio Medeiros");
+        c.setCpf("232.313.474-23");
+        c.setCep("55625-000");
+        c.setCidade("São Mamede");
         c.setEstado("PB");
-        c.setRua("Janu");
-        c.setEmail("MArcio@");
-        c.setTelefone("32312");
+        c.setRua("Janúncio Nóbrega");
+        c.setEmail("marcio.medeiros@gmail.com");
+        c.setTelefone("(83) 98623-3940");
         
         Assert.assertFalse(!(dao.inserir(c)));
         
@@ -72,15 +72,15 @@ public class ClienteDAOTest {
     public void testEditar() throws SQLException{
         Cliente c = new Cliente();
        
-        c.setId(10);
-        c.setNomeC("Joao");
-        c.setCpf("123");
-        c.setCep("5555");
-        c.setCidade("SM");
+        c.setId(1);
+        c.setNomeC("Erick Garcia");
+        c.setCpf("123.562.483-12");
+        c.setCep("58625-000");
+        c.setCidade("São Mamede");
         c.setEstado("PB");
-        c.setRua("Janu");
-        c.setEmail("ddd@");
-        c.setTelefone("5323");
+        c.setRua("Lindemberge Trindade");
+        c.setEmail("erickgarcia@gmail.com");
+        c.setTelefone("(81) 99962-3530");
         
         Assert.assertFalse(!(dao.editar(c)));
     }
@@ -92,7 +92,7 @@ public class ClienteDAOTest {
     
     @Test
     public void testBuscar_String() throws SQLException{
-        List<Cliente> teste = dao.buscar("Irineu");
+        List<Cliente> teste = dao.buscar("João");
         
         Assert.assertNotNull(teste);
     }
@@ -106,7 +106,7 @@ public class ClienteDAOTest {
         
         Cliente c = new Cliente();
         
-        c.setId(12);
+        c.setId(3);
         
         Assert.assertFalse(!(dao.remover(c)));
     }

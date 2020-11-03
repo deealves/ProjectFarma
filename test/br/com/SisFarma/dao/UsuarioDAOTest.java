@@ -35,8 +35,9 @@ public class UsuarioDAOTest {
     public void testInsert() throws Exception {
         Usuario u = new Usuario();
         
-        u.setNome("Diego");
-        u.setCpf("126.343.233-23");
+        u.setId(2);
+        u.setNome("Denneys");
+        u.setCpf("101.343.233-23");
         u.setUsuario("admin");
         u.setSenha("admin");
         
@@ -50,6 +51,7 @@ public class UsuarioDAOTest {
     public void testUpdate() throws Exception {
         Usuario u = new Usuario();
         
+        u.setId(4);
         u.setNome("Diego");
         u.setCpf("126.343.233-23");
         u.setUsuario("diegobmed");
@@ -65,7 +67,7 @@ public class UsuarioDAOTest {
     public void testDelete() {
         Usuario u = new Usuario();
         
-        u.setId(1);
+        u.setId(4);
         
         Assert.assertFalse(!(dao.delete(u)));
     }

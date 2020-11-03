@@ -129,14 +129,17 @@ public class ClienteController implements Initializable {
                            al.setHeaderText("Cadastre um Cliente ou Selecione um Cliente");
                            al.show(); 
                         }
-                    }else{
-                        abreMenu();
+                    }else{     
                         realizarVenda();
+                        abreMenu();
                         Alert al = new Alert(AlertType.CONFIRMATION);
                         al.setHeaderText("Venda Realizada!");
                         al.show();
+                        imprimir();
                     }
                 } catch (SQLException ex) {
+                    Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JRException ex) {
                     Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }else{
@@ -165,7 +168,12 @@ public class ClienteController implements Initializable {
                         //abreMenu();
                         Alert al = new Alert(AlertType.CONFIRMATION);
                         al.setHeaderText("Venda Realizada!");
-                        al.show();    
+                        al.show();
+                        try {
+                            imprimir();
+                        } catch (JRException ex) {
+                            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     } catch (SQLException ex) {
                         Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -435,16 +443,12 @@ public class ClienteController implements Initializable {
         
         
         
-        ClienteVendaProperty cp = new ClienteVendaProperty();
+        /*ClienteVendaProperty cp = new ClienteVendaProperty();
         for(int i = 0; i < cv.listar().size(); i++){
-            cp = cv.listar().get(i);
-        }
-        try {
-            imprimir();
-        } catch (JRException ex) {
-            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("U Venda: "+cp);
+        cp = cv.listar().get(i);
+        }*/
+       
+        //System.out.println("U Venda: "+cp);
        /* try {
             cadastraCliente();
         } catch (SQLException ex) {

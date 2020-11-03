@@ -58,6 +58,7 @@ public class UsuarioDAO {
      
      public boolean delete(Usuario u){
         sql = "delete from venda_produto where venda_produto.id_venda in (select venda.id from venda where venda.id_usuario = ?);"
+                +"delete from cliente_venda where cliente_venda.id_venda in (select venda.id from venda where venda.id_usuario = ?);"
                 + "delete from venda where venda.id_usuario = ?;"
                 + "DELETE FROM usuario WHERE id = ?;";
         try {
@@ -65,6 +66,7 @@ public class UsuarioDAO {
             stmt.setInt(1,u.getId());
             stmt.setInt(2,u.getId());
             stmt.setInt(3,u.getId());
+            stmt.setInt(4,u.getId());
             stmt.execute();
             stmt.close();
             con.close();
@@ -76,7 +78,7 @@ public class UsuarioDAO {
     }
      
      public List<Usuario> listar() throws SQLException{
-         sql = "select * from usuario ";
+         sql = "select * from usuario";
          con = ConnectionFactory.getConnection();
          stmt = con.prepareStatement(sql);
          ResultSet rs = stmt.executeQuery();

@@ -42,7 +42,7 @@ public class FornecedorDAOTest {
         f.setCidade("Jaboatão dos Guararapes");
         f.setEstado("PE");
         f.setRua("Zelindo Marafante");
-        f.setEmail("www.neoquimica.com.br");
+        f.setEmail("neoquimica@gmail.com");
         f.setTelefone("0800 9799 900");
         
         Assert.assertFalse(!(dao.inserir(f)));
@@ -65,7 +65,7 @@ public class FornecedorDAOTest {
     public void testEditar() {
         Fornecedor f = new Fornecedor();
        
-        f.setId(1);
+        f.setId(2);
         f.setNome("Eurofarma");
         f.setCnpj("61.190.096/0001-92");
         f.setCep("50781-600");
@@ -83,7 +83,7 @@ public class FornecedorDAOTest {
      */
     @Test
     public void testBuscar() throws Exception {
-        List<Fornecedor> teste = dao.buscar("Eurofarma");
+        List<Fornecedor> teste = dao.buscar("GloblaFarma");
         
         Assert.assertNotNull(teste);
     }
@@ -95,7 +95,7 @@ public class FornecedorDAOTest {
     public void testRemover() {
         Fornecedor f = new Fornecedor();
         
-        f.setId(1);
+        f.setId(3);
         
         Assert.assertFalse(!(dao.remover(f)));
     }
