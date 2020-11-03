@@ -127,7 +127,7 @@
 				<reportElement x="-10" y="0" width="92" height="20" uuid="2bcec198-a0e6-4c5c-9633-527a7b71112e">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f8f354c-273a-45c2-b0d1-97c9ede3b39a"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codproduto}]]></textFieldExpression>
@@ -136,7 +136,7 @@
 				<reportElement x="87" y="0" width="92" height="20" uuid="d6eb056c-5f07-4cce-afc5-b60b5404ceeb">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91350c50-a95a-41ac-af96-eeb8085a7308"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
@@ -145,7 +145,7 @@
 				<reportElement x="184" y="0" width="92" height="20" uuid="c661a819-b0ba-4b4b-b297-39e4dc6cb254">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e12dab37-6265-4ab7-8408-9036cfc362ce"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quant}]]></textFieldExpression>
@@ -154,7 +154,7 @@
 				<reportElement x="281" y="0" width="92" height="20" uuid="3ff07ab7-4f8d-4e6f-8d7d-780ab16a30ec">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9320e0fd-44b6-4d3f-84d5-c9f7376c492b"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
@@ -163,7 +163,7 @@
 				<reportElement x="378" y="0" width="92" height="20" uuid="f4d84d70-e85f-493c-bb28-f0a78df4d791">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9d89de5b-36be-41b6-8cc6-e8f4ccff3fd6"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fabricante}]]></textFieldExpression>
@@ -172,7 +172,7 @@
 				<reportElement x="475" y="0" width="92" height="20" uuid="ba6adc6b-b505-41d3-9378-b4b3f61e7826">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="834e3ff1-c0de-4552-b2c0-00db5e1a96fc"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>

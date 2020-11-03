@@ -63,10 +63,12 @@ public class ProdutoDAO {
     }
      
     public boolean delete(Produto p) throws SQLException{
-        sql = "DELETE FROM produto WHERE id=?";
+        sql = "delete from venda_produto where venda_produto.id_produto = ?;"
+                + "DELETE FROM produto WHERE id=?";
         con = ConnectionFactory.getConnection();
         stmt = con.prepareStatement(sql);
         stmt.setInt(1,p.getId());
+        stmt.setInt(2,p.getId());
         stmt.execute();
         stmt.close();
         con.close();

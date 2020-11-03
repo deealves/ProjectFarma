@@ -123,44 +123,8 @@ public class ClienteDAO {
         sql = "select c.* from cliente c  where c.nomeC ilike ?";
         st = con.prepareStatement(sql);
         st.setString(1, query + '%');
-        
-        ResultSet rs = st.executeQuery();
-        
-
-            st = con.prepareStatement(sql);
-            st.setString(1, query + '%');
-         
-            rs = st.executeQuery();
-
-            while(rs.next()){
-               int id = rs.getInt(1); 
-               String nome = rs.getString("nomeC");
-               String cpf = rs.getString("cpf");
-               String rua = rs.getString("rua");
-               String cidade = rs.getString("cidade");
-               String estado = rs.getString("estado");
-               String cep = rs.getString("cep");
-               String telefone = rs.getString("telefone");
-               String email = rs.getString("email");
-
-               Cliente c = new Cliente();
-
-               c.setId(id);
-               c.setNomeC(nome);
-               c.setCpf(cpf);
-               c.setRua(rua);
-               c.setCidade(cidade);
-               c.setEstado(estado);
-               c.setCep(cep);
-               c.setTelefone(telefone);
-               c.setEmail(email);  
-
-               lista.add(c);
-            }
-            st.close();
-            rs.close();
-            con.close();
-       
+    
+        rs = st.executeQuery();
 
         while(rs.next()){
             int id = rs.getInt(1);
@@ -196,11 +160,13 @@ public class ClienteDAO {
     
     public boolean remover(Cliente cliente) throws SQLException{
         //Excluir um cliente 
-        sql = "DELETE FROM cliente c WHERE c.id = ?";
+        sql = "delete from cliente_venda where cliente_venda.id_cliente = ?;"
+                + "DELETE FROM cliente c WHERE c.id = ?";
         
       
             st = con.prepareStatement(sql);
             st.setInt(1, cliente.getId());
+            st.setInt(2, cliente.getId());
         
             st.execute();
             

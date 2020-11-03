@@ -19,7 +19,7 @@ import javafx.beans.property.SimpleStringProperty;
  * @author diego
  */
 public class ClienteVendaProperty {
-    private final SimpleIntegerProperty id;
+    //private final SimpleIntegerProperty id;
     private final SimpleIntegerProperty quant;
     private final SimpleFloatProperty valor;
     private final SimpleObjectProperty <LocalDate> data;
@@ -32,7 +32,7 @@ public class ClienteVendaProperty {
     */
 
     public ClienteVendaProperty(Venda venda, Cliente cliente, ProdutoVenda produto) {
-        this.id = new SimpleIntegerProperty(venda.getId());
+        //this.id = new SimpleIntegerProperty(venda.getId());
         this.quant = new SimpleIntegerProperty(venda.getQuant());
         this.valor = new SimpleFloatProperty(venda.getValor());
         this.data = new SimpleObjectProperty <>(venda.getData());
@@ -41,6 +41,16 @@ public class ClienteVendaProperty {
         this.produto = new SimpleStringProperty(produto.getProduto().getNome());
     }
 
+    public ClienteVendaProperty() {
+        //this.id = new SimpleIntegerProperty();
+        this.quant = new SimpleIntegerProperty();
+        this.valor = new SimpleFloatProperty();
+        this.data = new SimpleObjectProperty <>();
+        this.nomeV = new SimpleStringProperty();
+        this.nomeC = new SimpleStringProperty();
+        this.produto = new SimpleStringProperty();
+    }
+    
     public String getProduto() {
         return produto.get();
     }
@@ -50,13 +60,13 @@ public class ClienteVendaProperty {
     }
     
  
-    public int getId() {
-        return id.get();
+    /* public int getId() {
+    return id.get();
     }
-
+    
     public void setId(Venda venda) {
-        this.id.set(venda.getId());
-    }
+    this.id.set(venda.getId());
+    }*/
 
     public int getQuant() {
         return quant.get();
@@ -101,8 +111,7 @@ public class ClienteVendaProperty {
     @Override
     public String toString(){
         final StringBuilder sb = new StringBuilder();
-        sb.append(" | ").append(id)
-                .append(" | ").append(quant)
+        sb.append(" | ").append(quant)
                 .append(" | ").append(valor)
                 .append(" | ").append(data)
                 .append(" | ").append(nomeV)

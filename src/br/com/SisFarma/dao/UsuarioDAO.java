@@ -57,10 +57,14 @@ public class UsuarioDAO {
     }
      
      public boolean delete(Usuario u){
-        sql = "DELETE FROM usuario WHERE id=?";
+        sql = "delete from venda_produto where venda_produto.id_venda in (select venda.id from venda where venda.id_usuario = ?);"
+                + "delete from venda where venda.id_usuario = ?;"
+                + "DELETE FROM usuario WHERE id = ?;";
         try {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1,u.getId());
+            stmt.setInt(2,u.getId());
+            stmt.setInt(3,u.getId());
             stmt.execute();
             stmt.close();
             con.close();

@@ -104,7 +104,7 @@
 				<reportElement x="0" y="0" width="111" height="20" uuid="4a657332-c445-462d-8b26-607e22c8aae6">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dedb7f5b-521d-49cb-bc94-ff4b499247b8"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
@@ -113,7 +113,7 @@
 				<reportElement x="116" y="0" width="111" height="20" uuid="abf43f64-caff-4bba-994f-80e0edf42497">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="849fc9ca-1575-4de5-ab52-3becf9ee4cd7"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
@@ -122,7 +122,7 @@
 				<reportElement x="232" y="0" width="111" height="20" uuid="ddda2463-b09f-4974-b536-5d044346af37">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="536fefde-c4f2-41a7-beac-db506e958f7f"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{usuario}]]></textFieldExpression>
@@ -131,7 +131,7 @@
 				<reportElement x="348" y="0" width="111" height="20" uuid="e70dbe84-b8c5-4cdd-a891-63d569c03d2f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d7324554-3133-4bca-8b97-d3ded1b75dfb"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{senha}]]></textFieldExpression>

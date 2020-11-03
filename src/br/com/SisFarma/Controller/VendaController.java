@@ -62,7 +62,7 @@ public class VendaController extends ClienteController implements Initializable 
     @FXML private Button btSelecionar;
     @FXML private TableColumn<Produto, Integer> clmId1;
     @FXML private TableColumn<Produto, Integer> clmQuant1;
-    @FXML private TableColumn<Produto, Integer> clmId2;
+    //@FXML private TableColumn<Produto, Integer> clmId2;
     @FXML private TableColumn<Produto, Integer> clmQuant2;
     @FXML private TableColumn<Produto, Date> clmData2;
     @FXML private TextField txTotal;
@@ -337,7 +337,7 @@ public class VendaController extends ClienteController implements Initializable 
         clmCodigo2.setCellValueFactory(new PropertyValueFactory("codproduto"));
         clmNome2.setCellValueFactory(new PropertyValueFactory("nome"));
         clmPreco2.setCellValueFactory(new PropertyValueFactory("preco"));
-        clmData2.setCellValueFactory(new PropertyValueFactory("data"));
+        //clmData2.setCellValueFactory(new PropertyValueFactory("data"));
         clmQuant2.setCellValueFactory(new PropertyValueFactory("quant"));
         tabela2.setItems(atualizaTabela2());
     }
@@ -402,6 +402,7 @@ public class VendaController extends ClienteController implements Initializable 
         
         for(int i = 0; i < dao.listar().size(); i++){
            id_venda = dao.listar().get(i).getId(); 
+            System.out.println("IdV: "+id_venda);
         }
         
         //ProdutoVenda pv = new ProdutoVenda();
@@ -424,18 +425,17 @@ public class VendaController extends ClienteController implements Initializable 
             }
             
          
-        }
-        else{
+        }else{
             ProdutoVenda pv = new ProdutoVenda();
-             Produto p = new Produto();
-                p.setId(getId_produto());
-                Venda v = new Venda();
-                v.setId(getId_venda());
-                pv.setVenda(v);
-                pv.setProduto(p);
-                System.out.println("V" + getId_venda());
-                System.out.println("P" + getId_produto());
-                daoo.insert(pv);
+            Produto p = new Produto();
+               p.setId(getId_produto());
+               Venda v = new Venda();
+               v.setId(getId_venda());
+               pv.setVenda(v);
+               pv.setProduto(p);
+               System.out.println("V" + getId_venda());
+               System.out.println("P" + getId_produto());
+               daoo.insert(pv);
         }
         
         

@@ -7,7 +7,6 @@ package br.com.SisFarma.Controller;
 
 import static br.com.SisFarma.Controller.VendaController.getId_venda;
 import static br.com.SisFarma.Controller.VendaController.getPro;
-import static br.com.SisFarma.Controller.VendaController.getTeste;
 import br.com.SisFarma.gui.Clientes;
 import br.com.SisFarma.model.Cliente;
 import br.com.SisFarma.gui.MenuPrincipal;
@@ -20,8 +19,9 @@ import br.com.SisFarma.model.ClienteVenda;
 import br.com.SisFarma.model.ClienteVendaProperty;
 import br.com.SisFarma.model.Produto;
 import br.com.SisFarma.model.ProdutoVenda;
-import br.com.SisFarma.model.Venda;
+import br.com.SisFarma.util.ConnectionFactory;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,7 +31,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -47,6 +46,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  * FXML Controller class
@@ -89,6 +94,8 @@ public class ClienteController implements Initializable {
     public static Button staticRemover;
     public static Button staticEditar;
     public static Button staticVoltar;
+    
+    private Connection con;
 
     /**
      * Initializes the controller class.
@@ -123,8 +130,8 @@ public class ClienteController implements Initializable {
                            al.show(); 
                         }
                     }else{
-                        realizarVenda();
                         abreMenu();
+                        realizarVenda();
                         Alert al = new Alert(AlertType.CONFIRMATION);
                         al.setHeaderText("Venda Realizada!");
                         al.show();
@@ -155,7 +162,7 @@ public class ClienteController implements Initializable {
                 if(btCadastrar.getText().equals("Realizar Venda")){
                     try {
                         realizarVenda();
-                        abreMenu();
+                        //abreMenu();
                         Alert al = new Alert(AlertType.CONFIRMATION);
                         al.setHeaderText("Venda Realizada!");
                         al.show();    
@@ -425,13 +432,18 @@ public class ClienteController implements Initializable {
         cv.insertClienteVenda(teste);
         
         ProdutoVenda p = new ProdutoVenda();
-        p.setProduto(teste.getVenda().getP());
         
-        ClienteVendaProperty cp = new ClienteVendaProperty(teste.getVenda(), selecionado, p);
+        
+        
+        ClienteVendaProperty cp = new ClienteVendaProperty();
         for(int i = 0; i < cv.listar().size(); i++){
             cp = cv.listar().get(i);
         }
-        
+        try {
+            imprimir();
+        } catch (JRException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("U Venda: "+cp);
        /* try {
             cadastraCliente();
@@ -499,6 +511,17 @@ public class ClienteController implements Initializable {
     private ObservableList<Cliente> buscaTabela(String busca) throws SQLException {
         ClienteDAO dao = new ClienteDAO();
         return FXCollections.observableArrayList(dao.buscar(busca));
+    }
+    
+    public void imprimir() throws JRException{
+        URL url = getClass().getResource("/br/com/SisFarma/relatorios/projectFarmaNotaFiscal.jasper");
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
+        
+        con =  ConnectionFactory.getConnection();
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, con);//null: caso não existam filtros
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);//false: não deixa fechar a aplicação principal
+        jasperViewer.setVisible(true);
     }
  }
    

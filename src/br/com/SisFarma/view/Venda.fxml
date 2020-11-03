@@ -37,12 +37,10 @@
          <children>
             <TableView fx:id="tabela2" layoutX="27.0" layoutY="101.0" prefHeight="200.0" prefWidth="250.0">
               <columns>
-                <TableColumn fx:id="clmId2" prefWidth="33.0" text="ID" />
                 <TableColumn fx:id="clmCodigo2" prefWidth="61.0" text="Código" />
                   <TableColumn fx:id="clmNome2" prefWidth="77.0" text="Nome" />
                   <TableColumn fx:id="clmPreco2" prefWidth="84.0" text="Preço" />
                   <TableColumn fx:id="clmQuant2" prefWidth="75.0" text="Quantidade" />
-                  <TableColumn fx:id="clmData2" prefWidth="75.0" text="Data" />
               </columns>
             </TableView>
             <Button fx:id="btVoltar" layoutX="69.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: #FF6347;" text="Voltar" textFill="WHITE" />
